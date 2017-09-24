@@ -23,7 +23,6 @@ public class Manager {
 		this.status = status;
 		
 		this.company = Company.getInstance();
-//		this.orderList = this.company.getOrderList();
 		
 		System.out.println("Express Company Manager " + name + " (level:"+ status + ") created!");
 	}
@@ -32,14 +31,6 @@ public class Manager {
 	public int getId() {return this.id;}
 	
 	public int getStatus() {return this.status;}
-	
-	
-//	public void setOrderpriority(int id, int priority) {
-//		Order order = orderList.getOrderById(id);
-//		
-//		
-//		
-//	}
 	
 
 }

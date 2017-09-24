@@ -32,7 +32,6 @@ public class OrderList {
 		return currentOrder;
 	}
 	
-	
 	public Order getOrderById(int id) {
 		return this.orderList.get(id);
 	}
