@@ -5,30 +5,41 @@ import java.util.HashMap;
 
 public class Manager {
 	
+	
+	private int id;
 	private String name;
 	private String password;
 	private String gender = "Not Know";
 	private int status = 1;
 	
-//	private static Map<Integer,String> statusMap ;
+	private Company company;
+	private OrderList orderList;
 	
-//	private ArrayList<> orderList;
-	private HashMap<Integer, Order> orderList;
-	
-	
-	public Manager(String name, String password, String gender, int status) {
+	public Manager(int id, String name, String password, String gender, int status) {
+		this.id = id; 
 		this.name = name;
 		this.password = password;
 		this.gender = gender;
 		this.status = status;
 		
+		this.company = Company.getInstance();
+//		this.orderList = this.company.getOrderList();
+		
 		System.out.println("Express Company Manager " + name + " (level:"+ status + ") created!");
 	}
 	
-	public void setpriority(int id, int priority) {
-		Order order = orderList.get(id);
-		
-	}
+	
+	public int getId() {return this.id;}
+	
+	public int getStatus() {return this.status;}
+	
+	
+//	public void setOrderpriority(int id, int priority) {
+//		Order order = orderList.getOrderById(id);
+//		
+//		
+//		
+//	}
 	
 
 }
