@@ -15,7 +15,7 @@ The group project for CS3343
 
 * Customer (who receives items)
 * Express company's managers
-* Delieverer 
+* Courier (the person who deliver the packages) 
 * Customer (who sends items)
 * Branch offices
 
