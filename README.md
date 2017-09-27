@@ -6,7 +6,7 @@ The group project for CS3343
 
 1. Product Manager: WANG Fangzhou, ZHENG Wanying
 2. Developer Programmer: QIU Rui, LIU Pengze
-3. Qulity Assurance Engineer: WANG Ruochen, FAN Yuyang, WANG Yixvan
+3. Qulity Assurance Engineer: WANG Ruochen, FAN Yuyang, WANG Yixuan
 
 ## Project topic 
 **Express management System**.
@@ -15,7 +15,7 @@ The group project for CS3343
 
 * Customer (who receives items)
 * Express company's managers
-* Delieverer 
+* Courier (the person who deliver the packages) 
 * Customer (who sends items)
 * Branch offices
 
