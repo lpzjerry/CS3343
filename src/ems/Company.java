@@ -45,6 +45,10 @@ public class Company {
 	public OrderList getOrderList() {
 		return this.orderList;
 	}
-	
-	
+
+
+	public static Order CreateOrder(String itemName, Customer c) {
+//	    TODO: implement CreateOrder for Customer
+        return new Order("",0);
+	}
 }

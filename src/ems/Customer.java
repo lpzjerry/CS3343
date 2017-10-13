@@ -1,5 +1,6 @@
-package com.company;
+package ems;
 
+import java.util.ArrayList;
 
 public class Customer implements Sender,Receiver {
     private int id;

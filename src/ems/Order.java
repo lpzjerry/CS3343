@@ -27,4 +27,8 @@ public class Order {
 		this.priority = 1;
 	}
 
+	public String getLocation() {
+//		TODO: maybe call Company to return the location(branch offices)
+        return "";
+	}
 }

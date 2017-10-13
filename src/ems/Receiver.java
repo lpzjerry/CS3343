@@ -1,4 +1,4 @@
-package com.company;
+package ems;
 
 public interface Receiver {
     public String getCurrentLocation(Order o);

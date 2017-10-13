@@ -6,7 +6,7 @@ import java.util.*;
 public class Courier {
     private int ID; // unique identification for each Courier
     private String name;
-    private PostOffice managerOffice;
+    private Branch managerOffice;
     private ArrayList<Order> OrderQueue; // Orders to be delivered
     // TODO Constructor
     public Courier(){}
