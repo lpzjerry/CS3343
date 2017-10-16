@@ -13,11 +13,11 @@ public class Customer implements Sender,Receiver {
     private Company company = Company.getInstance();
 
     public Order AskToCreateOrder(String itemName,Customer c){
-        return Company.CreateOrder(itemName,c);
+        return company.CreateOrder(itemName,c);
     }
 
     public Order AskToCreateOrder(String itemName,String address){
-        return Company.CreateOrder(itemName,address);
+        return company.CreateOrder(itemName,address);
     }
 
     public Boolean AskToWithdrawOrder(Order o){

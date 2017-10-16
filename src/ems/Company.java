@@ -45,9 +45,9 @@ public class Company {
 		return this.managerList.get(id);
 	}
 	
-	public OrderPool getOrderPool() {
-		return this.orderPool;
-	}
+//	public OrderPool getOrderPool() {
+//		return this.orderPool;
+//	}
 
 
 	public Order CreateOrder(String itemName, Customer c) {
