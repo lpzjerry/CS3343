@@ -6,8 +6,11 @@ public class Customer implements Sender,Receiver {
     private int id;
     private String name;
     private String password;
+    private int priority = 1;// default
     private ArrayList<Order> MyOrder;
     private ArrayList<Order> SendToMe;
+
+    private Company company = Company.getInstance();
 
     public Order AskToCreateOrder(String itemName,Customer c){
         return Company.CreateOrder(itemName,c);
@@ -35,6 +38,14 @@ public class Customer implements Sender,Receiver {
 
     public Boolean ConfirmReception(Order o){
         return true;
+    }
+
+    public Order searchOrder(int id){
+        return company.searchOrder(id);
+    }
+
+    public Order searchOrder(String name){
+        return company.searchOrder(name);
     }
 
 

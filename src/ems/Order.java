@@ -31,4 +31,12 @@ public class Order {
 //		TODO: maybe call Company to return the location(branch offices)
         return "";
 	}
+
+	public String getItemName(){
+	    return this.itemName;
+    }
+
+    public int getId(){
+	    return this.id;
+    }
 }

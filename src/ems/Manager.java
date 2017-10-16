@@ -1,7 +1,6 @@
 package ems;
 
 //import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Manager {
 	
@@ -13,7 +12,7 @@ public class Manager {
 	private int status = 1;
 	
 	private Company company;
-	private OrderList orderList;
+	private OrderPool orderPool;
 	
 	public Manager(int id, String name, String password, String gender, int status) {
 		this.id = id; 
@@ -31,6 +30,18 @@ public class Manager {
 	public int getId() {return this.id;}
 	
 	public int getStatus() {return this.status;}
+
+	public Branch addBranch(String name){
+		return company.addBranch(name);
+	}
+
+	public Branch removeBranch(int id){
+		return company.removeBranch(id);
+	}
+
+	public void changeBranchConnections(){
+//		TODO: increase or decrease the connection weights between branch offices.
+	}
 	
 
 }

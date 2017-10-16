@@ -5,9 +5,9 @@ import java.util.*;
 //import javax.print.attribute.standard.PrinterMessageFromOperator;
 
 
-public class Branch extends Manager{
+public class Branch {
 	private int id;
-	private String address;
+	private String name;
 	private static int count=0;
 	private ArrayList<Order> packages = new ArrayList<Order>();
 	private ArrayList<Courier> freeMan = new ArrayList<Courier>();
@@ -20,9 +20,10 @@ public class Branch extends Manager{
 		return new Branch[10]; // tmp dummy return value -- added by patrick ;)
 	}
 
-	public Branch(String address) {
+	public Branch(int id, String name) {
 //		TODO: conflict constructor with Manager
-		this.address =address;
+		this.id = id;
+		this.name =name;
 		Branch.count++;
 		this.id=Branch.count;
 	}
