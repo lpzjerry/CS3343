@@ -27,4 +27,16 @@ public class Order {
 		this.priority = 1;
 	}
 
+	public String getLocation() {
+//		TODO: maybe call Company to return the location(branch offices)
+        return "";
+	}
+
+	public String getItemName(){
+	    return this.itemName;
+    }
+
+    public int getId(){
+	    return this.id;
+    }
 }

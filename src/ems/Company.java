@@ -5,15 +5,18 @@ import java.util.HashMap;
 public class Company {
 	
 	private HashMap<Integer, Manager> managerList = new HashMap<Integer, Manager>();
-	
-	private OrderList orderList;
+
+	private int branchId = 1;
+	private HashMap<Integer, Branch> branchList = new HashMap<Integer, Branch>();
+	private OrderPool orderPool;
+
 	
 	
 	/**
 	 * while company's init, create a user with full priviledges.
 	 */
 	private Company() {
-		this.orderList = OrderList.getInstance();
+		this.orderPool = OrderPool.getInstance();
 		
 		Manager superuser = new Manager(0, "superuser", "123456", "nil", 0);
 		this.managerList.put(superuser.getId(), superuser);
@@ -42,9 +45,32 @@ public class Company {
 		return this.managerList.get(id);
 	}
 	
-	public OrderList getOrderList() {
-		return this.orderList;
+//	public OrderPool getOrderPool() {
+//		return this.orderPool;
+//	}
+
+
+	public Order CreateOrder(String itemName, Customer c) {
+		//	   TODO: implement CreateOrder for Customer
+        return new Order("",0);
 	}
-	
-	
+
+    public Branch addBranch(String name){
+	    int id = this.branchId ++ ;
+	    Branch branch = new Branch(id, name);
+	    return branchList.put(id, branch);
+    }
+
+    public Branch removeBranch(int id){
+        return branchList.remove(id);
+    }
+
+    public Order searchOrder(int id){
+        return orderPool.getOrderById(id);
+    }
+
+    public Order searchOrder(String name){
+        return orderPool.getOrderByName(name);
+    }
+
 }
