@@ -93,7 +93,7 @@ public class Branch {
 	}
 
 	private void checkedOut(Courier c) {
-		ArrayList thingsToSend<Oreder>=new ArrayList<Order>();
+		ArrayList<Order> thingsToSend=new ArrayList<Order>();
 		int weight=this.packages.get(robinpointer).peek().getWeight();
 		while(weight<c.getCapacity()){
 			for (int i=0;i<this.packages.size();i++){
