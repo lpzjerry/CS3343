@@ -1,6 +1,7 @@
 package ems;
 
 import java.util.HashMap;
+import java.util.Date;
 
 public class Company {
 	
@@ -9,7 +10,7 @@ public class Company {
 	private int branchId = 1;
 	private HashMap<Integer, Branch> branchList = new HashMap<Integer, Branch>();
 	private OrderPool orderPool;
-
+    private Date companyClock;
 	
 	
 	/**
@@ -20,6 +21,7 @@ public class Company {
 		
 		Manager superuser = new Manager(0, "superuser", "123456", "nil", 0);
 		this.managerList.put(superuser.getId(), superuser);
+		this.companyClock = new Date();
 		
 	}
 	
@@ -71,6 +73,14 @@ public class Company {
 
     public Order searchOrder(String name){
         return orderPool.getOrderByName(name);
+    }
+
+    /**
+     *
+     * @return type:long, return the time after the company is created(in millisecond)
+     */
+    public long getTime(){
+        return new Date().getTime() - this.companyClock.getTime();
     }
 
 }
