@@ -112,7 +112,7 @@ public class Branch {
 		if (thingsToSend.size()==0){
 			System.out.println("no package");
 		}
-		else if(checkLastDelivery(thingsToSend.peek())){
+		else if(checkLastDelivery(thingsToSend.get(0))){
 			c.sendToHome(thingsToSend);
 		}
 		else{
