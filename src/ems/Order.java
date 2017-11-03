@@ -4,7 +4,6 @@ public class Order {
 
 	private int id;
 	private String itemName;
-<<<<<<< Updated upstream
     private Position location;
 	private Position destination;
 

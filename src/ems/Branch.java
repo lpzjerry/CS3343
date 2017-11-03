@@ -5,7 +5,6 @@ import java.util.*;
 
 //import javax.print.attribute.standard.PrinterMessageFromOperator;
 // wfz &qr
-
 public class Branch {
 
 
