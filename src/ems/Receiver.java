@@ -1,6 +1,7 @@
 package ems;
 
 public interface Receiver {
-    public String getCurrentLocation(Order o);
-    public Boolean ConfirmReception(Order o);
+    public Position getOrderLocation(int orderID);
+
+    public void confirmReception(Order order);
 }

@@ -2,52 +2,91 @@ package ems;
 
 import java.util.ArrayList;
 
-public class Customer implements Sender,Receiver {
+public class Customer implements Sender, Receiver {
     private int id;
     private String name;
     private String password;
-    private int priority = 1;// default
-    private ArrayList<Order> MyOrder;
-    private ArrayList<Order> SendToMe;
-
+    private ArrayList<Integer> sentOrderID;
+    private ArrayList<Integer> receivingOrderID;
+    private Position position;
     private Company company = Company.getInstance();
 
-    public Order AskToCreateOrder(String itemName,Customer c){
-        return company.CreateOrder(itemName,c);
+    // Pengze Liu 2017-Nov-2
+    @Override
+    public Position getOrderLocation(int orderID) {
+        return company.searchOrder(orderID).getLocation();
     }
 
-    public Order AskToCreateOrder(String itemName,String address){
-        return company.CreateOrder(itemName,address);
+    @Override
+    public void confirmReception(Order order) {
+        // TODO called by Courier, remove order from OrderPool, change order status
     }
 
-    public Boolean AskToWithdrawOrder(Order o){
-        if(o.status==1)return false;
-        else return Company.WithdrawOrder(o);
+    @Override
+    public void askToCreateOrder(String itemName, Customer target) {
+        company.createOrder(itemName, this.getPosition(), target.getPosition());
     }
 
-    public Boolean ChangeDestination(Order o,String address){
-        if(o.status!=1){
-            o.address = address;
-            return true;}
-        else return false;
+    @Override
+    public void askToCreateOrder(String itemName, Position target) {
+        company.createOrder(itemName, this.getPosition(), target);
     }
 
-    public String getCurrentLocation(Order o){
+    @Override
+    public Boolean changeDestination(int orderID, Position newPosition) {
+        return null;
+    }
+
+    @Override
+    public Boolean askToWithdrawOrder(int orderID) {
+        return null;
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    /*
+    public Order AskToCreateOrder(String itemName, Customer customer) {
+        return company.CreateOrder(itemName, customer);
+    }
+
+    public Order AskToCreateOrder(String itemName, int[] address) {
+        return company.CreateOrder(itemName, address);
+    }
+
+    public Boolean AskToWithdrawOrder(Order order) {
+        if (order.status == 1)
+            return false;
+        return Company.WithdrawOrder(order);
+    }
+
+    public Boolean ChangeDestination(Order order, Position newPosition) {
+        if (!order.hasBeenSent()) {
+            order.setNewLocation(newPosition);
+            return true;
+        }
+        return false;
+    }
+
+    public Position getCurrentLocation(Order o) {
         return o.getLocation();
     }
 
-    public Boolean ConfirmReception(Order o){
+    public Boolean ConfirmReception(Order o) {
         return true;
     }
 
-    public Order searchOrder(int id){
+    public Order searchOrder(int id) {
         return company.searchOrder(id);
     }
 
-    public Order searchOrder(String name){
+    public Order searchOrder(String name) {
         return company.searchOrder(name);
     }
 
-
-
+    public Position getPosition() {
+        return position;
+    }
+    */
 }
