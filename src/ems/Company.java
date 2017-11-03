@@ -46,7 +46,7 @@ public class Company {
     public Manager getManagerById(int id) {
         return this.managerList.get(id);
     }
-
+    
     public Order CreateOrder(String itemName, Customer c) {
         //	   TODO: implement CreateOrder for Customer
         return new Order("", 0);
