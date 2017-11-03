@@ -47,11 +47,6 @@ public class Company {
         return this.managerList.get(id);
     }
 
-//	public OrderPool getOrderPool() {
-//		return this.orderPool;
-//	}
-
-
     public Order CreateOrder(String itemName, Customer c) {
         //	   TODO: implement CreateOrder for Customer
         return new Order("", 0);
