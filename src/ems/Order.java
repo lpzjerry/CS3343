@@ -1,42 +1,48 @@
 package ems;
 
+import javax.xml.stream.FactoryConfigurationError;
+
 public class Order {
-	
+
 	private int id;
 	private String itemName;
-	private double price;
-	private int priority;
-	
-	/**
-	 * the default value of priority is 1
-	 * @param itemName
-	 * @param price
-	 * @param priority
-	 */
-	public Order(String itemName, double price, int priority) {
-//		this.id = id;
+    private Position location;
+	private Position destination;
+
+	private boolean delieved;
+
+	public Order(int id, String itemName, Position location, Position destination) {
+		this.id = id;
+
 		this.itemName = itemName;
-		this.price  = price;
-		this.priority = priority;
-	}
-	
-	public Order(String itemName, double price) {
-//		this.id = id;
-		this.itemName = itemName;
-		this.price  = price;
-		this.priority = 1;
+		this.location = location; // Position of the sender, specified by company
+		this.destination = destination; // Position of the receiver, specified by sender
+		// this.price = price; // generate by Company
+		//this.priority = priority; // generate by Company, [1 by default]
+        this.delieved = false;
 	}
 
-	public String getLocation() {
-//		TODO: maybe call Company to return the location(branch offices)
-        return "";
+	public Position getLocation() {
+		return location;
 	}
 
-	public String getItemName(){
-	    return this.itemName;
+	public boolean hasBeenSent() {
+	    return location.equals(destination);
     }
 
-    public int getId(){
-	    return this.id;
+	public String getItemName() {
+		return this.itemName;
+	}
+
+	public int getId() {
+		return this.id;
+	}
+
+	public void received(){
+	    this.delieved = true;
+    }
+
+    public boolean isDelieved(){
+	    return this.delieved;
     }
 }

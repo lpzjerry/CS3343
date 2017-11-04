@@ -1,10 +1,13 @@
 package ems;
 
 public interface Sender {
-   public Order AskToCreateOrder(String itemName,Customer c);
-   public Order AskToCreateOrder(String itemName,String address);
-   public String getCurrentLocation(Order o);
-   public Boolean ChangeDestination(Order o,String address);
-   public Boolean AskToWithdrawOrder(Order o);
+   public void askToCreateOrder(String itemName, Customer target);
 
+   public void askToCreateOrder(String itemName, Position target);
+
+   public Position getOrderLocation(int orderID);
+
+   public Boolean changeDestination(int orderID, Position newPosition);
+
+   public Boolean askToWithdrawOrder(int orderID);
 }

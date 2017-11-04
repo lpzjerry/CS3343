@@ -1,61 +1,81 @@
 package ems;
 
+import javax.print.attribute.standard.MediaSize;
 import java.util.ArrayList;
 
-public class Customer implements Sender,Receiver {
+public class Customer implements Sender, Receiver {
     private int id;
     private String name;
-    private String password;
-    private int priority = 1;// default
+    private int psHash;
+
+    private ArrayList<Integer> sentOrderID;
+    private ArrayList<Integer> receivingOrderID;
+    private Position position;
+
+    private int priority;
     private ArrayList<Order> MyOrder;
     private ArrayList<Order> SendToMe;
-    
-    public Customer(int ID,String Name,String Password,int Priority){
+
+    public Customer(int ID, String Name, String Password, int Priority, Position position) {
         this.id = ID;
         this.name = Name;
         this.priority = Priority;
-        MyOrder = new ArrayList<order>();
-        SendToMe = new ArrayList(order)();
+        this.psHash = Password.hashCode();
+        this.position = position;
+        MyOrder = new ArrayList<Order>();
+        SendToMe = new ArrayList<Order>();
     }
-    
+
+    //    default priority is 1
+    public Customer(int ID, String Name, String Password, Position position) {
+        this(ID, Name, Password, 1, position);
+    }
+
+    //    will allocate a random position to unclear location customer
+    //    for testing and demo usage
+    public Customer(int ID, String Name, String Password) {
+        this(ID, Name, Password, 1, new Position());
+    }
+
     private Company company = Company.getInstance();
 
-    public Order AskToCreateOrder(String itemName,Customer c){
-        return company.CreateOrder(itemName,c);
+    // Pengze Liu 2017-Nov-2
+    @Override
+    public Position getOrderLocation(int orderID) {
+        return company.searchOrder(orderID).getLocation();
     }
 
-    public Order AskToCreateOrder(String itemName,String address){
-        return company.CreateOrder(itemName,address);
+    @Override
+    public void confirmReception(Order order) {
+        company.receiveOrder(order);
     }
 
-    public Boolean AskToWithdrawOrder(Order o){
-        if(o.status==1)return false;
-        else return Company.WithdrawOrder(o);
+    @Override
+    public void askToCreateOrder(String itemName, Customer target) {
+        company.createOrder(itemName, this.getPosition(), target.getPosition());
     }
 
-    public Boolean ChangeDestination(Order o,String address){
-        if(o.status!=1){
-            o.address = address;
-            return true;}
-        else return false;
+    @Override
+    public void askToCreateOrder(String itemName, Position target) {
+        company.createOrder(itemName, this.getPosition(), target);
     }
 
-    public String getCurrentLocation(Order o){
-        return o.getLocation();
+    @Override
+    public Boolean changeDestination(int orderID, Position newPosition) {
+        return null;
     }
 
-    public Boolean ConfirmReception(Order o){
-        return true;
+    @Override
+    public Boolean askToWithdrawOrder(int orderID) {
+        return null;
     }
 
-    public Order searchOrder(int id){
-        return company.searchOrder(id);
+    public Position getPosition() {
+        return position;
     }
 
-    public Order searchOrder(String name){
-        return company.searchOrder(name);
+    public int getId() {
+        return this.id;
     }
-
-
 
 }

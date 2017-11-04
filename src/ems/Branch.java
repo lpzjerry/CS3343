@@ -1,10 +1,6 @@
 package ems;
 
-import java.util.*;
-//import java.util.zip.CheckedOutputStream;
-
-//import javax.print.attribute.standard.PrinterMessageFromOperator;
-// wfz &qr
+import java.util.ArrayList;
 
 public class Branch {
 
@@ -20,15 +16,20 @@ public class Branch {
     private final int capacity;
     private int robinpointer = 0;
 
-    public Branch(int id, String name, int[] loc, int cap, int sur, ArrayList<Branch> branches) {
-        this.id = id;
-        this.name = name;
-        this.location = loc;
-        this.capacity = cap;
-        this.neighbour = branches;
-        for (int i = 0; i <= this.neighbour.size(); i++) {
-            this.packages.add(new OrderCollection(1)); // we need to initiate with unique id for each neighbor
-        }
+//    public Branch(int id, String name, int[] loc, int cap, int sur, ArrayList<Branch> branches) {
+//        this.id = id;
+//        this.name = name;
+//        this.location = loc;
+//        this.capacity = cap;
+//        this.neighbour = branches;
+//        for (int i = 0; i <= this.neighbour.size(); i++) {
+//            this.packages.add(new OrderCollection(1)); // we need to initiate with unique id for each neighbor
+//        }
+//    }
+
+    public Branch() {
+//        TODO implement
+//        this();
     }
 
     public int getId() {
@@ -79,7 +80,7 @@ public class Branch {
                 } else continue;
             }
             if (q.peek().getPath()[q.peek().getCurrenLocation() + 1] == c.getOrder().getPath()[c.getOrder(0).getCurrenLocation() + 1]) {
-                q.add(c.getOrder())
+                q.add(c.getOrder());
             }
         }
         c.getOrder().getPath()[getCurrenLocation()].arrive(c);
@@ -111,24 +112,23 @@ public class Branch {
         }
     }
 
-    public void arrive(Courier c) {
-        this.onDelivery.remove(c.getOrder());
-        this.outMan.remove(c);
-        this.freeMan.add(c);
+    public void arrive(Courier courier) {
+        this.onDelivery.remove(courier.getOrder());
+        this.outMan.remove(courier);
+        this.freeMan.add(courier);
     }
 
-    private boolean checkLastDelivery(Order o) {
-        if (Math.abs(o.getAddress()[0] - this.location[0]) + Math.abs(o.getAddress()[1] - this.location[1]) <= this.capacity) {
-            return true;
-        } else return false;
+    private boolean checkLastDelivery(Order order) {
+        return Math.abs(order.getAddress()[0] - this.location[0]) + Math.abs(order.getAddress()[1] - this.location[1]) <= this.capacity;
     }
 
-    public String toString() {
-        return this.name;
-    }
+//    useless...
+//    public String toString() {
+//        return this.name;
+//    }
 
-    public void updateNeighbour(Branch b) {
-        this.neighbour.add(b);
+    public void updateNeighbour(Branch branch) {
+        this.neighbour.add(branch);
         this.packages.add(new OrderCollection(1));// with new id
     }
 
