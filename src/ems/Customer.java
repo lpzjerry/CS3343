@@ -46,47 +46,4 @@ public class Customer implements Sender, Receiver {
         return position;
     }
 
-    /*
-    public Order AskToCreateOrder(String itemName, Customer customer) {
-        return company.CreateOrder(itemName, customer);
-    }
-
-    public Order AskToCreateOrder(String itemName, int[] address) {
-        return company.CreateOrder(itemName, address);
-    }
-
-    public Boolean AskToWithdrawOrder(Order order) {
-        if (order.status == 1)
-            return false;
-        return Company.WithdrawOrder(order);
-    }
-
-    public Boolean ChangeDestination(Order order, Position newPosition) {
-        if (!order.hasBeenSent()) {
-            order.setNewLocation(newPosition);
-            return true;
-        }
-        return false;
-    }
-
-    public Position getCurrentLocation(Order o) {
-        return o.getLocation();
-    }
-
-    public Boolean ConfirmReception(Order o) {
-        return true;
-    }
-
-    public Order searchOrder(int id) {
-        return company.searchOrder(id);
-    }
-
-    public Order searchOrder(String name) {
-        return company.searchOrder(name);
-    }
-
-    public Position getPosition() {
-        return position;
-    }
-    */
 }

@@ -1,5 +1,7 @@
 package ems;
 
+import javafx.geometry.Pos;
+
 import java.util.HashMap;
 import java.util.Date;
 
@@ -46,10 +48,9 @@ public class Company {
     public Manager getManagerById(int id) {
         return this.managerList.get(id);
     }
-    
-    public Order CreateOrder(String itemName, Customer c) {
-        //	   TODO: implement CreateOrder for Customer
-        return new Order("", 0);
+
+    public Order createOrder(String itemName, Position src, Position des) {
+        return orderPool.createOrder(itemName, src, des);
     }
 
     public Branch addBranch(String name) {

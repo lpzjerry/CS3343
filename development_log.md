@@ -13,11 +13,11 @@ Any Customer instead of the Sender/Receiver could access to any packages if they
 
 ### optional functionalities not implemented
   Sender
-    +changeDestination(int orderID, Position newPosition);
-    +askToWithdrawOrder(int orderID);
-  Order
-    -prize
-    -priority
-    - <Position>path
-  Company
-    -companyClock
+    +changeDestination(int orderID, Position newPosition);  
+    +askToWithdrawOrder(int orderID);  
+  Order  
+    -prize  
+    -priority  
+    - <Position>path  
+  Company  
+    -companyClock  
