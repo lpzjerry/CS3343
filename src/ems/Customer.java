@@ -6,9 +6,23 @@ public class Customer implements Sender, Receiver {
     private int id;
     private String name;
     private String password;
-    private ArrayList<Integer> sentOrderID;
-    private ArrayList<Integer> receivingOrderID;
-    private Position position;
+//<<<<<<< HEAD
+//    private ArrayList<Integer> sentOrderID;
+//    private ArrayList<Integer> receivingOrderID;
+//    private Position position;
+
+    private int priority = 1;// default
+    private ArrayList<Order> MyOrder;
+    private ArrayList<Order> SendToMe;
+    
+    public Customer(int ID,String Name,String Password,int Priority){
+        this.id = ID;
+        this.name = Name;
+        this.priority = Priority;
+        MyOrder = new ArrayList<Order>();
+        SendToMe = new ArrayList<Order>();
+    }
+
     private Company company = Company.getInstance();
 
     // Pengze Liu 2017-Nov-2

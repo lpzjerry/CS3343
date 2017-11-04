@@ -1,6 +1,5 @@
 package ems;
 
-import javafx.geometry.Pos;
 
 import java.util.HashMap;
 import java.util.Date;
@@ -10,7 +9,7 @@ public class Company {
     private HashMap<Integer, Manager> managerList = new HashMap<Integer, Manager>();
 
     private int branchId = 1;
-    private HashMap<Integer, Branch> branchList = new HashMap<Integer, Branch>();
+    private HashMap<Integer, Branch> branchList; //= new HashMap<Integer, Branch>();
     private OrderPool orderPool;
     private Date companyClock;
 
@@ -20,11 +19,11 @@ public class Company {
      */
     private Company() {
         this.orderPool = OrderPool.getInstance();
-
+        this.branchList = new HashMap<>();
+        this.managerList = new HashMap<>();
+        this.companyClock = new Date();
         Manager superuser = new Manager(0, "superuser", "123456", "nil", 0);
         this.managerList.put(superuser.getId(), superuser);
-        this.companyClock = new Date();
-
     }
 
     private static Company instance = new Company();
