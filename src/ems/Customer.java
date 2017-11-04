@@ -9,7 +9,15 @@ public class Customer implements Sender,Receiver {
     private int priority = 1;// default
     private ArrayList<Order> MyOrder;
     private ArrayList<Order> SendToMe;
-
+    
+    public Customer(int ID,String Name,String Password,int Priority){
+        this.id = ID;
+        this.name = Name;
+        this.priority = Priority;
+        MyOrder = new ArrayList<order>();
+        SendToMe = new ArrayList(order)();
+    }
+    
     private Company company = Company.getInstance();
 
     public Order AskToCreateOrder(String itemName,Customer c){
