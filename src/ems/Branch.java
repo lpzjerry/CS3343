@@ -16,15 +16,20 @@ public class Branch {
     private final int capacity;
     private int robinpointer = 0;
 
-    public Branch(int id, String name, int[] loc, int cap, int sur, ArrayList<Branch> branches) {
-        this.id = id;
-        this.name = name;
-        this.location = loc;
-        this.capacity = cap;
-        this.neighbour = branches;
-        for (int i = 0; i <= this.neighbour.size(); i++) {
-            this.packages.add(new OrderCollection(1)); // we need to initiate with unique id for each neighbor
-        }
+//    public Branch(int id, String name, int[] loc, int cap, int sur, ArrayList<Branch> branches) {
+//        this.id = id;
+//        this.name = name;
+//        this.location = loc;
+//        this.capacity = cap;
+//        this.neighbour = branches;
+//        for (int i = 0; i <= this.neighbour.size(); i++) {
+//            this.packages.add(new OrderCollection(1)); // we need to initiate with unique id for each neighbor
+//        }
+//    }
+
+    public Branch() {
+//        TODO implement
+//        this();
     }
 
     public int getId() {

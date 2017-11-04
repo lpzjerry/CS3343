@@ -1,5 +1,7 @@
 package ems;
 
+import javax.xml.stream.FactoryConfigurationError;
+
 public class Order {
 
 	private int id;
@@ -7,8 +9,7 @@ public class Order {
     private Position location;
 	private Position destination;
 
-    // private double price; // might be useless
-    // private int priority; // might be useless
+	private boolean delieved;
 
 	public Order(int id, String itemName, Position location, Position destination) {
 		this.id = id;
@@ -18,6 +19,7 @@ public class Order {
 		this.destination = destination; // Position of the receiver, specified by sender
 		// this.price = price; // generate by Company
 		//this.priority = priority; // generate by Company, [1 by default]
+        this.delieved = false;
 	}
 
 	public Position getLocation() {
@@ -35,4 +37,12 @@ public class Order {
 	public int getId() {
 		return this.id;
 	}
+
+	public void received(){
+	    this.delieved = true;
+    }
+
+    public boolean isDelieved(){
+	    return this.delieved;
+    }
 }

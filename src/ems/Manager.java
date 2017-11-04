@@ -1,13 +1,14 @@
 package ems;
 
 //import java.util.ArrayList;
+//import java.security.MessageDigest;
 
 public class Manager {
 
 
 	private int id;
 	private String name;
-	private String password;
+	private int pwHash;
 	private String gender = "Not Know";
 	private int status = 1;
 
@@ -15,9 +16,10 @@ public class Manager {
 	private OrderPool orderPool;
 
 	public Manager(int id, String name, String password, String gender, int status) {
+
 		this.id = id;
 		this.name = name;
-		this.password = password;
+		this.pwHash = password.hashCode();
 		this.gender = gender;
 		this.status = status;
 

@@ -59,5 +59,9 @@ public class OrderPool {
         return tmp_order;
     }
 
+    public void receiveOrder(Order order){
+        order.received();
+    }
+
 
 }

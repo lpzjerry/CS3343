@@ -1,5 +1,7 @@
 package ems;
 
+import java.util.Random;
+
 public class Position {
     // Pengze Liu 2017-Nov-2
     // Encapsulate all cordinates into Position objects
@@ -7,14 +9,18 @@ public class Position {
     private int x;
     private int y;
 
+    private static int X_limit;
+    private static int Y_limit;
+
     public Position(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
     public Position() {
-        x = 0;
-        y = 0;
+        Random random = new Random();
+        x = random.nextInt() % X_limit;
+        y = random.nextInt() % Y_limit;
     }
 
     public void changePosition(int newx, int newy) {
@@ -33,4 +39,14 @@ public class Position {
     public static int distance(Position p1, Position p2) {
         return Math.abs(p1.getX() - p2.getX()) + Math.abs(p1.getY() - p2.getY());
     }
+
+    public int distance(Position p) {
+        return Position.distance(this, p);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Address: (%d, %d).", this.getX(), this.getY());
+    }
+
 }
