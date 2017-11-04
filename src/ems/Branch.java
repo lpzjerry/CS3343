@@ -1,35 +1,40 @@
 package ems;
 
-import java.util.ArrayList;
+import java.util.*;
+//import java.util.zip.CheckedOutputStream;
+//import javax.print.attribute.standard.PrinterMessageFromOperator;
+// wfz &qr
+// Refactored by Pengze Liu
 
 public class Branch {
 
 
     private int id;
     private String name;
-    private int[] location;
-    private ArrayList<Branch> neighbour = new ArrayList<Branch>();
+    private Position location;
+    // private ArrayList<Branch> neighbour = new ArrayList<Branch>();
     private ArrayList<Courier> freeMan = new ArrayList<Courier>();
     private ArrayList<Courier> outMan = new ArrayList<Courier>();
-    private ArrayList<OrderCollection> packages = new ArrayList<OrderCollection>();
+    private ArrayList<Order> queuingOrders = new ArrayList<Order>();
     private ArrayList<Order> onDelivery = new ArrayList<Order>();
-    private final int capacity;
+    // private final int capacity;
     private int robinpointer = 0;
 
-//    public Branch(int id, String name, int[] loc, int cap, int sur, ArrayList<Branch> branches) {
-//        this.id = id;
-//        this.name = name;
-//        this.location = loc;
-//        this.capacity = cap;
-//        this.neighbour = branches;
-//        for (int i = 0; i <= this.neighbour.size(); i++) {
-//            this.packages.add(new OrderCollection(1)); // we need to initiate with unique id for each neighbor
-//        }
-//    }
-
-    public Branch() {
-//        TODO implement
-//        this();
+    // Refactored by Pengze LIU 2017-Nov-3
+    public Branch(int id, String name, Position loc) {
+        // TODO: conflict constructor with Manager
+        this.id = id;
+        this.name = name;
+        this.location = loc;
+        queuingOrders = new ArrayList<>();
+        onDelivery = new ArrayList<>();
+		/*
+		this.capacity = cap;
+		this.neighbour = branches;
+		for (int i = 0; i <= this.neighbour.size(); i++) {
+			this.queuingOrders.add(new OrderCollection(1)); // we need to initiate with unique id for each neighbor
+		}
+		*/
     }
 
     public int getId() {
@@ -41,11 +46,9 @@ public class Branch {
     }
 
     public Order getOrder(int id) {
-        for (OrderCollection q : this.packages) {
-            for (Order o : q.getQueue()) {
-                if (o.getId() == id) {
-                    return o;
-                }
+        for (Order order : this.queuingOrders) {
+            if (order.getId() == id) {
+                return order;
             }
         }
         for (Order order : this.onDelivery) {
@@ -57,13 +60,14 @@ public class Branch {
     }
 
     public Courier getMan(int id) {
+/* TODO: implement getMan*/
         for (Courier m : this.freeMan) {
-            if (m.getId() == id) {
+            if (m.getID() == id) {
                 return m;
             }
         }
         for (Courier m : this.outMan) {
-            if (m.getId() == id) {
+            if (m.getID() == id) {
                 return m;
             }
         }
@@ -71,66 +75,57 @@ public class Branch {
         return null;
     }
 
-
-    public void checkInOrder(Courier c) {
-        for (OrderCollection q : this.packages) {
-            if (checkLastDelivery(c.getOrder())) {
-                if (checkLastDelivery(q.peek())) {
-                    q.add(c.getOrder());
-                } else continue;
-            }
-            if (q.peek().getPath()[q.peek().getCurrenLocation() + 1] == c.getOrder().getPath()[c.getOrder(0).getCurrenLocation() + 1]) {
-                q.add(c.getOrder());
-            }
-        }
-        c.getOrder().getPath()[getCurrenLocation()].arrive(c);
+    // Added by Pengze LIU 2017-Nov-3
+    public Position getLocation() {
+        return location;
     }
 
-    private void checkedOut(Courier c) {
+
+    @Override
+    public String toString() {
+        // TODO Auto-generated method stub
+        return this.name;
+    }
+
+    // Deleted by Pengze LIU 2017-Nov-3
+	/*public void updateNeighbour(Branch b) {
+		this.neighbour.add(b);
+		this.queuingOrders.add(new OrderCollection(1));// with new id
+	}*/
+
+    // Refactored by Pengze LIU 2017-Nov-3
+    public void checkInOrder(Order order) {
+        queuingOrders.add(order);
+    }
+
+    // Refactored by Pengze LIU 2017-Nov-3
+    public ArrayList<Order> checkOutOrders(Courier courier) { // assign queuing Orders to Courier (FreeMan)
         ArrayList<Order> thingsToSend = new ArrayList<Order>();
-        int weight = this.packages.get(robinpointer).peek().getWeight();
-        while (weight < c.getCapacity()) {
-            for (int i = 0; i < this.packages.size(); i++) {
-                robinpointer = (robinpointer + 1) % this.packages.size();
-                Order p = this.packages.get(robinpointer).peek();
-                if (p != null) {
-                    thingsToSend.add(p);
-                    this.onDelivery.add(p);
-                    this.packages.get(robinpointer).remove(p);
-                    break;
-                }
-            }
+        int weight = 1; // this.queuingOrders.get(robinpointer).peek().getWeight();
+        while (weight < courier.getCapacity() && thingsToSend.size() > 0) {
+            Order newOrder = thingsToSend.get(0);
+            thingsToSend.add(newOrder);
+            onDelivery.add(newOrder);
+            thingsToSend.remove(newOrder);
         }
-        this.outMan.add(c);
-        this.freeMan.remove(c);
-        if (thingsToSend.size() == 0) {
-            System.out.println("no package");
-        } else if (checkLastDelivery(thingsToSend.get(0))) {
-            c.sendToHome(thingsToSend);
-        } else {
-            c.sendToBranch(thingsToSend);
-        }
+        this.outMan.add(courier);
+        this.freeMan.remove(courier);
+        return thingsToSend;
     }
 
     public void arrive(Courier courier) {
-        this.onDelivery.remove(courier.getOrder());
+        this.onDelivery.remove(courier.popTopOrder());
         this.outMan.remove(courier);
         this.freeMan.add(courier);
     }
 
+    // Pengze Liu 2017-Nov-2
     private boolean checkLastDelivery(Order order) {
-        return Math.abs(order.getAddress()[0] - this.location[0]) + Math.abs(order.getAddress()[1] - this.location[1]) <= this.capacity;
+        return order.hasBeenSent();
     }
 
-//    useless...
-//    public String toString() {
-//        return this.name;
-//    }
-
-    public void updateNeighbour(Branch branch) {
-        this.neighbour.add(branch);
-        this.packages.add(new OrderCollection(1));// with new id
+    // Pengze Liu Added 2017-Nov-3
+    public void reportFinished(Order order) {
+        onDelivery.remove(order);
     }
-
-
 }

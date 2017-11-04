@@ -42,40 +42,23 @@ public class Customer implements Sender, Receiver {
     // Pengze Liu 2017-Nov-2
     @Override
     public Position getOrderLocation(int orderID) {
-        return company.searchOrder(orderID).getLocation();
+        return company.searchOrder(orderID).currentLocation();
     }
 
     @Override
     public void confirmReception(Order order) {
+        // TODO called by Courier, remove order from OrderPool, change order status
         company.receiveOrder(order);
     }
 
     @Override
-    public void askToCreateOrder(String itemName, Customer target) {
-        company.createOrder(itemName, this.getPosition(), target.getPosition());
-    }
-
-    @Override
-    public void askToCreateOrder(String itemName, Position target) {
-        company.createOrder(itemName, this.getPosition(), target);
-    }
-
-    @Override
-    public Boolean changeDestination(int orderID, Position newPosition) {
-        return null;
-    }
-
-    @Override
-    public Boolean askToWithdrawOrder(int orderID) {
-        return null;
+    public void askToCreateOrder(String itemName, Customer receiver) {
+        sentOrderID.add(company.createOrder(itemName, this, receiver));
     }
 
     public Position getPosition() {
         return position;
     }
 
-    public int getId() {
-        return this.id;
-    }
 
 }

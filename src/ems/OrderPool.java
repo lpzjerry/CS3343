@@ -9,31 +9,17 @@ public class OrderPool {
 
     private static OrderPool instance;
 
-    private int currentOrder;
+    private int currentOrder = 0;
 
     private OrderPool() {
-        this.orderList = new HashMap<Integer, Order>();
-        this.currentOrder = 0;
+        this.orderList  = new HashMap<Integer, Order>();
     }
 
-    public static OrderPool getInstance() {
-        return instance;
-    }
+    public static OrderPool getInstance() {return instance;}
 
-
-    /**
-     * This method will add order object into the OrderPool, which belongs to the express company.
-     * After adding to the OrderPool, a id(int) will be assigned to this order object and
-     * id will be returned.
-     *
-     * @param order
-     * @return id of this order
-     */
     public int addOrderToList(Order order) {
-
         this.currentOrder++;
         this.orderList.put(this.currentOrder, order);
-
         return currentOrder;
     }
 
@@ -41,27 +27,21 @@ public class OrderPool {
         return this.orderList.get(id);
     }
 
-    public Order getOrderByName(String name) {
-        for (Map.Entry<Integer, Order> entry : orderList.entrySet()) {
-
-            Order o = entry.getValue();
-            if (o.getItemName().equals(name)) {
-                return o;
+    public Order getOrderByName(String name){
+        for (Map.Entry<Integer, Order> entry: orderList.entrySet()){
+            Order order = entry.getValue();
+            if(order.getItemName().equals(name)){
+                return order;
             }
         }
         return null;
     }
 
-    public Order createOrder(String orderName, Position location, Position dest){
-        Order tmp_order = new Order(++this.currentOrder, orderName,location, dest);
-        this.orderList.put(this.currentOrder, tmp_order);
-
-        return tmp_order;
+    int getCurrentOrder() {
+        return currentOrder;
     }
 
-    public void receiveOrder(Order order){
-        order.received();
+    public void receiveOrder(Order order) {
+        order.receiveOrder();
     }
-
-
 }

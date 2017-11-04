@@ -3,6 +3,7 @@ package ems;
 
 import java.util.HashMap;
 import java.util.Date;
+import java.util.ArrayList;
 
 public class Company {
 
@@ -43,13 +44,23 @@ public class Company {
     }
 
 
-//    public Manager getManagerById(int id) {
-//        return this.managerList.get(id);
-//    }
-
-    public Order createOrder(String itemName, Position src, Position des) {
-        return orderPool.createOrder(itemName, src, des);
+    // Pengze Liu 2017-Nov-3
+    public int createOrder(String itemName, Customer sender, Customer receiver) {
+        // TODO generate path
+        ArrayList<Position> path = new ArrayList<>();
+        // TODO check whether ID is correctly assigned
+        int ID = orderPool.getInstance().getCurrentOrder() + 1;
+        return OrderPool.getInstance().addOrderToList(
+                new Order(ID, itemName, sender, receiver, path));
     }
+
+
+    public Branch addBranch(String name) {
+        int id = this.branchId++;
+        Branch branch = new Branch(id, name, null); // TODO implement location
+        return branchList.put(id, branch);
+    }
+
 
     public Branch removeBranch(int id) {
         return branchList.remove(id);
@@ -63,7 +74,7 @@ public class Company {
         return orderPool.getOrderByName(name);
     }
 
-    public void receiveOrder(Order order){
+    public void receiveOrder(Order order) {
         orderPool.receiveOrder(order);
     }
 
@@ -75,24 +86,23 @@ public class Company {
     }
 
 
-        public Branch addBranch(String name) {
-//        TODO implement
-        int id = this.branchId++;
-//        Branch branch = new Branch(id, name);
-        Branch branch = new Branch();
-        return branchList.put(id, branch);
-
-    }
-
-    public Customer addCustomer(String name, String password, int priority, Position position){
+    public Customer addCustomer(String name, String password, int priority, Position position) {
         Customer customer = new Customer(customerList.size(), name, password, priority, position);
         this.customerList.put(customer.getId(), customer);
         return customer;
     }
 
-    public Customer addCustomer(String name, String password){
+    public Customer addCustomer(String name, String password) {
         Customer customer = new Customer(customerList.size(), name, password);
         this.customerList.put(customer.getId(), customer);
         return customer;
     }
+
+
+    // TODO implement this method (Pengze Liu 2017-Nov-3)
+    public static Branch getBranchByLocation(Position position) {
+        return null;
+    }
+
+
 }

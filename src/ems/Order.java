@@ -1,48 +1,80 @@
 package ems;
 
-import javax.xml.stream.FactoryConfigurationError;
+import java.util.ArrayList;
 
 public class Order {
 
-	private int id;
-	private String itemName;
-    private Position location;
-	private Position destination;
+    private int id;
+    private String itemName;
+    //private Position location;
+    private ArrayList<Position> path;
+    private Customer sender;
+    private Customer receiver;
+    private int locationPtr;
 
-	private boolean delieved;
+    private boolean received;
 
-	public Order(int id, String itemName, Position location, Position destination) {
-		this.id = id;
+    public Order(int id, String itemName, Customer sender, Customer receiver, ArrayList<Position> path) {
+        this.id = id;
+        this.itemName = itemName;
+        this.sender = sender;
+        this.receiver = receiver;
+        this.path = path; // sender.getPosition() -> receiver.getPosition()
+        locationPtr = 0;
+        //this.location = sender.getPosition(); // Position of the sender, specified by company
+        // this.price = price; // generate by Company
+        // this.priority = priority; // generate by Company, [1 by default]
 
-		this.itemName = itemName;
-		this.location = location; // Position of the sender, specified by company
-		this.destination = destination; // Position of the receiver, specified by sender
-		// this.price = price; // generate by Company
-		//this.priority = priority; // generate by Company, [1 by default]
-        this.delieved = false;
-	}
-
-	public Position getLocation() {
-		return location;
-	}
-
-	public boolean hasBeenSent() {
-	    return location.equals(destination);
+        this.received = false;
     }
 
-	public String getItemName() {
-		return this.itemName;
-	}
-
-	public int getId() {
-		return this.id;
-	}
-
-	public void received(){
-	    this.delieved = true;
+    public Position currentLocation() {
+        return path.get(locationPtr);
     }
 
-    public boolean isDelieved(){
-	    return this.delieved;
+    public Position destination() {
+        return receiver.getPosition();
+    }
+
+    public boolean hasBeenSent() {
+        return this.currentLocation().equals(destination());
+    }
+
+    public void reportSent() { System.out.printf("Item #%d %s has been sent to its destination\n", id, itemName); }
+
+    public Position nextLocation() {
+        if (!hasBeenSent())
+            return path.get(locationPtr + 1);
+        reportSent();
+        return path.get(locationPtr);
+    }
+
+    public void moveToNextLocation() {
+        if (!hasBeenSent()) locationPtr++;
+        else reportSent();
+    }
+
+    public String getItemName() {
+        return this.itemName;
+    }
+
+    public int getId() {
+        return this.id;
+    }
+
+    public boolean accessible(Customer customer) {
+        return customer == this.receiver || customer == this.sender;
+    }
+
+    public Customer getReceiver() {
+        return receiver;
+    }
+
+    public void receiveOrder(){
+        this.received = true;
+    }
+
+    public boolean isReceived(){
+        return this.received;
     }
 }
