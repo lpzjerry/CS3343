@@ -8,7 +8,7 @@ public class OrderPool {
 
     private HashMap<Integer, Order> orderList;
 
-    private static OrderPool instance;
+    private static OrderPool instance = new OrderPool();
 
     private int currentOrder = 0;
 

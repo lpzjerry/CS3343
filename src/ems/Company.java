@@ -81,6 +81,7 @@ public class Company {
     // Pengze Liu 2017-Nov-3
     public int createOrder(String itemName, Customer sender, Customer receiver) {
         ArrayList<Position> path = new ArrayList<>();
+
         Branch dummyDestinationBranch = new Branch(0, "", receiver.getPosition());
 
 //        create dummy branches(with position of sender/receiver), these dummy branches will be GC after.

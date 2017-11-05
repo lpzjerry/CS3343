@@ -60,6 +60,7 @@ public class Customer implements Sender, Receiver {
     }
 
     public int getId() {
+
         return this.id;
     }
 
