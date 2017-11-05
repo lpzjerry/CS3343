@@ -9,7 +9,7 @@ public class Company {
     private HashMap<Integer, Manager> managerList;
     private HashMap<Integer, Branch> branchList;
     private HashMap<Integer, Customer> customerList;
-    private int branchId;// = 1;
+    private int branchId;
 
     private OrderPool orderPool;
     private Date companyClock;

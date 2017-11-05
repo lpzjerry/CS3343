@@ -60,7 +60,6 @@ public class Branch {
     }
 
     public Courier getMan(int id) {
-/* TODO: implement getMan*/
         for (Courier m : this.freeMan) {
             if (m.getID() == id) {
                 return m;
