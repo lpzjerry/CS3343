@@ -49,7 +49,7 @@ public class Company {
         // TODO generate path
         ArrayList<Position> path = new ArrayList<>();
         // TODO check whether ID is correctly assigned
-        int ID = orderPool.getInstance().getCurrentOrder() + 1;
+        int ID = orderPool.getCurrentOrder() + 1;
         return OrderPool.getInstance().addOrderToList(
                 new Order(ID, itemName, sender, receiver, path));
     }
