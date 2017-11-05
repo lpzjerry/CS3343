@@ -12,14 +12,10 @@ public class Branch {
     private int id;
     private String name;
     private Position location;
-    // private ArrayList<Branch> neighbour = new ArrayList<Branch>();
     private ArrayList<Courier> freeMan = new ArrayList<Courier>();
     private ArrayList<Courier> outMan = new ArrayList<Courier>();
     private ArrayList<Order> queuingOrders = new ArrayList<Order>();
     private ArrayList<Order> onDelivery = new ArrayList<Order>();
-    // private final int capacity;
-//    useless
-//    private int robinpointer = 0;
 
     // Refactored by Pengze LIU 2017-Nov-3
     public Branch(int id, String name, Position loc) {
@@ -88,12 +84,6 @@ public class Branch {
     public String toString() {
         return String.format("Name: %s, Position: (%d, %d)", this.name, this.location.getX(), this.location.getY());
     }
-
-    // Deleted by Pengze LIU 2017-Nov-3
-	/*public void updateNeighbour(Branch b) {
-		this.neighbour.add(b);
-		this.queuingOrders.add(new OrderCollection(1));// with new id
-	}*/
 
     // Refactored by Pengze LIU 2017-Nov-3
     public void checkInOrder(Order order) {

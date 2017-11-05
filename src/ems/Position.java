@@ -9,8 +9,8 @@ public class Position {
     private int x;
     private int y;
 
-    private static int X_limit = 20;
-    private static int Y_limit = 20;
+    private static final int X_limit = 20;
+    private static final int Y_limit = 20;
 
     public Position(int x, int y) {
         this.x = x;

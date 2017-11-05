@@ -34,7 +34,6 @@ public class Company {
 
     private SortedSet<Branch> sortBranchesByDestination(Iterable<Branch> branches, Branch source, Branch destination) {
         SortedSet<Branch> sortedEntries = new TreeSet<Branch>(
-//                maybe better not to use lambda expression?
                 (leftBranch, rightBranch) -> {
                     int leftDistance = leftBranch.getDistance(source);
                     int rightDistance = rightBranch.getDistance(source);
@@ -46,17 +45,20 @@ public class Company {
         for (Branch branch : branches) {
             int total_distance = branch.getDistance(destination) + branch.getDistance(source);
             int least_distance = Position.distance(source.getLocation(), destination.getLocation());
-
+            // sort all branches exclude itself
+            // if the path through this branch will not increase total amount of distance: means the correct distance
+            // This branch is nearer to destination
             if (least_distance <= total_distance && branch.getDistance(source) != 0) sortedEntries.add(branch);
         }
         return sortedEntries;
     }
 
-    public Branch neighbourForBranch(Branch source, Branch destination) {
+    public Branch neighbourForBranch(Branch me, Branch destination) {
         ArrayList<Branch> neighbourBranches = new ArrayList<>();
         this.branchList.forEach((id, branch) -> neighbourBranches.add(branch));
-        SortedSet<Branch> sortedBranches = this.sortBranchesByDestination(neighbourBranches, source, destination);
-
+        SortedSet<Branch> sortedBranches = this.sortBranchesByDestination(neighbourBranches, me, destination);
+        // find if there are middle station(branch) on the way
+        // if no, directly goes to destination :(
         Branch result;
         try {
             result = sortedBranches.first();
@@ -78,7 +80,6 @@ public class Company {
         return manager;
     }
 
-    // Pengze Liu 2017-Nov-3
     public int createOrder(String itemName, Customer sender, Customer receiver) {
         ArrayList<Position> path = new ArrayList<>();
 
