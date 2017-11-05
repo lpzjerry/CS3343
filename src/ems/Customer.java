@@ -47,7 +47,6 @@ public class Customer implements Sender, Receiver {
 
     @Override
     public void confirmReception(Order order) {
-        // TODO called by Courier, remove order from OrderPool, change order status
         company.receiveOrder(order);
     }
 
@@ -58,6 +57,10 @@ public class Customer implements Sender, Receiver {
 
     public Position getPosition() {
         return position;
+    }
+
+    public int getId() {
+        return this.id;
     }
 
 

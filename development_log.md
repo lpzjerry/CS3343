@@ -21,3 +21,13 @@ Any Customer instead of the Sender/Receiver could access to any packages if they
     - <Position>path  
   Company  
     -companyClock  
+    
+    
+    
+    
+------
+_patrick_
+### Alert!!
+
+* For demo purpose, we let newly created branch's location to be randomly assigned.
+

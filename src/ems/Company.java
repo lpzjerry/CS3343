@@ -1,16 +1,15 @@
 package ems;
 
 
-import java.util.HashMap;
-import java.util.Date;
-import java.util.ArrayList;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Company {
 
     private HashMap<Integer, Manager> managerList;
     private HashMap<Integer, Branch> branchList;
     private HashMap<Integer, Customer> customerList;
-    private int branchId = 1;
+    private int branchId;// = 1;
 
     private OrderPool orderPool;
     private Date companyClock;
@@ -27,14 +26,50 @@ public class Company {
         this.companyClock = new Date();
         Manager superuser = new Manager(0, "superuser", "123456", "nil", 0);
         this.managerList.put(superuser.getId(), superuser);
+
+        this.branchId = 1;
     }
 
     private static Company instance = new Company();
 
+    private SortedSet<Branch> sortBranchesByDestination(Iterable<Branch> branches, Branch source, Branch destination) {
+        SortedSet<Branch> sortedEntries = new TreeSet<Branch>(
+//                maybe better not to use lambda expression?
+                (leftBranch, rightBranch) -> {
+                    int leftDistance = leftBranch.getDistance(source);
+                    int rightDistance = rightBranch.getDistance(source);
+
+                    return Integer.compare(leftDistance, rightDistance);
+                }
+        );
+
+        for (Branch branch : branches) {
+            int total_distance = branch.getDistance(destination) + branch.getDistance(source);
+            int least_distance = Position.distance(source.getLocation(), destination.getLocation());
+
+            if (least_distance <= total_distance && branch.getDistance(source) != 0) sortedEntries.add(branch);
+        }
+        return sortedEntries;
+    }
+
+    public Branch neighbourForBranch(Branch source, Branch destination) {
+        ArrayList<Branch> neighbourBranches = new ArrayList<>();
+        this.branchList.forEach((id, branch) -> neighbourBranches.add(branch));
+        SortedSet<Branch> sortedBranches = this.sortBranchesByDestination(neighbourBranches, source, destination);
+
+        Branch result;
+        try {
+            result = sortedBranches.first();
+        } catch (NoSuchElementException e) {
+            result = null;
+        }
+
+        return result;
+    }
+
     public static Company getInstance() {
         return instance;
     }
-
 
     public Manager addNewManager(String name, String password, String gender, int status) {
         Manager manager = new Manager(managerList.size(), name, password, gender, status);
@@ -43,24 +78,32 @@ public class Company {
         return manager;
     }
 
-
     // Pengze Liu 2017-Nov-3
     public int createOrder(String itemName, Customer sender, Customer receiver) {
-        // TODO generate path
         ArrayList<Position> path = new ArrayList<>();
-        // TODO check whether ID is correctly assigned
-        int ID = orderPool.getInstance().getCurrentOrder() + 1;
-        return OrderPool.getInstance().addOrderToList(
-                new Order(ID, itemName, sender, receiver, path));
-    }
+        Branch dummyDestinationBranch = new Branch(0, "", receiver.getPosition());
 
+//        create dummy branches(with position of sender/receiver), these dummy branches will be GC after.
+        Branch nextBranch = this.neighbourForBranch(new Branch(0, "", sender.getPosition()),
+                dummyDestinationBranch);
+
+        while(nextBranch != null){
+            path.add(nextBranch.getLocation());
+            nextBranch = this.neighbourForBranch(nextBranch, dummyDestinationBranch);
+        }
+
+        path.add(receiver.getPosition());
+
+        // GC
+        dummyDestinationBranch = null;
+        return this.orderPool.createOrder(itemName, sender, receiver, path);
+    }
 
     public Branch addBranch(String name) {
         int id = this.branchId++;
-        Branch branch = new Branch(id, name, null); // TODO implement location
+        Branch branch = new Branch(id, name, new Position());
         return branchList.put(id, branch);
     }
-
 
     public Branch removeBranch(int id) {
         return branchList.remove(id);
@@ -85,7 +128,6 @@ public class Company {
         return new Date().getTime() - this.companyClock.getTime();
     }
 
-
     public Customer addCustomer(String name, String password, int priority, Position position) {
         Customer customer = new Customer(customerList.size(), name, password, priority, position);
         this.customerList.put(customer.getId(), customer);
@@ -98,10 +140,14 @@ public class Company {
         return customer;
     }
 
+    public Branch getBranchByLocation(Position position) {
 
-    // TODO implement this method (Pengze Liu 2017-Nov-3)
-    public static Branch getBranchByLocation(Position position) {
-        return null;
+        Map<Integer, Branch> tmp_container = this.branchList.entrySet().stream()
+                .filter(map -> map.getValue().getLocation().distance(position) == 0)
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+//        there are probably more than one branches on this location
+//        return tmp_container to get all branches on this location.
+        return tmp_container.entrySet().iterator().next().getValue();
     }
 
 

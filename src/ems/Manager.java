@@ -28,7 +28,6 @@ public class Manager {
 		System.out.println("Express Company Manager " + name + " (level:" + status + ") created!");
 	}
 
-
 	public int getId() {
 		return this.id;
 	}
@@ -45,7 +44,4 @@ public class Manager {
 		return company.removeBranch(id);
 	}
 
-	public void changeBranchConnections() {
-//		TODO: increase or decrease the connection weights between branch offices.
-	}
 }

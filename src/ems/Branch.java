@@ -18,18 +18,18 @@ public class Branch {
     private ArrayList<Order> queuingOrders = new ArrayList<Order>();
     private ArrayList<Order> onDelivery = new ArrayList<Order>();
     // private final int capacity;
-    private int robinpointer = 0;
+//    useless
+//    private int robinpointer = 0;
 
     // Refactored by Pengze LIU 2017-Nov-3
     public Branch(int id, String name, Position loc) {
-        // TODO: conflict constructor with Manager
         this.id = id;
         this.name = name;
         this.location = loc;
         queuingOrders = new ArrayList<>();
         onDelivery = new ArrayList<>();
-		/*
-		this.capacity = cap;
+        /*
+        this.capacity = cap;
 		this.neighbour = branches;
 		for (int i = 0; i <= this.neighbour.size(); i++) {
 			this.queuingOrders.add(new OrderCollection(1)); // we need to initiate with unique id for each neighbor
@@ -77,14 +77,17 @@ public class Branch {
 
     // Added by Pengze LIU 2017-Nov-3
     public Position getLocation() {
-        return location;
+        return this.location;
+    }
+
+    public int getDistance(Branch destination){
+        return this.location.distance(destination.getLocation());
     }
 
 
     @Override
     public String toString() {
-        // TODO Auto-generated method stub
-        return this.name;
+        return String.format("Name: %s, Position: (%d, %d)", this.name, this.location.getX(), this.location.getY());
     }
 
     // Deleted by Pengze LIU 2017-Nov-3

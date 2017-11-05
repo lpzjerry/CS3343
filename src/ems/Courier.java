@@ -11,12 +11,15 @@ public class Courier {
     private final int capacity;
     private ArrayList<Order> orderQueue; // Orders to be delivere
 
+    private Company company;
+
     public Courier(int ID, String name, Branch managerOffice, int capacity) {
         this.ID = ID;
         this.name = name;
         this.managerOffice = managerOffice;
         this.capacity = capacity;
         orderQueue = new ArrayList<>();
+        this.company = Company.getInstance();
     }
 
     public int getID() {
@@ -53,11 +56,10 @@ public class Courier {
         managerOffice.reportFinished(order);
     }
 
-
     private void sendToBranch(Order order) {
-        Branch nextbranch = Company.getBranchByLocation(order.nextLocation());
+        Branch nextBranch = this.company.getBranchByLocation(order.nextLocation());
         order.moveToNextLocation();
-        nextbranch.checkInOrder(order);
+        nextBranch.checkInOrder(order);
     }
 
     private void deliverOneOrder(Order order) {
