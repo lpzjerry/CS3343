@@ -4,9 +4,9 @@ The group project for CS3343
 
 ## Role assignment
 
-1. Product Manager: WANG Fangzhou, ZHENG Wanying
-2. Developer Programmer: QIU Rui, LIU Pengze
-3. Qulity Assurance Engineer: WANG Ruochen, FAN Yuyang, WANG Yixuan
+1. Product Manager: [WANG Fangzhou](https://github.com/wfz0755), [ZHENG Wanying](https://github.com/SheilaCecilia)
+2. Developer Programmer: [QIU Rui](https://github.com/SherlockQiu), [LIU Pengze](https://github.com/lpzjerry)
+3. Qulity Assurance Engineer: [WANG Ruochen](https://github.com/patrickwang96), [FAN Yuyang](https://github.com/YolandaFan), [WANG Yixuan](https://github.com/JinksMI)
 
 ## Project topic 
 **Express management System**.
