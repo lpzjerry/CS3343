@@ -60,5 +60,7 @@ public class Customer implements Sender, Receiver {
         return position;
     }
 
-
+    public int getId() {
+        return id;
+    }
 }
