@@ -36,17 +36,32 @@ public class Courier {
 
     public void collectOrder() {
         orderQueue = managerOffice.checkOutOrders(this);
+        //Sheila-20171113-Start
+        System.out.print("Courier "+this.ID+" has collected Order:");
+        for(Order o:orderQueue){
+        System.out.print(" "+o.getId());
+        }
+        System.out.printf("\n");
+        //Sheila-20171113-End
     }
 
     private void goBackToOffice() {
         managerOffice.arrive(this);
+        //Sheila-20171114-Start
+        System.out.print("Courier "+this.ID +" goes back to the office.");
+        //Sheila-20171114-End
     }
 
     public Order popTopOrder() {
-        if (orderQueue.isEmpty())
+        if (orderQueue.isEmpty()) {
+        		//Sheila-20171113-Start
+        	    System.out.print("Courier "+this.ID+" failed to pop the top order.(The order queue is empty)");
             return null;
+            }
         Order res = orderQueue.get(0);
         orderQueue.remove(0);
+        System.out.print("Courier "+this.ID+" pop the top order (ID: "+ res.getId()+" )\n");
+        //Sheila-20171113-End
         return res;
     }
 
