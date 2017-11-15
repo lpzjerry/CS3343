@@ -95,10 +95,11 @@ public class Branch {
         ArrayList<Order> thingsToSend = new ArrayList<Order>();
         int weight = 1; // this.queuingOrders.get(robinpointer).peek().getWeight();
         while (weight < courier.getCapacity() && thingsToSend.size() > 0) {
-            Order newOrder = thingsToSend.get(0);
+            Order newOrder = queuingOrders.get(0);
             thingsToSend.add(newOrder);
             onDelivery.add(newOrder);
-            thingsToSend.remove(newOrder);
+	    thingsToSend.add(newOrder);
+            queuingOrders.remove(newOrder);
         }
         this.outMan.add(courier);
         this.freeMan.remove(courier);
