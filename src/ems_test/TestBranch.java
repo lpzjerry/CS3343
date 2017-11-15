@@ -28,29 +28,11 @@ public class TestBranch {
 				return 4;
 			}
 	}
-	class StubCustomer extends Customer{
-		public StubCustomer(int ID, String Name, String Password) {
-			super(ID, Name, Password);
-		}
-	}
-	class OrderStub extends Order{ 
-		int Id;
-		public OrderStub(int id, String itemName, Customer sender, Customer receiver, ArrayList<Position> path) {
-			super(id, itemName, sender, receiver, path);
-			this.Id = id;
-		}
-		public int getId() {
-			return this.Id;
-		}
-	}
-	class CourierStub extends Courier{
-		public CourierStub(int ID, String name, Branch managerOffice, int capacity) {
-	        super(ID,  name,  managerOffice,  capacity);
-	    }
-	}
+
+
 	private PositionStub posStub = new PositionStub(); 
-	private StubCustomer cus_send = new StubCustomer(1,"testSend","123456");
-	private StubCustomer cus_receive = new StubCustomer(2,"testReceive","654321");
+	private Customer cus_send = new Customer(1,"testSend","123456");
+	private Customer cus_receive = new Customer(2,"testReceive","654321");
 	
 	@Before
 	public void setUp() throws Exception {
@@ -74,9 +56,9 @@ public class TestBranch {
 		Branch brc = new Branch(1,"testBranch",posStub);
 		ArrayList<Position> testPath = new ArrayList<Position>();
 		testPath.add(posStub);
-		OrderStub order1 = new OrderStub(1,"testOrder1",cus_send,cus_receive,testPath);
-		OrderStub order2 = new OrderStub(2,"testOrder2",cus_send,cus_receive,testPath);
-		OrderStub order3 = new OrderStub(3,"testOrder3",cus_send,cus_receive,testPath);
+		Order order1 = new Order(1,"testOrder1",cus_send,cus_receive,testPath);
+		Order order2 = new Order(2,"testOrder2",cus_send,cus_receive,testPath);
+		Order order3 = new Order(3,"testOrder3",cus_send,cus_receive,testPath);
 		brc.checkInOrder(order1);
 		brc.checkInOrder(order2);
 		brc.checkInOrder(order3);
@@ -88,9 +70,9 @@ public class TestBranch {
 		Branch brc = new Branch(1,"testBranch",posStub);
 		ArrayList<Position> testPath = new ArrayList<Position>();
 		testPath.add(posStub);
-		OrderStub order1 = new OrderStub(1,"testOrder1",cus_send,cus_receive,testPath);
-		OrderStub order2 = new OrderStub(2,"testOrder2",cus_send,cus_receive,testPath);
-		OrderStub order3 = new OrderStub(3,"testOrder3",cus_send,cus_receive,testPath);
+		Order order1 = new Order(1,"testOrder1",cus_send,cus_receive,testPath);
+		Order order2 = new Order(2,"testOrder2",cus_send,cus_receive,testPath);
+		Order order3 = new Order(3,"testOrder3",cus_send,cus_receive,testPath);
 		brc.checkInOrder(order1);
 		brc.checkInOrder(order2);
 		brc.checkInOrder(order3);
@@ -101,11 +83,11 @@ public class TestBranch {
 	public void testGetOrder3() {
 		Branch brc = new Branch(1,"testBranch",posStub);
 		ArrayList<Position> testPath = new ArrayList<Position>();
-		CourierStub cur = new CourierStub(1,"testCourier",brc,10);
+		Courier cur = new Courier(1,"testCourier",brc,10);
 		testPath.add(posStub);
-		OrderStub order1 = new OrderStub(1,"testOrder1",cus_send,cus_receive,testPath);
-		OrderStub order2 = new OrderStub(2,"testOrder2",cus_send,cus_receive,testPath);
-		OrderStub order3 = new OrderStub(3,"testOrder3",cus_send,cus_receive,testPath);
+		Order order1 = new Order(1,"testOrder1",cus_send,cus_receive,testPath);
+		Order order2 = new Order(2,"testOrder2",cus_send,cus_receive,testPath);
+		Order order3 = new Order(3,"testOrder3",cus_send,cus_receive,testPath);
 		brc.checkInOrder(order1);
 		brc.checkInOrder(order2);
 		brc.checkInOrder(order3);
@@ -116,7 +98,7 @@ public class TestBranch {
 	@Test
 	public void testGetMan() {
 		Branch brc = new Branch(1,"testBranch",posStub);
-		CourierStub cur = new CourierStub(1,"testCourier",brc,10);
+		Courier cur = new Courier(1,"testCourier",brc,10);
 		brc.arrive(cur);
 		Courier getted = brc.getMan(cur.getID());
 		assertEquals(1,getted.getID());
@@ -151,9 +133,9 @@ public class TestBranch {
 		Branch brc = new Branch(1,"testBranch",posStub);
 		ArrayList<Position> testPath = new ArrayList<Position>();
 		testPath.add(posStub);
-		OrderStub order1 = new OrderStub(1,"testOrder1",cus_send,cus_receive,testPath);
-		OrderStub order2 = new OrderStub(2,"testOrder2",cus_send,cus_receive,testPath);
-		OrderStub order3 = new OrderStub(3,"testOrder3",cus_send,cus_receive,testPath);
+		Order order1 = new 	Order(1,"testOrder1",cus_send,cus_receive,testPath);
+		Order order2 = new 	Order(2,"testOrder2",cus_send,cus_receive,testPath);
+		Order order3 = new 	Order(3,"testOrder3",cus_send,cus_receive,testPath);
 		brc.checkInOrder(order1);
 		brc.checkInOrder(order2);
 		brc.checkInOrder(order3);
@@ -170,11 +152,11 @@ public class TestBranch {
 	public void testCheckOutOrders() {
 		Branch brc = new Branch(1,"testBranch",posStub);
 		ArrayList<Position> testPath = new ArrayList<Position>();
-		CourierStub cur = new CourierStub(1,"testCourier",brc,10);
+		Courier cur = new Courier(1,"testCourier",brc,10);
 		testPath.add(posStub);
-		OrderStub order1 = new OrderStub(1,"testOrder1",cus_send,cus_receive,testPath);
-		OrderStub order2 = new OrderStub(2,"testOrder2",cus_send,cus_receive,testPath);
-		OrderStub order3 = new OrderStub(3,"testOrder3",cus_send,cus_receive,testPath);
+		Order order1 = new Order(1,"testOrder1",cus_send,cus_receive,testPath);
+		Order order2 = new Order(2,"testOrder2",cus_send,cus_receive,testPath);
+		Order order3 = new Order(3,"testOrder3",cus_send,cus_receive,testPath);
 		brc.checkInOrder(order1);
 		brc.checkInOrder(order2);
 		brc.checkInOrder(order3);
@@ -185,7 +167,7 @@ public class TestBranch {
 	@Test
 	public void testArrive() {
 		Branch brc = new Branch(1,"testBranch",posStub);
-		CourierStub cur = new CourierStub(1,"testCourier",brc,10);
+		Courier cur = new Courier(1,"testCourier",brc,10);
 		brc.arrive(cur);
 		Courier getted = brc.getMan(cur.getID());
 		assertEquals(1,getted.getID());
@@ -195,10 +177,10 @@ public class TestBranch {
 		Branch brc = new Branch(1,"testBranch",posStub);
 		ArrayList<Position> testPath = new ArrayList<Position>();
 		testPath.add(posStub);
-		CourierStub cur = new CourierStub(1,"testCourier",brc,10);
-		OrderStub order1 = new OrderStub(1,"testOrder1",cus_send,cus_receive,testPath);
-		OrderStub order2 = new OrderStub(2,"testOrder2",cus_send,cus_receive,testPath);
-		OrderStub order3 = new OrderStub(3,"testOrder3",cus_send,cus_receive,testPath);
+		Courier cur = new Courier(1,"testCourier",brc,10);
+		Order order1 = new Order(1,"testOrder1",cus_send,cus_receive,testPath);
+		Order order2 = new Order(2,"testOrder2",cus_send,cus_receive,testPath);
+		Order order3 = new Order(3,"testOrder3",cus_send,cus_receive,testPath);
 		brc.checkInOrder(order1);
 		brc.checkInOrder(order2);
 		brc.checkInOrder(order3);
