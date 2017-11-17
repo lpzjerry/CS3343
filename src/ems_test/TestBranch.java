@@ -30,9 +30,6 @@ public class TestBranch {
 	}
 
 
-	private PositionStub posStub = new PositionStub(); 
-	private Customer cus_send = new Customer(1,"testSend","123456");
-	private Customer cus_receive = new Customer(2,"testReceive","654321");
 
 //	TODO 1 added by patrick 2017-11-17
 //  plz remove setUp() if you don't add any contains inside this method
@@ -47,27 +44,31 @@ public class TestBranch {
 
 //    TODO 3 added by patrick 2017-11-17
 //    line 115-119 and line 184-188 are duplicated. plz inspect this.
-
-
+	private PositionStub posStub = null; 
+	private Customer cus_send = null;
+	private Customer cus_receive = null;
 	@Before
 	public void setUp() throws Exception {
+		 posStub = new PositionStub(); 
+		cus_send = new Customer(1,"testSend","123456");
+		cus_receive = new Customer(2,"testReceive","654321");
 
 	}
 
 	@Test
-	public void testGetId() {
+	public void test01_GetId() {
 		Branch brc = new Branch(1,"testBranch",posStub);
 		 assertEquals(1,brc.getId());
 	}
 
 	@Test
-	public void testGetName() {
+	public void test01_GetName() {
 		Branch brc = new Branch(1,"testBranch",posStub);
 		assertEquals("testBranch",brc.getName());
 	}
 
 	@Test
-	public void testGetOrder1() {
+	public void test01_GetOrder() {
 		Branch brc = new Branch(1,"testBranch",posStub);
 		ArrayList<Position> testPath = new ArrayList<Position>();
 		testPath.add(posStub);
@@ -81,7 +82,7 @@ public class TestBranch {
 		assertEquals(2,retOrder.getId());
 	}
 	@Test
-	public void testGetOrder2() {
+	public void test02_GetOrder() {
 		Branch brc = new Branch(1,"testBranch",posStub);
 		ArrayList<Position> testPath = new ArrayList<Position>();
 		testPath.add(posStub);
@@ -95,7 +96,7 @@ public class TestBranch {
 		assertEquals(null,retOrder);
 	}
 	@Test
-	public void testGetOrder3() {
+	public void test03_GetOrder() {
 		Branch brc = new Branch(1,"testBranch",posStub);
 		ArrayList<Position> testPath = new ArrayList<Position>();
 		Courier cur = new Courier(1,"testCourier",brc,10);
@@ -111,16 +112,7 @@ public class TestBranch {
 		assertEquals(2,retOrder.getId());
 	}
 	@Test
-	public void testGetMan() {
-		Branch brc = new Branch(1,"testBranch",posStub);
-		Courier cur = new Courier(1,"testCourier",brc,10);
-		brc.arrive(cur);
-		Courier getted = brc.getMan(cur.getID());
-		assertEquals(1,getted.getID());
-	}
-
-	@Test
-	public void testGetLocation() {
+	public void test01_GetLocation() {
 		Branch brc = new Branch(1,"testBranch",posStub);
 		Position pos = brc.getLocation();
 		Boolean ok = (pos.getX() == 3) && (pos.getY() == 4);
@@ -128,7 +120,7 @@ public class TestBranch {
 	}
 
 	@Test
-	public void testGetDistance() {
+	public void test01_GetDistance() {
 		Branch brc1 = new Branch(1,"testBranch1",posStub);
 		Branch brc2 = new Branch(2,"testBranch2",posStub);
 		int res = brc1.getDistance(brc2);
@@ -136,14 +128,14 @@ public class TestBranch {
 	}
 
 	@Test
-	public void testToString() {
+	public void test01_ToString() {
 		Branch brc = new Branch(1,"testBranch",posStub);
 		String desiredRes = "Name: testBranch, Position: (3, 4)";
 		assertEquals(desiredRes,brc.toString());
 	}
 
 	@Test
-	public void testCheckInOrder() {
+	public void test01_CheckInOrder() {
 		
 		Branch brc = new Branch(1,"testBranch",posStub);
 		ArrayList<Position> testPath = new ArrayList<Position>();
@@ -164,7 +156,7 @@ public class TestBranch {
 	}
 
 	@Test
-	public void testCheckOutOrders() {
+	public void test01_CheckOutOrders() {
 		Branch brc = new Branch(1,"testBranch",posStub);
 		ArrayList<Position> testPath = new ArrayList<Position>();
 		Courier cur = new Courier(1,"testCourier",brc,10);
@@ -180,7 +172,7 @@ public class TestBranch {
 	}
 
 	@Test
-	public void testArrive() {
+	public void test01_Arrive() {
 		Branch brc = new Branch(1,"testBranch",posStub);
 		Courier cur = new Courier(1,"testCourier",brc,10);
 		brc.arrive(cur);
@@ -188,7 +180,7 @@ public class TestBranch {
 		assertEquals(1,getted.getID());
 	}
 	@Test
-	public void testReportFinished() {
+	public void test01_ReportFinished() {
 		Branch brc = new Branch(1,"testBranch",posStub);
 		ArrayList<Position> testPath = new ArrayList<Position>();
 		testPath.add(posStub);
