@@ -101,9 +101,9 @@ public class Company {
         return this.orderPool.createOrder(itemName, sender, receiver, path);
     }
 
-    public Branch addBranch(String name) {
+    public Branch addBranch(String name, Position position) {
         int id = this.branchId++;
-        Branch branch = new Branch(id, name, new Position());
+        Branch branch = new Branch(id, name, position);
         return branchList.put(id, branch);
     }
 
