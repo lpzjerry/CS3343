@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Main {
 
+// <<<<<<< sherlock
     Company c = Company.getInstance();
     OrderPool o=OrderPool.getInstance();
     public void main() {
@@ -68,6 +69,7 @@ public class Main {
         			c.getBranchByLocation(p.currentLocation()).getOutManByOrder(p).deliverOneOrderByTime(p);
         		}
         	}
+
 
         }
     }
