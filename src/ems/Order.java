@@ -41,7 +41,9 @@ public class Order {
         return this.currentLocation().equals(destination());
     }
 
-    public void reportSent() { System.out.printf("Item #%d %s has been sent to its destination\n", id, itemName); }
+    public void reportSent() {
+        System.out.printf("Item #%d %s has been sent to its destination\n", id, itemName);
+    }
 
     public Position nextLocation() {
         if (!hasBeenSent())
@@ -71,11 +73,11 @@ public class Order {
         return receiver;
     }
 
-    public void receiveOrder(){
+    public void receiveOrder() {
         this.received = true;
     }
 
-    public boolean isReceived(){
+    public boolean isReceived() {
         return this.received;
     }
 }

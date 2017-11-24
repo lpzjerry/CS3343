@@ -89,7 +89,7 @@ public class Company {
         Branch nextBranch = this.neighbourForBranch(new Branch(0, "", sender.getPosition()),
                 dummyDestinationBranch);
 
-        while(nextBranch != null){
+        while (nextBranch != null) {
             path.add(nextBranch.getLocation());
             nextBranch = this.neighbourForBranch(nextBranch, dummyDestinationBranch);
         }
@@ -153,4 +153,12 @@ public class Company {
     }
 
 
+    public Manager getManager(int id) {
+        // TODO
+        return this.managerList.get(id);
+    }
+
+    public Manager removeManager(int id) {
+        return this.managerList.remove(id);
+    }
 }
