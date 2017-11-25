@@ -9,13 +9,46 @@ public class Company {
     private HashMap<Integer, Manager> managerList;
     private HashMap<Integer, Branch> branchList;
     private HashMap<Integer, Customer> customerList;
+    private HashMap<Integer,ArrayList<Integer>> adjacency;
     private int branchId;
-
     private OrderPool orderPool;
     private Date companyClock;
 
+    public boolean addLinkage(int source,int target){
+    	if(this.branchList.containsKey(source)&&this.branchList.containsKey(target)){
+    		if (this.adjacency.get(source).contains(target)){
+    			System.out.println("the edge has been linked");
+    			return false;
+    		}
+    		
+    		this.adjacency.get(source).add(target);
+    		this.adjacency.get(target).add(source);
+    		return true;
+    	}
+    	System.out.println("source or target does not exist");
+    	return false;
+    }
+    public boolean rmLinkage(int source,int target){
+    	if(this.branchList.containsKey(source)&&this.branchList.containsKey(target)){
+    		if (!this.adjacency.get(source).contains(target)){
+    			System.out.println("the edge has not been linked");
+    			return false;
+    		}
+    		
+    		this.adjacency.get(source).remove(target);
+    		this.adjacency.get(target).remove(source);
+    		return true;
+    	}
+    	System.out.println("source or target does not exist");
+    	return false;
+    }
+    public boolean connectOrNot(int source, int target){
+    	return this.adjacency.get(source).contains(target)&&this.adjacency.get(target).contains(source);
+    }
 
-//    while company's init, create a user with full priviledges.
+    /**
+     * while company's init, create a user with full priviledges.
+     */
     private Company() {
         this.orderPool = OrderPool.getInstance();
         this.branchList = new HashMap<>();
@@ -102,10 +135,12 @@ public class Company {
     public Branch addBranch(String name, Position position) {
         int id = this.branchId++;
         Branch branch = new Branch(id, name, position);
+        
         return branchList.put(id, branch);
     }
 
     public Branch removeBranch(int id) {
+    	this.adjacency.remove(id);
         return branchList.remove(id);
     }
 
@@ -150,7 +185,7 @@ public class Company {
         return tmp_container.entrySet().iterator().next().getValue();
     }
 
-
+    
     public Manager getManager(int id) {
         return this.managerList.get(id);
     }

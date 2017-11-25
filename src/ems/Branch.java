@@ -1,10 +1,13 @@
 package ems;
 
 import java.util.*;
+//import java.util.zip.CheckedOutputStream;
+//import javax.print.attribute.standard.PrinterMessageFromOperator;
+// wfz &qr
+// Refactored by Pengze Liu
 
 public class Branch {
-
-
+ 
     private int id;
     private String name;
     private Position location;
@@ -13,13 +16,20 @@ public class Branch {
     private ArrayList<Order> queuingOrders = new ArrayList<Order>();
     private ArrayList<Order> onDelivery = new ArrayList<Order>();
 
+    // Refactored by Pengze LIU 2017-Nov-3
     public Branch(int id, String name, Position loc) {
         this.id = id;
         this.name = name;
         this.location = loc;
         queuingOrders = new ArrayList<>();
         onDelivery = new ArrayList<>();
-
+        /*
+        this.capacity = cap;
+		this.neighbour = branches;
+		for (int i = 0; i <= this.neighbour.size(); i++) {
+			this.queuingOrders.add(new OrderCollection(1)); // we need to initiate with unique id for each neighbor
+		}
+		*/
     }
 
     public int getId() {
@@ -59,31 +69,38 @@ public class Branch {
         return null;
     }
 
+    // Added by Pengze LIU 2017-Nov-3
     public Position getLocation() {
         return this.location;
     }
 
-    public int getDistance(Branch destination) {
-        return this.location.distance(destination.getLocation());
+    public int getDistance(Branch destination){
+    	if(Company.getInstance().connectOrNot(this.getId(), destination.getId()))
+    		return this.location.distance(destination.getLocation());
+    	else
+    		return 0x3f3f3f3f;//max 
     }
+
 
     @Override
     public String toString() {
         return String.format("Name: %s, Position: (%d, %d)", this.name, this.location.getX(), this.location.getY());
     }
 
+    // Refactored by Pengze LIU 2017-Nov-3
     public void checkInOrder(Order order) {
         queuingOrders.add(order);
     }
 
-    public ArrayList<Order> checkOutOrders(Courier courier) {
+    // Refactored by Pengze LIU 2017-Nov-3
+    public ArrayList<Order> checkOutOrders(Courier courier) { // assign queuing Orders to Courier (FreeMan)
         ArrayList<Order> thingsToSend = new ArrayList<Order>();
-        int weight = 1;
+        int weight = 1; // this.queuingOrders.get(robinpointer).peek().getWeight();
         while (weight < courier.getCapacity() && thingsToSend.size() > 0) {
             Order newOrder = queuingOrders.get(0);
             thingsToSend.add(newOrder);
             onDelivery.add(newOrder);
-            thingsToSend.add(newOrder);
+	    thingsToSend.add(newOrder);
             queuingOrders.remove(newOrder);
         }
         this.outMan.add(courier);
@@ -97,10 +114,12 @@ public class Branch {
         this.freeMan.add(courier);
     }
 
+    // Pengze Liu 2017-Nov-2
     private boolean checkLastDelivery(Order order) {
         return order.hasBeenSent();
     }
 
+    // Pengze Liu Added 2017-Nov-3
     public void reportFinished(Order order) {
         onDelivery.remove(order);
     }
