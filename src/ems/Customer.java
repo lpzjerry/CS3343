@@ -39,6 +39,7 @@ public class Customer implements Sender, Receiver {
 
     private Company company = Company.getInstance();
 
+    // Pengze Liu 2017-Nov-2
     @Override
     public Position getOrderLocation(int orderID) {
         return company.searchOrder(orderID).currentLocation();
@@ -63,7 +64,7 @@ public class Customer implements Sender, Receiver {
         return this.id;
     }
 
-    public String toString() {
-        return "Customer: " + this.id + " name: " + this.name;
+    public String toString(){
+    	return "Customer: "+this.id+" name: "+this.name;
     }
 }

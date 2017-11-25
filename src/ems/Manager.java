@@ -36,6 +36,11 @@ public class Manager {
         return this.status;
     }
 
+//	public Branch addBranch(String name) {
+//		return company.addBranch(name);
+//	}
+//    TMP removed by patrick wang 11-24
+
     public Branch addBranch(String name, Position position) {
         return company.addBranch(name, position);
     }
@@ -43,20 +48,22 @@ public class Manager {
     public Branch removeBranch(int id) {
         return company.removeBranch(id);
     }
-
     public Customer addCustomer(String name, String password, int priority, Position position) {
         return Company.getInstance().addCustomer(name, password, priority, position);
     }
-
     public Customer addCustomer(String name, String password) {
         return Company.getInstance().addCustomer(name, password);
     }
-
-    public boolean rootOrNot() {
-        return status == 0;
+    public boolean rootOrNot(){
+    	return status==0;
     }
-
-    public String toString() {
-        return "Manager: " + this.id + " name: " + this.name;
+    public boolean addLinkage(int source, int target){
+    	return Company.getInstance().addLinkage(source, target);
+    }
+    public boolean rmLinkage(int source,int target){
+    	return Company.getInstance().rmLinkage(source, target);
+    }
+    public String toString(){
+    	return "Manager: "+this.id+" name: "+this.name;
     }
 }
