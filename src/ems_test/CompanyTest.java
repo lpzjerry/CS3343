@@ -1,12 +1,14 @@
 package ems_test;
 
 import static org.junit.Assert.*;
-
+import java.util.ArrayList;
 import org.junit.Test;
 
 import ems.Branch;
 import ems.Company;
 import ems.Position;
+import ems.Customer;
+import ems.OrderPool;
 
 public class CompanyTest {
     private Company c = Company.getInstance();
