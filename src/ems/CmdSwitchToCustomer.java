@@ -13,8 +13,8 @@ public class CmdSwitchToCustomer implements Command {
 
     @Override
     public void execute() {
-        // TODO Auto-generated method stub
         this.reference = this.customer;
+//        TODO what can this method do...
     }
 
 }

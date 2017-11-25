@@ -52,9 +52,6 @@ class CourierTest {
 
     }
 
-    //class StubCompany extends Company{
-    //}
-
     class StubCustomer extends Customer {
         public StubCustomer(int ID, String Name, String Password) {
             super(ID, Name, Password);
@@ -68,20 +65,16 @@ class CourierTest {
     class StubBranch extends Branch {
         public StubBranch(int id, String name, Position loc) {
             super(id, name, loc);
-            // TODO Auto-generated constructor stub
         }
 
-        //private ArrayList<Order> queuingOrders = new ArrayList<Order>();
-        //private ArrayList<Order> onDelivery = new ArrayList<Order>();
         public void checkInOrder(Order order) {
-            //queuingOrders.add(order);
+
             return;
         }
 
-        public ArrayList<Order> checkOutOrders(Courier courier) { // assign queuing Orders to Courier (FreeMan)
+        public ArrayList<Order> checkOutOrders(Courier courier) {
             ArrayList<Order> thingsToSend = new ArrayList<>();
             for (int i = 0; i < 3; i++) {
-                //System.out.print(OrderList.get(i).getId());
                 thingsToSend.add(OrderList.get(i));
             }
             return thingsToSend;

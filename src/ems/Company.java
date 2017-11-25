@@ -15,9 +15,7 @@ public class Company {
     private Date companyClock;
 
 
-    /**
-     * while company's init, create a user with full priviledges.
-     */
+//    while company's init, create a user with full priviledges.
     private Company() {
         this.orderPool = OrderPool.getInstance();
         this.branchList = new HashMap<>();

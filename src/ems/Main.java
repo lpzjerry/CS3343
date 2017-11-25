@@ -8,7 +8,6 @@ public class Main {
     OrderPool orderPool = OrderPool.getInstance();
 
     public void main() {
-//      TODO check arrival of Orders (by timer)
         Scanner reader = new Scanner(System.in);
         Invoker commandLogger = new Invoker();
         Manager manager = null;

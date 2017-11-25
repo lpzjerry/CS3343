@@ -14,5 +14,6 @@ public class CmdSwitchToManager implements Command {
     @Override
     public void execute() {
         this.reference = this.manager;
+//        TODO what can this method do...
     }
 }

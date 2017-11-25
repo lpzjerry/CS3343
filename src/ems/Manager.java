@@ -36,11 +36,6 @@ public class Manager {
         return this.status;
     }
 
-//	public Branch addBranch(String name) {
-//		return company.addBranch(name);
-//	}
-//    TMP removed by patrick wang 11-24
-
     public Branch addBranch(String name, Position position) {
         return company.addBranch(name, position);
     }

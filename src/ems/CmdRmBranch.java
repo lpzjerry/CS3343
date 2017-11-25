@@ -9,7 +9,7 @@ public class CmdRmBranch implements Command {
             this.manager = theManager;
             this.id = Integer.parseInt(cmd[1]);
         } else {
-            System.out.println("argument error"); // TODO can we change them into log or throw exception???
+            System.out.println("argument error");
         }
     }
 
