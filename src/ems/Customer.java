@@ -63,6 +63,10 @@ public class Customer implements Sender, Receiver {
 
         return this.id;
     }
+    
+    public int getSentOrderID(int i){
+    	return sentOrderID.get(i);
+    }
 
 
 }
