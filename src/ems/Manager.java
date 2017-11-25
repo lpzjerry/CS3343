@@ -1,8 +1,5 @@
 package ems;
 
-//import java.util.ArrayList;
-//import java.security.MessageDigest;
-
 public class Manager {
 
 
