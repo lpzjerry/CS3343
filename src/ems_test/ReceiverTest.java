@@ -62,12 +62,6 @@ public class ReceiverTest {
 
             public OrderStub(int id, String itemName, Customer sender, Customer receiver, ArrayList<Position> path) {
                 super(id, itemName, sender, receiver, path);
-//                this.id = id;
-//                this.itemName = itemName;
-//                this.sender = sender;
-//                this.receiver = receiver;
-//                this.path = path;
-//                locationPtr = 0;
                 this.received = false;
             }
 
@@ -75,7 +69,6 @@ public class ReceiverTest {
 
         OrderStub os = new OrderStub(1, "item1", null, null, null);
         receiver.confirmReception(os);
-        ;
         EasyMock.expectLastCall().anyTimes();
         EasyMock.replay(receiver);
         EasyMock.verify(receiver);

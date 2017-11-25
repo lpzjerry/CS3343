@@ -63,12 +63,20 @@ public class Order {
         return this.id;
     }
 
+    public boolean accessible(Customer customer) {
+        return customer == this.receiver || customer == this.sender;
+    }
+
     public Customer getReceiver() {
         return receiver;
     }
 
     public void receiveOrder() {
         this.received = true;
+    }
+
+    public boolean isReceived() {
+        return this.received;
     }
 
     public void updatePositionByTime(long time) {

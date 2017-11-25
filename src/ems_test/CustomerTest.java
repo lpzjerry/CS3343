@@ -45,6 +45,7 @@ public class CustomerTest {
 
         public OrderStub(int id, String itemName, Customer sender, Customer receiver, ArrayList<Position> path) {
             super(id, itemName, sender, receiver, path);
+
             this.received = false;
         }
 

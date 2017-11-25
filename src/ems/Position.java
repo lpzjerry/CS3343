@@ -3,7 +3,7 @@ package ems;
 import java.util.Random;
 
 public class Position {
-    // Encapsulate all cordinates into Position objects
+
     private int x;
     private int y;
 

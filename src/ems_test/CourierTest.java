@@ -68,7 +68,6 @@ class CourierTest {
         }
 
         public void checkInOrder(Order order) {
-
             return;
         }
 
