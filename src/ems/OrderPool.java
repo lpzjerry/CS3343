@@ -21,12 +21,6 @@ public class OrderPool {
         return instance;
     }
 
-//    public int addOrderToList(Order order) {
-//        this.currentOrder++;
-//        this.orderList.put(this.currentOrder, order);
-//        return currentOrder;
-//    }
-
     public Order getOrderById(int id) {
         return this.orderList.get(id);
     }
