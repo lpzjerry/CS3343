@@ -12,6 +12,7 @@ public class Order {
     private Customer sender;
     private Customer receiver;
     private int locationPtr;
+    private long initTime = Company.getInstance().getTime();
 
     private boolean received;
 
@@ -79,5 +80,10 @@ public class Order {
 
     public boolean isReceived() {
         return this.received;
+    }
+
+    public void updatePositionByTime(long time) {
+        long past_time = time - initTime;
+        // TODO update position by time
     }
 }
