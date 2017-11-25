@@ -90,7 +90,7 @@ public class CustomerTest {
     @Test
     public void testAskToCreateOrder() {
         cus1.askToCreateOrder("item3", cus3);
-        assertEquals(1, cus1.getSentOrderID(0));
+        assertEquals(1, OrderPool.getInstance().getOrderByName("item3"));
     }
 
     @Test
