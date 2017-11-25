@@ -3,13 +3,11 @@ package ems;
 import java.util.Scanner;
 
 public class Main {
-
-    // <<<<<<< sherlock
-    Company company = Company.getInstance();
-    OrderPool orderPool = OrderPool.getInstance();
     
-    public void main() {
+    public static void main(String[] args) {
 //      TODO check arrival of Orders (by timer)
+        Company company = Company.getInstance();
+        OrderPool orderPool = OrderPool.getInstance();
         Scanner reader = new Scanner(System.in);
         Invoker commandLogger = new Invoker();
         Manager manager=null;
@@ -17,13 +15,16 @@ public class Main {
         
         char userFlag='b';
         while (reader.hasNext()) {
+            if (userFlag == 'm' && manager.rootOrNot)
+                System.out.print("EMS# ");
+            else
+                System.out.print("EMS$ ");
             String cmdLine = reader.nextLine().trim();
 
-            // Blank lines exist in data file as separators. Skip them.
+            /*/ Blank lines exist in data file as separators. Skip them.
             if (cmdLine.equals(""))
-                continue;
-
-            System.out.println("\n> " + cmdLine);
+                continue;*/
+            //System.out.println("\n> " + cmdLine);
 
             // split the words in actionLine => create an array of word
             // strings
