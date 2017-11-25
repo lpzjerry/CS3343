@@ -68,5 +68,8 @@ public class Customer implements Sender, Receiver {
     	return sentOrderID.get(i);
     }
 
-
+    @Override
+    public String toString(){
+        return name;
+    }
 }

@@ -102,7 +102,7 @@ public class Order {
         }
         if (nextPtr == path.size()) {
             received = true;
-            System.out.println("Order " + this + " is received");
+            System.out.println("Order " + this + " is received by " + receiver);
         }
     }
 
