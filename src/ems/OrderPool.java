@@ -55,4 +55,11 @@ public class OrderPool {
         this.orderList.put(this.currentOrder, order);
         return this.currentOrder;
     }
+
+    public void processAllOrders() {
+        for (Map.Entry<Integer, Order> entry : orderList.entrySet()) {
+            Order order = entry.getValue();
+            order.updatePositionByTime(Company.getInstance().getTime());
+        }
+    }
 }

@@ -54,15 +54,7 @@ public class Main {
                 System.out.println("Cmd not found");
             }
 
-            for (int i = 0; i < orderPool.getCurrentOrder(); i++) {
-                Order order = orderPool.getOrderById(i);
-                if (order.okToCheckIn(company.getTime())) { // TODO implement a timer in Order @ Pengze
-                    company.getBranchByLocation(order.currentLocation()).getOutManByOrder(order).deliverOneOrderByTime(order);
-                    // TODO not implement Qiu Rui
-//                    TODO implement a iterable for sending order's id PW
-                }
-            }
-
+            OrderPool.getInstance().processAllOrders();
 
         }
     }
