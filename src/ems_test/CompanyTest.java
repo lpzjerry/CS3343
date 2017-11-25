@@ -57,4 +57,31 @@ public class CompanyTest {
         assertEquals("A2", b2.getName());
     }
 
+    @Test
+    public void testSearchOrderByID() {
+        Customer fakesender = new Customer(1, "fakesender", "abc");
+        Customer fakereceiver = new Customer(2, "fakereceiver", "def");
+        OrderPool.getInstance().createOrder("itemName", fakesender, fakereceiver, new ArrayList<>());
+        assertEquals(OrderPool.getInstance().getOrderById(1), Company.getInstance().searchOrder(1));
+    }
+
+    @Test
+    public void testSearchOrderByName() {
+        Customer fakesender = new Customer(1, "fakesender", "abc");
+        Customer fakereceiver = new Customer(2, "fakereceiver", "def");
+        OrderPool.getInstance().createOrder("itemName", fakesender, fakereceiver, new ArrayList<>());
+        assertEquals(OrderPool.getInstance().getOrderByName("itemName"),
+                Company.getInstance().searchOrder("itemName"));
+    }
+
+    @Test
+    public void testAddCustomer() {
+        assertEquals(0, Company.getInstance().addCustomer("name", "password").getId());
+    }
+
+    @Test
+    public void testAddCustomerWithPosition() {
+        Position position = new Position();
+        assertEquals(1, Company.getInstance().addCustomer("name", "password", 1, position).getId());
+    }
 }
