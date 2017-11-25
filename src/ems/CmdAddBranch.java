@@ -5,8 +5,8 @@ public class CmdAddBranch implements Command {
     private Position pos;
     private String name;
 
-    public CmdAddBranch(String para[],Manager theManager) {
-        this.manager=theManager;
+    public CmdAddBranch(String para[], Manager theManager) {
+        this.manager = theManager;
         this.pos = new Position(Integer.parseInt(para[3]), Integer.parseInt(para[4]));
         this.name = para[1];
     }
