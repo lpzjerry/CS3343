@@ -1,21 +1,17 @@
 
-package emsTest;
+package ems_test;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-import java.util.Random;
-
-import org.easymock.EasyMock; //easymock-3.5.jar, objenesis-tck-2.6.jar
-
+import ems.Customer;
+import ems.Order;
+import ems.Position;
+import org.easymock.EasyMock;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import ems.Company;
-import ems.Customer;
-import ems.Order;
-import ems.Position;
+import java.util.ArrayList;
+
+import static org.junit.Assert.assertEquals;
 
 public class CustomerTest {
     private Customer cus1, cus2, cus3;

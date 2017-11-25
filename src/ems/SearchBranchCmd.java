@@ -7,12 +7,10 @@ public class SearchBranchCmd implements Command {
     public SearchBranchCmd(Company cmp, String para[]) {
         this.theCompany = cmp;
         this.param = para;
-
     }
 
     @Override
     public void execute() {
-        // TODO Auto-generated method stub
         Position position = new Position(Integer.valueOf(param[1]), Integer.valueOf(param[2]));
         this.theCompany.getBranchByLocation(position);
     }

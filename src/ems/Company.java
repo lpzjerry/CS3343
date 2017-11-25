@@ -154,11 +154,14 @@ public class Company {
 
 
     public Manager getManager(int id) {
-        // TODO
         return this.managerList.get(id);
     }
 
     public Manager removeManager(int id) {
         return this.managerList.remove(id);
+    }
+
+    public Customer getCustomer(int id) {
+        return this.customerList.get(id);
     }
 }
