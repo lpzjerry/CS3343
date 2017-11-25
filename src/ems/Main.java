@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class Main {
     
     public static void main(String[] args) {
-//      TODO check arrival of Orders (by timer)
         Company company = Company.getInstance();
         OrderPool orderPool = OrderPool.getInstance();
         Scanner reader = new Scanner(System.in);
