@@ -31,20 +31,6 @@ public class TestBranch {
         }
     }
 
-
-//	TODO 1 added by patrick 2017-11-17
-//  plz remove setUp() if you don't add any contains inside this method
-//  The actually usage of setUp() is actually let you define testing environment
-//  Therefore, I think you'd better move those Postion and cus_send... object creatation step
-//  into setUp()
-
-//    TODO 2 added by patrick 2017-11-17
-//    you'd better change testcase naming convention from testGetName()
-//    into sth like this test01_getName(), this gives each test case their own ID and description
-//    more clearly
-
-    //    TODO 3 added by patrick 2017-11-17
-//    line 115-119 and line 184-188 are duplicated. plz inspect this.
     private PositionStub posStub = null;
     private Customer cus_send = null;
     private Customer cus_receive = null;
