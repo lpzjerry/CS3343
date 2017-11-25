@@ -1,5 +1,8 @@
 package ems;
 
+//import java.util.ArrayList;
+//import java.security.MessageDigest;
+
 public class Manager {
 
 
@@ -45,5 +48,17 @@ public class Manager {
     public Branch removeBranch(int id) {
         return company.removeBranch(id);
     }
-
+    public Customer addCustomer(String name, String password, int priority, Position position) {
+        return Company.getInstance().addCustomer(name, password, priority, position);
+    }
+    public Customer addCustomer(String name, String password) {
+        return Company.getInstance().addCustomer(name, password);
+    }
+    public boolean rootOrNot(){
+    	return status==0;
+    }
+    
+    public String toString(){
+    	return "Manager: "+this.id+" name: "+this.name;
+    }
 }

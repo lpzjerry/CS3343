@@ -63,13 +63,8 @@ public class Customer implements Sender, Receiver {
 
         return this.id;
     }
-    
-    public int getSentOrderID(int i){
-    	return sentOrderID.get(i);
-    }
 
-    @Override
     public String toString(){
-        return name;
+    	return "Customer: "+this.id+" name: "+this.name;
     }
 }

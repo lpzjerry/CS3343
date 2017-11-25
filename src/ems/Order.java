@@ -1,7 +1,5 @@
 package ems;
 
-import sun.tools.tree.PostIncExpression;
-
 import java.util.ArrayList;
 // TODO unittest
 
@@ -15,7 +13,6 @@ public class Order {
     private Customer receiver;
     private int locationPtr;
     private long initTime = Company.getInstance().getTime();
-    private long timeBuffer = 0;
 
     private boolean received;
 
@@ -86,28 +83,7 @@ public class Order {
     }
 
     public void updatePositionByTime(long time) {
-        if (isReceived()) return;
         long past_time = time - initTime;
-        timeBuffer += past_time;
         // TODO update position by time
-        int nextPtr = locationPtr + 1;
-        while (timeBuffer > 0 && nextPtr < path.size()) {
-            int next_length = Position.distance(path.get(locationPtr), path.get(nextPtr));
-            long next_time = next_length * 1000; // second -> millisecond
-            if (next_time > timeBuffer) {
-                locationPtr++;
-                nextPtr++;
-                timeBuffer -= next_time;
-            }
-        }
-        if (nextPtr == path.size()) {
-            received = true;
-            System.out.println("Order " + this + " is received by " + receiver);
-        }
-    }
-
-    @Override
-    public String toString() {
-        return "#" + Integer.toString(id) + " " + itemName;
     }
 }
