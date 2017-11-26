@@ -84,7 +84,7 @@ public class Branch {
 
     @Override
     public String toString() {
-        return String.format("Name: %s, Position: (%d, %d)", this.name, this.location.getX(), this.location.getY());
+        return String.format("ID: %d, Name: %s, Position: (%d, %d)", this.id, this.name, this.location.getX(), this.location.getY());
     }
 
     // Refactored by Pengze LIU 2017-Nov-3

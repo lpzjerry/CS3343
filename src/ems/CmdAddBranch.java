@@ -7,14 +7,14 @@ public class CmdAddBranch implements Command {
 
     public CmdAddBranch(String para[],Manager theManager) {
         this.manager=theManager;
-        this.pos = new Position(Integer.parseInt(para[3]), Integer.parseInt(para[4]));
+        this.pos = new Position(Integer.parseInt(para[2]), Integer.parseInt(para[3]));
         this.name = para[1];
     }
 
     @Override
     public void execute() {
-        // TODO Auto-generated method stub
         this.manager.addBranch(name, pos);
+        System.out.println("Branch: "+Company.getInstance().getBranchByLocation(this.pos)+" is added by: "+this.manager);
     }
 
 }

@@ -3,27 +3,29 @@ package ems;
 import java.util.Scanner;
 
 public class Main {
+
+    // <<<<<<< sherlock
     
-    public static void main(String[] args) {
-        Company company = Company.getInstance();
-        OrderPool orderPool = OrderPool.getInstance();
+    
+    public static void main(String args[]) {
+    	Company company = Company.getInstance();
+    	company.addNewManager("super", "hahaha", "Male", 0);
+//      TODO check arrival of Orders (by timer)
         Scanner reader = new Scanner(System.in);
         Invoker commandLogger = new Invoker();
-        Manager manager=null;
+        Manager manager=Company.getInstance().getManager(0);
         Customer customer=null;
-        
+        System.out.println("\n> ");
         char userFlag='b';
         while (reader.hasNext()) {
-            if (userFlag == 'm' && manager.rootOrNot)
-                System.out.print("EMS# ");
-            else
-                System.out.print("EMS$ ");
+        	System.out.println("\n> ");
             String cmdLine = reader.nextLine().trim();
 
-            /*/ Blank lines exist in data file as separators. Skip them.
+            // Blank lines exist in data file as separators. Skip them.
             if (cmdLine.equals(""))
-                continue;*/
-            //System.out.println("\n> " + cmdLine);
+                continue;
+
+            System.out.println("\n> " + cmdLine);
 
             // split the words in actionLine => create an array of word
             // strings
@@ -31,14 +33,22 @@ public class Main {
             String[] cmdParts = cmdLine.split(" ");  //TODO replace regex " " -> "\s" (blank charater)
             //[0]is cmd [1]is attribute 1 .. and so on...
             if (userFlag=='m'){
-            	if(manager.rootOrNot()){
-            		userFlag='r';
+            	if(manager!=null&&manager.rootOrNot()){
+            		if (cmdParts[0].equals("addManager")) { // cmdParts= [ "name", "password", "gender", "status"]
+                        commandLogger.StoreAndExecute(new CmdAddManager(manager, cmdParts));
+                        continue;
+                    }else if (cmdParts[0].equals("rmManager")) {
+                        commandLogger.StoreAndExecute(new CmdRmManager(manager, cmdParts));
+                        continue;
+                    }
             	}
             	if (cmdParts[0].equals("searchBranch")) { // cmdParts= ["searchBranch","x","y"]
                     commandLogger.StoreAndExecute(new CmdSearchBranch(company, cmdParts));
+                    continue;
                 } 
             	else if (cmdParts[0].equals("searchOrder")) {// cmdParts= ["searchOrder","id"]
                     commandLogger.StoreAndExecute(new CmdSearchOrder(company, cmdParts));
+                    continue;
                 }
                /* else if(cmdParts[0].equals("recieveOrder")){
                         commandLogger.StoreAndExecute(new ReceiveOrderCmd(company,cmdParts));
@@ -47,21 +57,38 @@ public class Main {
                     break;
                 } else if (cmdParts[0].equals("addBranch")) {// cmdParts= [ "name"]
                     commandLogger.StoreAndExecute(new CmdAddBranch(cmdParts,manager));
+                    continue;
                 } else if (cmdParts[0].equals("addCustomer")) {
                     commandLogger.StoreAndExecute(new CmdAddCustomer(cmdParts,manager));
+                    continue;
                 } else if (cmdParts[0].equals("rmBranch")) {
                     commandLogger.StoreAndExecute(new CmdRmBranch(cmdParts,manager));
+                    continue;
                 } else if (cmdParts[0].equals("checkTime")) {
                     commandLogger.StoreAndExecute(new CmdCheckTime(company, cmdParts));
+                    continue;
                 } else if (cmdParts[0].equals("logout")){
                 	userFlag='b';
+                	continue;
                 } else if (cmdParts[0].equals("addLink")) {
                     commandLogger.StoreAndExecute(new CmdAddLinkage(manager, cmdParts));
+                    continue;
                 } else if (cmdParts[0].equals("rmLink")) {
                     commandLogger.StoreAndExecute(new CmdRmLinkage(manager, cmdParts));
-                } else if(userFlag!='r'){
-                    System.out.println("Cmd not found");
+                    continue;
+                } else {
+                    System.out.println("Cmd not found m");
                 }
+//            	if(userFlag=='r'){
+//                	if (cmdParts[0].equals("addManager")) { // cmdParts= [ "name", "password", "gender", "status"]
+//                        commandLogger.StoreAndExecute(new CmdAddManager(manager, cmdParts));
+//                    }else if (cmdParts[0].equals("rmManager")) {
+//                        commandLogger.StoreAndExecute(new CmdRmManager(manager, cmdParts));
+//                    }else {
+//                        System.out.println("Cmd not found r");//bug
+//                    }
+//                	userFlag='m';
+//                }
             }
             else if(userFlag=='c'){
             	if (cmdParts[0].equals("searchBranch")) { // cmdParts= ["searchBranch","x","y"]
@@ -70,22 +97,26 @@ public class Main {
                     commandLogger.StoreAndExecute(new CmdSearchOrder(company, cmdParts));
                 } else if (cmdParts[0].equals("exit")) {
                     break;
-                } else if (cmdParts[0].equals("createOrder")) {//cmdParts= ["createOrder","itemname","customer1ID"��蕭"customer2ID"]
+                } else if (cmdParts[0].equals("createOrder")) {//cmdParts= ["createOrder","itemname","customer1ID"嚙踝蕭謅��"customer2ID"]
                     commandLogger.StoreAndExecute(new CmdCreateOrder(company, cmdParts,customer));
                 } else if (cmdParts[0].equals("checkTime")) {
                     commandLogger.StoreAndExecute(new CmdCheckTime(company, cmdParts));
                 } else if (cmdParts[0].equals("logout")){
                 	userFlag='b';
                 } else {
-                    System.out.println("Cmd not found");
+                    System.out.println("Cmd not found c");
                 }
             }
             else if(userFlag=='b'){
             	if(cmdParts[0].equals("manager")){
-            		commandLogger.StoreAndExecute(new CmdSwitchToManager(company, cmdParts, manager));
+            		manager=Company.getInstance().getManager(Integer.parseInt(cmdParts[1]));
+            		System.out.println("Log in as: "+manager);
+            		//commandLogger.StoreAndExecute(new CmdSwitchToManager(company, cmdParts, manager));
             		userFlag='m';
             	} else if(cmdParts[0].equals("customer")){
-            		commandLogger.StoreAndExecute(new CmdSwitchToCustomer(company, cmdParts, customer));
+            		customer=Company.getInstance().getCustomer(Integer.parseInt(cmdParts[1]));
+            		System.out.println("Log in as: "+customer);
+            		//commandLogger.StoreAndExecute(new CmdSwitchToCustomer(company, cmdParts, customer));
             		userFlag='c';
             	} else if (cmdParts[0].equals("searchBranch")) { // cmdParts= ["searchBranch","x","y"]
                     commandLogger.StoreAndExecute(new CmdSearchBranch(company, cmdParts));
@@ -94,23 +125,43 @@ public class Main {
                 } else if (cmdParts[0].equals("checkTime")) {
                     commandLogger.StoreAndExecute(new CmdCheckTime(company, cmdParts));
                 } else {
-                    System.out.println("Cmd not found");
+                    System.out.println("Cmd not found b");
                 }
             }
             
-            if(userFlag=='r'){
-            	if (cmdParts[0].equals("addManager")) { // cmdParts= [ "name", "password", "gender", "status"]
-                    commandLogger.StoreAndExecute(new CmdAddManager(company, cmdParts));
-                }else if (cmdParts[0].equals("rmManager")) {
-                    commandLogger.StoreAndExecute(new CmdRmManager(company, cmdParts));
-                }else {
-                    System.out.println("Cmd not found");
-                }
-            	userFlag='m';
+            
+            
+/*            if (cmdParts[0].equals("searchBranch")) { // cmdParts= ["searchBranch","x","y"]
+                commandLogger.StoreAndExecute(new SearchBranchCmd(company, cmdParts));
+            } else if (cmdParts[0].equals("searchOrder")) {// cmdParts= ["searchOrder","id"]
+                commandLogger.StoreAndExecute(new SearchOrderCmd(company, cmdParts));
             }
-
+            else if(cmdParts[0].equals("recieveOrder")){
+                    commandLogger.StoreAndExecute(new ReceiveOrderCmd(company,cmdParts));
+            }
+            else if (cmdParts[0].equals("exit")) {
+                break;
+            } else if (cmdParts[0].equals("createOrder")) {//cmdParts= ["createOrder","itemname","customer1ID"嚙踝蕭謅��"customer2ID"]
+                commandLogger.StoreAndExecute(new CreateOrderCmd(company, cmdParts));
+            } else if (cmdParts[0].equals("addManager")) { // cmdParts= [ "name", "password", "gender", "status"]
+                commandLogger.StoreAndExecute(new AddManagerCmd(company, cmdParts));
+            } else if (cmdParts[0].equals("addBranch")) {// cmdParts= [ "name"]
+                commandLogger.StoreAndExecute(new AddBranchCmd(company, cmdParts));
+            } else if (cmdParts[0].equals("addCustomer")) {
+                commandLogger.StoreAndExecute(new AddCustomerCmd(company, cmdParts));
+            } else if (cmdParts[0].equals("rmBranch")) {
+                commandLogger.StoreAndExecute(new RmBranchCmd(company, cmdParts));
+            } else if (cmdParts[0].equals("rmManager")) {
+                commandLogger.StoreAndExecute(new RmManagerCmd(company, cmdParts));
+            } else if (cmdParts[0].equals("checkTime")) {
+                commandLogger.StoreAndExecute(new CheckTimeCmd(company, cmdParts));
+            } else {
+                System.out.println("Cmd not found");
+            }
+*/
             OrderPool.getInstance().processAllOrders();
 
         }
+        reader.close();
     }
 }

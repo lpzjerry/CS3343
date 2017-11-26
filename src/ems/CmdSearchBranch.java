@@ -2,17 +2,24 @@ package ems;
 
 public class CmdSearchBranch implements Command {
     private Company theCompany;
-    private String[] param;
+    private Position pos=null;
 
     public CmdSearchBranch(Company cmp, String para[]) {
         this.theCompany = cmp;
-        this.param = para;
+        if(para.length==3){
+        	this.pos=new Position(Integer.valueOf(para[1]), Integer.valueOf(para[2]));
+        }
     }
 
     @Override
     public void execute() {
-        Position position = new Position(Integer.valueOf(param[1]), Integer.valueOf(param[2]));
-        System.out.println(this.theCompany.getBranchByLocation(position));
+        if(this.pos==null){
+        	System.out.println("invalid arguments!");
+        }
+        else{
+        	System.out.println(this.theCompany.getBranchByLocation(this.pos));
+        }
+        
     }
 
 }
