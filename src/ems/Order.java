@@ -21,8 +21,11 @@ public class Order {
         this.itemName = itemName;
         this.sender = sender;
         this.receiver = receiver;
-        this.path = path;
+        this.path = path; // sender.getPosition() -> receiver.getPosition()
         locationPtr = 0;
+        //this.location = sender.getPosition(); // Position of the sender, specified by company
+        // this.price = price; // generate by Company
+        // this.priority = priority; // generate by Company, [1 by default]
 
         this.received = false;
     }
@@ -81,5 +84,6 @@ public class Order {
 
     public void updatePositionByTime(long time) {
         long past_time = time - initTime;
+        // TODO update position by time
     }
 }

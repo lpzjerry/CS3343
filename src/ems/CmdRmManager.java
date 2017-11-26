@@ -1,12 +1,13 @@
 package ems;
 
 public class CmdRmManager implements Command {
-    private Company company;
+    private Manager employer;
+    private Manager employee=null;
     private int id;
 
-    public CmdRmManager(Company company, String[] cmd) {
+    public CmdRmManager(Manager manager, String[] cmd) {
         if (cmd.length == 2) {
-            this.company = company;
+            this.employer=manager;
             this.id = Integer.parseInt(cmd[1]);
         } else {
             System.out.println("argument error");
@@ -14,7 +15,13 @@ public class CmdRmManager implements Command {
     }
 
     public void execute() {
-        this.company.removeManager(id);
+        this.employee=this.employer.removeManager(id);
+        if(employee==null){
+        	System.out.println("id does not exist!");
+        }
+        else{
+        	System.out.println(this.employee+" is removed by: "+this.employer);
+        }
     }
 
 }

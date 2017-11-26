@@ -21,7 +21,8 @@ public class CmdAddCustomer implements Command {
             this.name = cmd[1];
             this.pass = cmd[2];
         } else {
-            System.out.println("argument error"); // TODO features changed to log
+            System.out.println("argument error");
+            return;// TODO features changed to log
         }
     }
 
@@ -31,6 +32,8 @@ public class CmdAddCustomer implements Command {
         } else {
             this.manager.addCustomer(name, pass, prior, pos);
         }
+        
+        System.out.println(this.name+" is added by: "+this.manager);
         
     }
 }

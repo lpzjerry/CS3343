@@ -1,9 +1,12 @@
 package ems;
 
 import java.util.Random;
+// TODO unittest
 
 public class Position {
-
+    // Pengze Liu 2017-Nov-2
+    // Encapsulate all cordinates into Position objects
+    // Essential methods are provided
     private int x;
     private int y;
 

@@ -54,9 +54,10 @@ public class Company {
         this.branchList = new HashMap<>();
         this.managerList = new HashMap<>();
         this.customerList = new HashMap<Integer, Customer>();
+        this.adjacency=new HashMap<Integer,ArrayList<Integer>>();
         this.companyClock = new Date();
-        Manager superuser = new Manager(0, "superuser", "123456", "nil", 0);
-        this.managerList.put(superuser.getId(), superuser);
+        //Manager superuser = new Manager(0, "superuser", "123456", "nil", 0);
+        //this.managerList.put(superuser.getId(), superuser);
 
         this.branchId = 1;
     }
@@ -135,11 +136,12 @@ public class Company {
     public Branch addBranch(String name, Position position) {
         int id = this.branchId++;
         Branch branch = new Branch(id, name, position);
-        
+        this.adjacency.put(id, new ArrayList<Integer>());
         return branchList.put(id, branch);
     }
 
     public Branch removeBranch(int id) {
+    	
     	this.adjacency.remove(id);
         return branchList.remove(id);
     }
