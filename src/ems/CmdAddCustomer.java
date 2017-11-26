@@ -4,6 +4,7 @@ package ems;
 
 public class CmdAddCustomer implements Command {
     private Manager manager;
+    private Customer customer;
     private String name;
     private String pass;
     private int prior = -1;
@@ -28,12 +29,12 @@ public class CmdAddCustomer implements Command {
 
     public void execute() {
         if (prior == -1) {
-            this.manager.addCustomer(name, pass);
+            this.customer=this.manager.addCustomer(name, pass);
         } else {
-            this.manager.addCustomer(name, pass, prior, pos);
+            this.customer=this.manager.addCustomer(name, pass, prior, pos);
         }
         
-        System.out.println(this.name+" is added by: "+this.manager);
+        System.out.println(this.customer+" is added by: "+this.manager);
         
     }
 }
