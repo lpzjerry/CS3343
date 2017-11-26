@@ -75,10 +75,9 @@ public class Branch {
     }
 
     public int getDistance(Branch destination){
-    	if(Company.getInstance().connectOrNot(this.getId(), destination.getId()))
-    		return this.location.distance(destination.getLocation());
-    	else
-    		return 0x3f3f3f3f;//max 
+    	
+    	return this.location.distance(destination.getLocation());
+    	 
     }
 
 

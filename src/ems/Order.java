@@ -13,7 +13,7 @@ public class Order {
     private Customer receiver;
     private int locationPtr;
     private long initTime = Company.getInstance().getTime();
-
+    private long timeBuffer=0;
     private boolean received;
 
     public Order(int id, String itemName, Customer sender, Customer receiver, ArrayList<Position> path) {
@@ -31,6 +31,7 @@ public class Order {
     }
 
     public Position currentLocation() {
+    	
         return path.get(locationPtr);
     }
 
@@ -82,8 +83,33 @@ public class Order {
         return this.received;
     }
 
-    public void updatePositionByTime(long time) {
-        long past_time = time - initTime;
+//    public void updatePositionByTime(long time) {
+//        long past_time = time - initTime;
         // TODO update position by time
+//    }
+    public String toString(){
+    	return "id: "+this.id+" name: "+this.itemName+"\nsender: "+this.sender+"\nreceiver: "+this.receiver;
     }
+    
+    public void updatePositionByTime(long time) {
+        if (isReceived()) return;
+        long past_time = time - initTime;
+        timeBuffer += past_time;
+        // TODO update position by time
+        int nextPtr = locationPtr + 1;
+        while (timeBuffer > 0 && nextPtr < path.size()) {
+            int next_length = Position.distance(path.get(locationPtr), path.get(nextPtr));
+            long next_time = next_length * 1000; // second -> millisecond
+            if (next_time > timeBuffer) {
+                locationPtr++;
+                nextPtr++;
+                timeBuffer -= next_time;
+            }
+        }
+        if (nextPtr == path.size()) {
+            received = true;
+            System.out.println("Order " + this + " is received");
+        }
+    }
+    
 }

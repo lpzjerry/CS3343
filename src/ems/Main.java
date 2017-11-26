@@ -18,11 +18,7 @@ public class Main {
         System.out.println("\n> ");
         char userFlag='b';
         while (reader.hasNext()) {
-//        	System.out.println("\n> "); // TODO
-            if (userFlag == 'm' && manager.rootOrNot() )
-                System.out.print("EMS# ");
-            else
-                System.out.print("EMS$ ");
+        	System.out.println("\n> ");
             String cmdLine = reader.nextLine().trim();
 
             // Blank lines exist in data file as separators. Skip them.
@@ -83,7 +79,16 @@ public class Main {
                 } else {
                     System.out.println("Cmd not found m");
                 }
-
+//            	if(userFlag=='r'){
+//                	if (cmdParts[0].equals("addManager")) { // cmdParts= [ "name", "password", "gender", "status"]
+//                        commandLogger.StoreAndExecute(new CmdAddManager(manager, cmdParts));
+//                    }else if (cmdParts[0].equals("rmManager")) {
+//                        commandLogger.StoreAndExecute(new CmdRmManager(manager, cmdParts));
+//                    }else {
+//                        System.out.println("Cmd not found r");//bug
+//                    }
+//                	userFlag='m';
+//                }
             }
             else if(userFlag=='c'){
             	if (cmdParts[0].equals("searchBranch")) { // cmdParts= ["searchBranch","x","y"]
