@@ -15,12 +15,17 @@ public class Main {
         Invoker commandLogger = new Invoker();
         Manager manager=Company.getInstance().getManager(0);
         Customer customer=null;
-        System.out.println("\n> ");
+        //System.out.println("\n> ");
         char userFlag='b';
         while (reader.hasNext()) {
-        	System.out.println("\n> ");
+        	//System.out.println("\n> ");
+        	System.out.println("\n> "); // TODO
+        	if (userFlag == 'm' && manager.rootOrNot() )
+        		System.out.print("EMS# ");
+        	else
+        		System.out.print("EMS$ ");
             String cmdLine = reader.nextLine().trim();
-
+            
             // Blank lines exist in data file as separators. Skip them.
             if (cmdLine.equals(""))
                 continue;
