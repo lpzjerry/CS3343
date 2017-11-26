@@ -16,7 +16,8 @@ public class CmdCreateOrder implements Command {
 
     @Override
     public void execute() {
-        this.company.createOrder(itemName, sender, receiver);    	
+        int o=this.company.createOrder(itemName, sender, receiver);    	
+        System.out.println(o);
     }
 
 }
