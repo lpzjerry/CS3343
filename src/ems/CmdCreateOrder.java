@@ -16,8 +16,8 @@ public class CmdCreateOrder implements Command {
 
     @Override
     public void execute() {
-        int o=this.company.createOrder(itemName, sender, receiver);    	
-        System.out.println(o);
+        int orderID=this.company.createOrder(itemName, sender, receiver);
+        System.out.println(Company.getInstance().searchOrder(orderID) + " is created.");
     }
 
 }

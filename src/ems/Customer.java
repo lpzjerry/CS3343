@@ -64,7 +64,7 @@ public class Customer implements Sender, Receiver {
         return this.id;
     }
 
-    public String toString(){
-    	return "Customer: "+this.id+" name: "+this.name;
+    public String toString() {
+        return "[Customer: " + this.id + " name: " + this.name + "]";
     }
 }

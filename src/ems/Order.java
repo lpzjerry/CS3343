@@ -1,19 +1,17 @@
 package ems;
 
 import java.util.ArrayList;
-// TODO unittest
 
 public class Order {
 
     private int id;
     private String itemName;
-    //private Position location;
     private ArrayList<Position> path;
     private Customer sender;
     private Customer receiver;
     private int locationPtr;
     private long initTime = Company.getInstance().getTime();
-    private long timeBuffer=0;
+    private long timeBuffer = 0;
     private boolean received;
 
     public Order(int id, String itemName, Customer sender, Customer receiver, ArrayList<Position> path) {
@@ -21,17 +19,14 @@ public class Order {
         this.itemName = itemName;
         this.sender = sender;
         this.receiver = receiver;
-        this.path = path; // sender.getPosition() -> receiver.getPosition()
+        this.path = path;
         locationPtr = 0;
-        //this.location = sender.getPosition(); // Position of the sender, specified by company
-        // this.price = price; // generate by Company
-        // this.priority = priority; // generate by Company, [1 by default]
 
         this.received = false;
     }
 
     public Position currentLocation() {
-    	
+
         return path.get(locationPtr);
     }
 
@@ -83,33 +78,27 @@ public class Order {
         return this.received;
     }
 
-//    public void updatePositionByTime(long time) {
-//        long past_time = time - initTime;
-        // TODO update position by time
-//    }
-    public String toString(){
-    	return "id: "+this.id+" name: "+this.itemName+"\nsender: "+this.sender+"\nreceiver: "+this.receiver;
+    public String toString() {
+        return "[#" + this.id + " " + this.itemName + "]";
     }
-    
+
     public void updatePositionByTime(long time) {
         if (isReceived()) return;
         long past_time = time - initTime;
         timeBuffer += past_time;
-        // TODO update position by time
         int nextPtr = locationPtr + 1;
         while (timeBuffer > 0 && nextPtr < path.size()) {
             int next_length = Position.distance(path.get(locationPtr), path.get(nextPtr));
             long next_time = next_length * 1000; // second -> millisecond
-            if (next_time > timeBuffer) {
+            if (timeBuffer > next_time) {
                 locationPtr++;
                 nextPtr++;
                 timeBuffer -= next_time;
-            }
+            } else break;
         }
-        if (nextPtr == path.size()) {
+        if (nextPtr >= path.size()) {
             received = true;
-            System.out.println("Order " + this + " is received");
+            System.out.println("Order [" + this.itemName + "] is received by " + receiver);
         }
     }
-    
 }

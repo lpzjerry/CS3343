@@ -7,7 +7,7 @@ import java.util.*;
 // Refactored by Pengze Liu
 
 public class Branch {
- 
+
     private int id;
     private String name;
     private Position location;
@@ -74,10 +74,10 @@ public class Branch {
         return this.location;
     }
 
-    public int getDistance(Branch destination){
-    	
-    	return this.location.distance(destination.getLocation());
-    	 
+    public int getDistance(Branch destination) {
+
+        return this.location.distance(destination.getLocation());
+
     }
 
 
@@ -99,7 +99,7 @@ public class Branch {
             Order newOrder = queuingOrders.get(0);
             thingsToSend.add(newOrder);
             onDelivery.add(newOrder);
-	    thingsToSend.add(newOrder);
+            thingsToSend.add(newOrder);
             queuingOrders.remove(newOrder);
         }
         this.outMan.add(courier);
