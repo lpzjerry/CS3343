@@ -1,7 +1,7 @@
 package ems;
 
 
-public class Edge  {
+public class Edge {
     private final String id;
     private final Branch source;
     private final Branch destination;
@@ -17,6 +17,7 @@ public class Edge  {
     public String getId() {
         return id;
     }
+
     public Branch getDestination() {
         return destination;
     }
@@ -24,6 +25,7 @@ public class Edge  {
     public Branch getSource() {
         return source;
     }
+
     public int getWeight() {
         return weight;
     }

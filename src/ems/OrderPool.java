@@ -41,10 +41,6 @@ public class OrderPool {
         return null;
     }
 
-    int getCurrentOrder() {
-        return currentOrder;
-    }
-
     public void receiveOrder(Order order) {
         order.receiveOrder();
     }

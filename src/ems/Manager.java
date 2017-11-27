@@ -8,7 +8,7 @@ public class Manager {
 
     private int id;
     private String name;
-//    private int pwHash;
+    //    private int pwHash;
 //    private String gender = "Not Know";
     private int status = 1;
 
@@ -46,39 +46,44 @@ public class Manager {
     }
 
     public Branch removeBranch(int id) {
-    	
+
         return company.removeBranch(id);
     }
+
     public Customer addCustomer(String name, String password, int priority, Position position) {
         return Company.getInstance().addCustomer(name, password, priority, position);
     }
+
     public Customer addCustomer(String name, String password) {
         return Company.getInstance().addCustomer(name, password);
     }
-    public boolean rootOrNot(){
-    	return status==0;
-    }
-    public boolean addLinkage(int source, int target){
-    	return Company.getInstance().addLinkage(source, target);
-    }
-    public boolean rmLinkage(int source,int target){
-    	return Company.getInstance().rmLinkage(source, target);
-    }
-    
-    public Manager addNewManager(String name, String password, String gender, int status){
-    	if(this.rootOrNot()){
-    		return this.company.addNewManager(name, password, gender, status);
-    	}
-    	else{
-    		System.out.println("permision denied");
-    		return null;
-    	}
-    }
-    public String toString(){
-    	return "Manager: "+this.id+" name: "+this.name;
+
+    public boolean rootOrNot() {
+        return status == 0;
     }
 
-	public Manager removeManager(int id) {
-		return this.company.removeManager(id);
-	}
+    public boolean addLinkage(int source, int target) {
+        return Company.getInstance().addLinkage(source, target);
+    }
+
+    public boolean rmLinkage(int source, int target) {
+        return Company.getInstance().rmLinkage(source, target);
+    }
+
+    public Manager addNewManager(String name, String password, String gender, int status) {
+        if (this.rootOrNot()) {
+            return this.company.addNewManager(name, password, gender, status);
+        } else {
+            System.out.println("permision denied");
+            return null;
+        }
+    }
+
+    public String toString() {
+        return "Manager: " + this.id + " name: " + this.name;
+    }
+
+    public Manager removeManager(int id) {
+        return this.company.removeManager(id);
+    }
 }

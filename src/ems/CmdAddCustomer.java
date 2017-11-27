@@ -1,7 +1,5 @@
 package ems;
 
-//import java.util.logging.Logger;
-
 public class CmdAddCustomer implements Command {
     private Manager manager;
     private Customer customer;
@@ -10,9 +8,8 @@ public class CmdAddCustomer implements Command {
     private int prior = -1;
     private Position pos = null;
 
-    //    TODO throw exception, may nor implement yet??
-    public CmdAddCustomer(String[] cmd,Manager theManager) {
-    	this.manager=theManager;
+    public CmdAddCustomer(String[] cmd, Manager theManager) {
+        this.manager = theManager;
         if (cmd.length == 6) {
             this.name = cmd[1];
             this.pass = cmd[2];
@@ -29,12 +26,10 @@ public class CmdAddCustomer implements Command {
 
     public void execute() {
         if (prior == -1) {
-            this.customer=this.manager.addCustomer(name, pass);
+            this.customer = this.manager.addCustomer(name, pass);
         } else {
-            this.customer=this.manager.addCustomer(name, pass, prior, pos);
+            this.customer = this.manager.addCustomer(name, pass, prior, pos);
         }
-        
-        System.out.println(this.customer+" is added by: "+this.manager);
-        
+        System.out.println(this.customer + " is added by: " + this.manager);
     }
 }

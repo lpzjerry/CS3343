@@ -11,8 +11,12 @@ public class CmdSearchOrder implements Command {
 
     @Override
     public void execute() {
-        Order order = this.theCompany.searchOrder(Integer.parseInt(param[1]));
-        if (order.isReceived()) System.out.println("Order " + order + " is received");
+        // Order order = this.theCompany.searchOrder(Integer.parseInt(param[1]));
+        String orderKey = param[1];
+        Order order = theCompany.searchOrder(orderKey);
+        if(order == null)
+            order = theCompany.searchOrder(Integer.parseInt(orderKey));
+        if (order.isReceived()) System.out.println("Order " + order + " has been received.");
         else {
             System.out.println(order);
             Position locOfOrder = order.currentLocation();

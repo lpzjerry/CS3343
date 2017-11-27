@@ -2,11 +2,11 @@ package ems;
 
 public class CmdRmBranch implements Command {
     private Manager manager;
-    private Branch branch=null;
+    private Branch branch = null;
     private int id;
 
-    public CmdRmBranch(String[] cmd,Manager theManager) {
-    	
+    public CmdRmBranch(String[] cmd, Manager theManager) {
+
         if (cmd.length == 2) {
             this.manager = theManager;
             this.id = Integer.parseInt(cmd[1]);
@@ -16,12 +16,11 @@ public class CmdRmBranch implements Command {
     }
 
     public void execute() {
-        this.branch=this.manager.removeBranch(id);
-        if (this.branch==null){
-        	System.out.println("branch: "+this.id+" does not exist!");
-        }
-        else{
-        	System.out.println("branch: "+this.branch+" is removed by: "+this.manager);
+        this.branch = this.manager.removeBranch(id);
+        if (this.branch == null) {
+            System.out.println("branch: " + this.id + " does not exist!");
+        } else {
+            System.out.println("branch: " + this.branch + " is removed by: " + this.manager);
         }
     }
 }

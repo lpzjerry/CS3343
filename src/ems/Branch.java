@@ -1,8 +1,6 @@
 package ems;
 
 import java.util.*;
-//import java.util.zip.CheckedOutputStream;
-//import javax.print.attribute.standard.PrinterMessageFromOperator;
 // wfz &qr
 // Refactored by Pengze Liu
 
@@ -23,50 +21,10 @@ public class Branch {
         this.location = loc;
         queuingOrders = new ArrayList<>();
         onDelivery = new ArrayList<>();
-        /*
-        this.capacity = cap;
-		this.neighbour = branches;
-		for (int i = 0; i <= this.neighbour.size(); i++) {
-			this.queuingOrders.add(new OrderCollection(1)); // we need to initiate with unique id for each neighbor
-		}
-		*/
     }
 
     public int getId() {
         return this.id;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public Order getOrder(int id) {
-        for (Order order : this.queuingOrders) {
-            if (order.getId() == id) {
-                return order;
-            }
-        }
-        for (Order order : this.onDelivery) {
-            if (order.getId() == id) {
-                return order;
-            }
-        }
-        return null;
-    }
-
-    public Courier getMan(int id) {
-        for (Courier m : this.freeMan) {
-            if (m.getID() == id) {
-                return m;
-            }
-        }
-        for (Courier m : this.outMan) {
-            if (m.getID() == id) {
-                return m;
-            }
-        }
-
-        return null;
     }
 
     // Added by Pengze LIU 2017-Nov-3
@@ -75,15 +33,12 @@ public class Branch {
     }
 
     public int getDistance(Branch destination) {
-
         return this.location.distance(destination.getLocation());
-
     }
-
 
     @Override
     public String toString() {
-        return String.format("ID: %d, Name: %s, Position: (%d, %d)", this.id, this.name, this.location.getX(), this.location.getY());
+        return String.format("[Branch %s at (%d, %d)]", this.name, this.location.getX(), this.location.getY());
     }
 
     // Refactored by Pengze LIU 2017-Nov-3
@@ -111,11 +66,6 @@ public class Branch {
         this.onDelivery.remove(courier.popTopOrder());
         this.outMan.remove(courier);
         this.freeMan.add(courier);
-    }
-
-    // Pengze Liu 2017-Nov-2
-    private boolean checkLastDelivery(Order order) {
-        return order.hasBeenSent();
     }
 
     // Pengze Liu Added 2017-Nov-3
