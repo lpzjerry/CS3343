@@ -12,7 +12,7 @@ createOrder order 1
 searchOrder 1
 searchOrder order
 logout
-Manager 0
+manager 0
 rmManager 1
 rmBranch 1
-
+exit
