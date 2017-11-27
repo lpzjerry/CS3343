@@ -10,6 +10,7 @@ logout
 customer 0
 createOrder order 1
 searchOrder 1
+searchOrder order
 logout
 Manager 0
 rmManager 1
