@@ -145,12 +145,12 @@ public class Company {
         dijkstra.execute(senderSide);
         ArrayList<Branch> pathOfBranch = dijkstra.getPath(receiverSide);
         if(pathOfBranch.size()==0){
-        	
+        	System.out.println("Unreachable");
+        	return -1;
         }
         for(Branch b:pathOfBranch){
         	path.add(b.getLocation());
-        	System.out.println("Unreachable");
-        	return -1;
+        	
         }
         if(path.size()==0){
         	System.out.println("Unreachable");
