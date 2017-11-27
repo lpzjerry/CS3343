@@ -23,3 +23,24 @@ The group project for CS3343
 
 Git 
 
+## Presentation structure
+- Objective
+- Planning
+    - Team Organization
+    - Development process
+    - Project scheduling
+- Software
+    - Functions
+        - Demo
+    - System design
+        - Design patterns
+        - Design principles
+    - Code refactoring
+- ※Testing
+    - Hierarchy
+    - Approach (Bottom-up? Sandwich?)
+    - (how many test cases)
+- Configuration
+    - Version control
+    - Library / Environmment
+- Q&A
