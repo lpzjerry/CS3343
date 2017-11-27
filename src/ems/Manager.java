@@ -80,7 +80,7 @@ public class Manager {
     }
 
     public String toString() {
-        return "Manager: " + this.id + " name: " + this.name;
+        return "[manager " + this.name + "]";
     }
 
     public Manager removeManager(int id) {
