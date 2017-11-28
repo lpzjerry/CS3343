@@ -91,7 +91,9 @@ public class Order {
             int next_length = Position.distance(path.get(locationPtr), path.get(nextPtr));
             long next_time = next_length * 1000; // second -> millisecond
             if (timeBuffer > next_time) {
+            		Company.getInstance().getBranchByLocation(this.path.get(locationPtr)).checkOutOrders(this);
                 locationPtr++;
+                Company.getInstance().getBranchByLocation(this.path.get(locationPtr)).checkInOrder(this);
                 nextPtr++;
                 timeBuffer -= next_time;
             } else break;
