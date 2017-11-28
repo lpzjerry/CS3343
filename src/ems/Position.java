@@ -24,11 +24,6 @@ public class Position {
         y = random.nextInt() % Y_limit;
     }
 
-    public void changePosition(int newx, int newy) {
-        x = newx;
-        y = newy;
-    }
-
     public int getX() {
         return x;
     }

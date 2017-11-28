@@ -41,10 +41,6 @@ public class OrderPool {
         return null;
     }
 
-    int getCurrentOrder() {
-        return currentOrder;
-    }
-
     public void receiveOrder(Order order) {
         order.receiveOrder();
     }
@@ -54,5 +50,12 @@ public class OrderPool {
         Order order = new Order(this.currentOrder, itemName, sender, receiver, paths);
         this.orderList.put(this.currentOrder, order);
         return this.currentOrder;
+    }
+
+    public void processAllOrders() {
+        for (Map.Entry<Integer, Order> entry : orderList.entrySet()) {
+            Order order = entry.getValue();
+            order.updatePositionByTime(Company.getInstance().getTime());
+        }
     }
 }
