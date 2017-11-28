@@ -9,8 +9,6 @@ public class Branch {
     private int id;
     private String name;
     private Position location;
-    private ArrayList<Courier> freeMan = new ArrayList<Courier>();
-    private ArrayList<Courier> outMan = new ArrayList<Courier>();
     private ArrayList<Order> queuingOrders = new ArrayList<Order>();
     private ArrayList<Order> onDelivery = new ArrayList<Order>();
 
@@ -42,34 +40,14 @@ public class Branch {
     }
 
     // Refactored by Pengze LIU 2017-Nov-3
-    public void checkInOrder(Order order) {
-        queuingOrders.add(order);
+    public boolean checkInOrder(Order order) {
+        return queuingOrders.add(order);
     }
 
     // Refactored by Pengze LIU 2017-Nov-3
-    public ArrayList<Order> checkOutOrders(Courier courier) { // assign queuing Orders to Courier (FreeMan)
-        ArrayList<Order> thingsToSend = new ArrayList<Order>();
-        int weight = 1; // this.queuingOrders.get(robinpointer).peek().getWeight();
-        while (weight < courier.getCapacity() && thingsToSend.size() > 0) {
-            Order newOrder = queuingOrders.get(0);
-            thingsToSend.add(newOrder);
-            onDelivery.add(newOrder);
-            thingsToSend.add(newOrder);
-            queuingOrders.remove(newOrder);
-        }
-        this.outMan.add(courier);
-        this.freeMan.remove(courier);
-        return thingsToSend;
+    public boolean checkOutOrders(Order order) { // assign queuing Orders to Courier (FreeMan)
+        return this.onDelivery.remove(order);
     }
 
-    public void arrive(Courier courier) {
-        this.onDelivery.remove(courier.popTopOrder());
-        this.outMan.remove(courier);
-        this.freeMan.add(courier);
-    }
-
-    // Pengze Liu Added 2017-Nov-3
-    public void reportFinished(Order order) {
-        onDelivery.remove(order);
-    }
+    
 }
