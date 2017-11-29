@@ -106,7 +106,7 @@ public class Company {
         Dijkstra dijkstra = new Dijkstra(this.map);
         dijkstra.execute(senderSide);
         ArrayList<Branch> pathOfBranch = dijkstra.getPath(receiverSide);
-        if (pathOfBranch.size() == 0) {
+        if (pathOfBranch==null || pathOfBranch.size() == 0) {
             System.out.println("Unreachable");
             return -1;
         }
