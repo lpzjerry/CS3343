@@ -36,6 +36,7 @@ Git
         - Design patterns
         - Design principles
     - Code refactoring
+    - Bug report
 - ※Testing
     - Hierarchy
     - Approach (Bottom-up? Sandwich?)
