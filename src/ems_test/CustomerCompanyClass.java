@@ -66,7 +66,7 @@ public class CustomerCompanyClass {
 		assertEquals(cus1.getId(),12);
 	}
 	
-	@Test //nullPointere
+	@Test 
 	public void test05_askToCreateOrder() {
 		cus1.askToCreateOrder("item3", cus2);
 		assertEquals(1,op.getOrderByName("item3"));
