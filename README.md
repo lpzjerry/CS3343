@@ -48,74 +48,74 @@ Git
 
 
 ## Project Structure
-├── ems
-│   ├── Branch.java
-│   ├── CmdAddBranch.java
-│   ├── CmdAddCustomer.java
-│   ├── CmdAddLinkage.java
-│   ├── CmdAddManager.java
-│   ├── CmdCheckTime.java
-│   ├── CmdCreateOrder.java
-│   ├── CmdRmBranch.java
-│   ├── CmdRmLinkage.java
-│   ├── CmdRmManager.java
-│   ├── CmdSearchBranch.java
-│   ├── CmdSearchOrder.java
-│   ├── Command.java
-│   ├── Company.java
-│   ├── Customer.java
-│   ├── Dijkstra.java
-│   ├── Edge.java
-│   ├── Graph.java
-│   ├── Invoker.java
-│   ├── Main.java
-│   ├── Manager.java
-│   ├── Order.java
-│   ├── OrderPool.java
-│   ├── Position.java
-│   ├── Receiver.java
-│   └── Sender.java
-└── ems_test
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── BranchPosIntegrationTest.java
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── BranchTest.java
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── CompanyTest.java
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── CourierTest.java
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── CustomerCompanyTest.java
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── CustomerTest.java
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── EdgeIntegrationTest.java
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── EdgeTest.java
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── GraphTest.java
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── ManagerTest.java
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── OrderBranchPositionTest.java
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── OrderPoolOrderTest.java
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── OrderPoolTest.java
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── OrderTest.java
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── PositionTest.java
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── ReceiverTest.java
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── SenderTest.java
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── TestBranch.java
+├── ems  <br>
+│   ├── Branch.java <br>
+│   ├── CmdAddBranch.java<br>
+│   ├── CmdAddCustomer.java<br>
+│   ├── CmdAddLinkage.java<br>
+│   ├── CmdAddManager.java<br>
+│   ├── CmdCheckTime.java<br>
+│   ├── CmdCreateOrder.java<br>
+│   ├── CmdRmBranch.java<br>
+│   ├── CmdRmLinkage.java<br>
+│   ├── CmdRmManager.java<br>
+│   ├── CmdSearchBranch.java<br>
+│   ├── CmdSearchOrder.java<br>
+│   ├── Command.java<br>
+│   ├── Company.java<br>
+│   ├── Customer.java<br>
+│   ├── Dijkstra.java<br>
+│   ├── Edge.java<br>
+│   ├── Graph.java<br>
+│   ├── Invoker.java<br>
+│   ├── Main.java<br>
+│   ├── Manager.java<br>
+│   ├── Order.java<br>
+│   ├── OrderPool.java<br>
+│   ├── Position.java<br>
+│   ├── Receiver.java<br>
+│   └── Sender.java<br>
+└── ems_test<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── BranchPosIntegrationTest.java<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── BranchTest.java<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── CompanyTest.java<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── CourierTest.java<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── CustomerCompanyTest.java<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── CustomerTest.java<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── EdgeIntegrationTest.java<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── EdgeTest.java<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── GraphTest.java<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── ManagerTest.java<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── OrderBranchPositionTest.java<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── OrderPoolOrderTest.java<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── OrderPoolTest.java<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── OrderTest.java<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── PositionTest.java<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── ReceiverTest.java<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── SenderTest.java<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── TestBranch.java<br>
 
 
 ## Sample Cmd Line Rundown
 
-> manager 0
-> addManager manager1 123456 female 1
-> addBranch branch1 1 2
-> searchBranch 1 2
-> addBranch branch2 15 15
-> addCustomer sender 654321 1 2 2
-> addCustomer receiver 567890 1 15 14
-> addLink 1 2
-> logout
-> customer 0
-> createOrder order 1
-> searchOrder 1
-> searchOrder order
-> logout
-> manager 0
-> rmManager 1
-> rmBranch 1
-> exit 
+> manager 0<br>
+> addManager manager1 123456 female 1<br>
+> addBranch branch1 1 2<br>
+> searchBranch 1 2<br>
+> addBranch branch2 15 15<br>
+> addCustomer sender 654321 1 2 2<br>
+> addCustomer receiver 567890 1 15 14<br>
+> addLink 1 2<br>
+> logout<br>
+> customer 0<br>
+> createOrder order 1<br>
+> searchOrder 1<br>
+> searchOrder order<br>
+> logout<br>
+> manager 0<br>
+> rmManager 1<br>
+> rmBranch 1<br>
+> exit <br>
 
 
 
