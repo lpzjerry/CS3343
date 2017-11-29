@@ -27,23 +27,16 @@ public class Main {
             String[] cmdParts = cmdLine.split(" ");  //TODO replace regex " " -> "\s" (blank charater)
             //[0]is cmd [1]is attribute 1 .. and so on...
             if (userFlag=='m'){
-            	if(manager!=null&&manager.rootOrNot()){
-            		if (cmdParts[0].equals("addManager")) { // cmdParts= [ "name", "password", "gender", "status"]
-                        commandLogger.StoreAndExecute(new CmdAddManager(manager, cmdParts));
-                    }else if (cmdParts[0].equals("rmManager")) {
-                        commandLogger.StoreAndExecute(new CmdRmManager(manager, cmdParts));
-                       
-                    }
-            	}
             	if (cmdParts[0].equals("searchBranch")) { // cmdParts= ["searchBranch","x","y"]
-                    commandLogger.StoreAndExecute(new CmdSearchBranch(company, cmdParts));
-                    
-                } 
-            	else if (cmdParts[0].equals("searchOrder")) {// cmdParts= ["searchOrder","id"]
+                    commandLogger.StoreAndExecute(new CmdSearchBranch(company, cmdParts));                  
+                } else if (cmdParts[0].equals("addManager")&&manager.rootOrNot()) { // cmdParts= [ "name", "password", "gender", "status"]
+                    commandLogger.StoreAndExecute(new CmdAddManager(manager, cmdParts));
+                } else if (cmdParts[0].equals("rmManager")&&manager.rootOrNot()) {
+                    commandLogger.StoreAndExecute(new CmdRmManager(manager, cmdParts));
+                   
+                } else if (cmdParts[0].equals("searchOrder")) {// cmdParts= ["searchOrder","id"]
                     commandLogger.StoreAndExecute(new CmdSearchOrder(company, cmdParts));
-                  
-                }
-                else if (cmdParts[0].equals("exit")) {
+                } else if (cmdParts[0].equals("exit")) {
                     break;
                 } else if (cmdParts[0].equals("addBranch")) {// cmdParts= [ "name"]
                     commandLogger.StoreAndExecute(new CmdAddBranch(cmdParts,manager));
@@ -77,7 +70,7 @@ public class Main {
                     commandLogger.StoreAndExecute(new CmdSearchOrder(company, cmdParts));
                 } else if (cmdParts[0].equals("exit")) {
                     break;
-                } else if (cmdParts[0].equals("createOrder")) {//cmdParts= ["createOrder","itemname","customer1ID"���雓蕭嚙踐"customer2ID"]
+                } else if (cmdParts[0].equals("createOrder")) {//cmdParts= ["createOrder","itemname","customer1ID"嚙踝蕭謕蕭豲������揭"customer2ID"]
                     commandLogger.StoreAndExecute(new CmdCreateOrder(company, cmdParts,customer));
                 } else if (cmdParts[0].equals("checkTime")) {
                     commandLogger.StoreAndExecute(new CmdCheckTime(company, cmdParts));
@@ -109,6 +102,7 @@ public class Main {
                 }
             }
             OrderPool.getInstance().processAllOrders();
+            
             if (userFlag == 'm' && manager.rootOrNot() )
         		System.out.print("EMS# ");
         	else
