@@ -102,7 +102,10 @@ public class Company {
                 receiverSide = entry.getValue();
             }
         }
-
+        if(senderSide==receiverSide){
+        	path.add(senderSide.getLocation());
+        	return this.orderPool.createOrder(itemName, sender, receiver, path);
+        }
         Dijkstra dijkstra = new Dijkstra(this.map);
         dijkstra.execute(senderSide);
         ArrayList<Branch> pathOfBranch = dijkstra.getPath(receiverSide);
@@ -110,6 +113,7 @@ public class Company {
             System.out.println("Unreachable");
             return -1;
         }
+        
         for (Branch b : pathOfBranch) {
             path.add(b.getLocation());
 
