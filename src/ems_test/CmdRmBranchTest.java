@@ -32,18 +32,18 @@ public class CmdRmBranchTest {
 		assertEquals("Express Company Manager A (level:0) created!\r\nbranch: 1 does not exist!\r\n",getOutput());
 	}
 	
-	    PrintStream oldPrintStream;
-	    ByteArrayOutputStream bos;
+	PrintStream oldPrintStream;
+	ByteArrayOutputStream bos;
 
-		private void setOutput() throws Exception {
-			oldPrintStream = System.out;
-			bos = new ByteArrayOutputStream();
-			System.setOut(new PrintStream(bos));
-		}
+	private void setOutput() throws Exception {
+		oldPrintStream = System.out;
+		bos = new ByteArrayOutputStream();
+		System.setOut(new PrintStream(bos));
+	}
 
-		private String getOutput() { // throws Exception
-			System.setOut(oldPrintStream);
-			return bos.toString();
-		}
+	private String getOutput() { // throws Exception
+		System.setOut(oldPrintStream);
+		return bos.toString();
+	}
 
 }
