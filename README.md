@@ -8,20 +8,20 @@ The group project for CS3343
 2. Developer Programmer: [QIU Rui](https://github.com/SherlockQiu), [LIU Pengze](https://github.com/lpzjerry)
 3. Qulity Assurance Engineer: [WANG Ruochen](http://blog.patrickwang.tech), [FAN Yuyang](https://github.com/YolandaFan), [WANG Yixuan](https://github.com/JinksMI)
 
-## Project topic 
+## Project topic
 **Express management System**.
 
 ## Person iteractions
 
 * Customer (who receives items)
 * Express company's managers
-* Courier (the person who deliver the packages) 
+* Courier (the person who deliver the packages)
 * Customer (who sends items)
 * Branch offices
 
 ## Version Control System
 
-Git 
+Git
 
 ## Presentation structure
 - Objective
@@ -98,6 +98,7 @@ Git
 
 ## Sample Cmd Line Rundown
 
+> help<br>
 > manager 0<br>
 > addManager manager1 123456 female 1<br>
 > addBranch branch1 1 2<br>
@@ -116,6 +117,3 @@ Git
 > rmManager 1<br>
 > rmBranch 1<br>
 > exit <br>
-
-
-
