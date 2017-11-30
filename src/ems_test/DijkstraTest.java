@@ -119,7 +119,7 @@ public class DijkstraTest {
 	}
 	@Test
 	public void testGetPath01() {
-		assertEquals(path1,dijkstra.getPath(branch1));
+		assertEquals(null,dijkstra.getPath(branch1));
 	}
 	
 	@Test

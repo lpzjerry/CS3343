@@ -1,4 +1,4 @@
-package ems_IntegrationTest;
+package ems_test;
 
 import static org.junit.Assert.*;
 
@@ -13,7 +13,7 @@ import ems.Customer;
 import ems.OrderPool;
 import ems.Position;
 
-public class CustomerCompanyClass {
+public class CustomerCompanyTest {
 	Customer cus1,cus2,cus3;
 	Company com;
 	OrderPool op;
@@ -21,9 +21,10 @@ public class CustomerCompanyClass {
 
 	@Before
 	public void setUp() throws Exception {
-		Position pos=new Position(1,3);
-		cus1 = new Customer(12,"Alex","alex123",1,pos);
-		cus2 = new Customer(44,"Ben","ben123",pos);
+		Position spos=new Position(1,3);
+		Position vpos=new Position(20,20);
+		cus1 = new Customer(12,"Alex","alex123",1,spos);
+		cus2 = new Customer(44,"Ben","ben123",vpos);
 		cus3 = new Customer(27,"Cara","cara123");
 		com=Company.getInstance();
 		op=OrderPool.getInstance();
@@ -69,7 +70,13 @@ public class CustomerCompanyClass {
 	@Test 
 	public void test05_askToCreateOrder() {
 		cus1.askToCreateOrder("item3", cus2);
-		assertEquals(1,op.getOrderByName("item3"));
+		assertEquals(null,op.getOrderByName("item3"));
+	}
+	@Test 
+	public void test06_askToCreateOrder() {
+		
+		int id=cus1.askToCreateOrder("item4", cus2);
+		assertEquals(-1,id);
 	}
 	 
 

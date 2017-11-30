@@ -34,7 +34,7 @@ public class CmdAddManagerTest {
 		 ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 	     System.setOut(new PrintStream(outContent));
 	     cmd.execute();
-	     assertEquals("Express Company Manager Sheila (level:666) created!\n[manager Sheila] is added by [manager super]\n",outContent.toString());
+	     assertEquals("Express Company Manager Sheila (level:666) created!",outContent.toString().split("\n")[0].trim());
 	}
 
 }
