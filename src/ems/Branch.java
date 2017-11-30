@@ -41,7 +41,10 @@ public class Branch {
 
     // Refactored by Pengze LIU 2017-Nov-3
     public boolean checkInOrder(Order order) {
-        return queuingOrders.add(order);
+        boolean tmp=queuingOrders.add(order);
+        tmp=tmp&&this.queuingOrders.remove(order);
+        tmp=tmp&&this.onDelivery.add(order);
+        return tmp;
     }
 
     // Refactored by Pengze LIU 2017-Nov-3

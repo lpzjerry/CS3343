@@ -14,7 +14,7 @@ public class CmdRmLinkage implements Command {
     @Override
     public void execute() {
         // TODO Auto-generated method stub
-        this.manager.rmLinkage(source, target);
+        if(this.manager.rmLinkage(source, target))
         System.out.println("edge deleted from: "+source+", to: "+target);
     }
 

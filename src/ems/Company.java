@@ -114,6 +114,10 @@ public class Company {
                 receiverSide = entry.getValue();
             }
         }
+        if(senderSide==null){
+        	System.out.println("no branch exist");
+        	return -1;
+        }
         if(senderSide==receiverSide){
         	path.add(senderSide.getLocation());
         	return this.orderPool.createOrder(itemName, sender, receiver, path);
