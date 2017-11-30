@@ -15,6 +15,6 @@ public class CmdAddLinkage implements Command {
     public void execute() {
         // TODO Auto-generated method stub
         this.manager.addLinkage(source, target);
-        System.out.println("edge created from: "+source+", to: "+target+")");
+        System.out.println("edge created from: "+source+", to: "+target);
     }
 }
