@@ -22,6 +22,7 @@ public class Customer implements Sender, Receiver {
         this.priority = Priority;
         this.psHash = Password.hashCode();
         this.position = position;
+        this.sentOrderID=new ArrayList<Integer>();
         MyOrder = new ArrayList<Order>();
         SendToMe = new ArrayList<Order>();
     }
@@ -51,8 +52,11 @@ public class Customer implements Sender, Receiver {
     }
 
     @Override
-    public void askToCreateOrder(String itemName, Customer receiver) {
-        sentOrderID.add(company.createOrder(itemName, this, receiver));
+    public int askToCreateOrder(String itemName, Customer receiver) {
+        //sentOrderID.add(company.createOrder(itemName, this, receiver));
+    	int id = company.createOrder(itemName, this, receiver);
+    	this.sentOrderID.add(id);
+    	return id;
     }
 
     public Position getPosition() {
