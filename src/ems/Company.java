@@ -26,7 +26,19 @@ public class Company {
         System.out.println("source or target does not exist");
         return false;
     }
-
+    public void reset() {
+    		this.orderPool.reset();;
+         this.branchList.clear();
+         this.managerList.clear();
+         this.customerList.clear();
+         //this.adjacency=new HashMap<Integer,ArrayList<Integer>>();
+         this.companyClock = new Date();
+         //Manager superuser = new Manager(0, "superuser", "123456", "nil", 0);
+         //this.managerList.put(superuser.getId(), superuser);
+         this.edges.clear();
+         this.map = new Graph(new ArrayList<Branch>(), this.edges);
+         this.branchId = 1;
+    }
     public boolean rmLinkage(int source, int target) {
         ArrayList<Edge> edgeToRemove = new ArrayList<Edge>();
         if (this.branchList.containsKey(source) && this.branchList.containsKey(target)) {
