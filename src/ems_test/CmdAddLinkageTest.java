@@ -41,7 +41,7 @@ public class CmdAddLinkageTest {
 		 ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 	     System.setOut(new PrintStream(outContent));
 	     cmdL.execute();
-	     assertEquals("edge created from: 1, to: 2",outContent.toString().trim());
+	     assertEquals("edge created from: 1, to: 2)\n",outContent.toString());
 	}
 }
 
