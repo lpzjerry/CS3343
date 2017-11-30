@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String args[]) {
+
     	Company company = Company.getInstance();
     	company.addNewManager("super", "hahaha", "Male", 0);
         Scanner reader = new Scanner(System.in);
@@ -16,7 +17,6 @@ public class Main {
         while (reader.hasNext()) {
         	
             String cmdLine = reader.nextLine().trim();
-            
             // Blank lines exist in data file as separators. Skip them.
             if (cmdLine.equals(""))
                 continue;
@@ -26,6 +26,7 @@ public class Main {
 
             String[] cmdParts = cmdLine.split(" ");  //TODO replace regex " " -> "\s" (blank charater)
             //[0]is cmd [1]is attribute 1 .. and so on...
+
             if (userFlag=='m'){
             	if (cmdParts[0].equals("searchBranch")) { // cmdParts= ["searchBranch","x","y"]
                     commandLogger.StoreAndExecute(new CmdSearchBranch(company, cmdParts));                  

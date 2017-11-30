@@ -30,7 +30,10 @@ public class OrderPool {
     public Order getOrderById(int id) {
         return this.orderList.get(id);
     }
-
+    public void reset() {
+    	this.orderList.clear();
+    	this.currentOrder = 0;
+    }
     public Order getOrderByName(String name) {
         for (Map.Entry<Integer, Order> entry : orderList.entrySet()) {
             Order order = entry.getValue();
