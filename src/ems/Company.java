@@ -121,7 +121,7 @@ public class Company {
         Dijkstra dijkstra = new Dijkstra(this.map);
         dijkstra.execute(senderSide);
         ArrayList<Branch> pathOfBranch = dijkstra.getPath(receiverSide);
-        if (pathOfBranch==null || pathOfBranch.size() == 0) {
+        if (pathOfBranch==null) {
             System.out.println("Unreachable");
             return -1;
         }
@@ -130,10 +130,10 @@ public class Company {
             path.add(b.getLocation());
 
         }
-        if (path.size() == 0) {
-            System.out.println("Unreachable");
-            return -1;
-        }
+   //     if (path.size() == 0) {
+   //         System.out.println("Unreachable");
+   //        return -1;
+    //    }
         return this.orderPool.createOrder(itemName, sender, receiver, path);
     }
 
