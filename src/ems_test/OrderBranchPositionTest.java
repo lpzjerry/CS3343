@@ -1,4 +1,4 @@
-package ems_IntegrationTest;
+package ems_test;
 
 import ems.Branch;
 import ems.Company;
