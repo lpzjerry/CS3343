@@ -1,4 +1,4 @@
-package ems_test;
+package ems_IntegrationTest;
 
 import static org.junit.Assert.*;
 
@@ -10,7 +10,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import ems.Company;
 import ems.Customer;
 import ems.Order;
 import ems.OrderPool;
@@ -24,7 +23,6 @@ public class OrderPoolOrderTest {
 	@Before
 	public void setUp() throws Exception {
 		op=OrderPool.getInstance();
-		Company.getInstance().reset();
 		sender=new Customer(1, "Ann", "12345",new Position(1,5));
 		receiver=new Customer(2, "Bob", "12345",new Position(26,43));
 		path=new ArrayList<Position>();

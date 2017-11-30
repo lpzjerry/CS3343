@@ -1,15 +1,13 @@
 package ems_test;
 
 import ems.Branch;
-import ems.Company;
 import ems.Position;
-
-import static org.junit.Assert.*;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import ems.Manager;
+
+import static org.junit.Assert.assertNull;
 
 public class ManagerTest {
 
@@ -22,7 +20,6 @@ public class ManagerTest {
 
     @Before
     public void setUp() throws Exception {
-    	Company.getInstance().reset();
         ID_for_test = 1;
         name_for_test = "test";
         gender_for_test = "male";
@@ -46,10 +43,8 @@ public class ManagerTest {
 
     @Test
     public void test02_removeBranch() {
-    	manager.addBranch("name", new Position(1, 2));
-    	Branch expectedResult=Company.getInstance().getBranchByLocation(new Position(1, 2));
         Branch result = manager.removeBranch(1);
-        assertEquals(expectedResult,result);
+        assertNull(result);
     }
 
 

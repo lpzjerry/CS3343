@@ -8,7 +8,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import ems.CmdAddCustomer;
-import ems.Company;
 import ems.Customer;
 import ems.Position;
 import ems.Manager;
@@ -30,14 +29,13 @@ public class CmdAddCustomerTest {
 		cmd2 = new String[]{"addCustomer","Tony","Sherlock"};
 		cmd3 = new String[]{"addCustomer"};
 		manager = new Manager(1,"Yolanda","love","F",555);
-		Company.getInstance().reset();
 	}
 	@Test
 	public void test01CmdAddCustomer() {
 		 ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 	     System.setOut(new PrintStream(outContent));
 	     cmdC = new CmdAddCustomer(cmd3,manager);
-	     assertEquals("argument error",outContent.toString().trim());
+	     assertEquals("argument error\n",outContent.toString());
 	}
 	
 	
@@ -47,18 +45,16 @@ public class CmdAddCustomerTest {
 	     System.setOut(new PrintStream(outContent));
 	     cmdA= new CmdAddCustomer(cmd1,manager);
 	     cmdA.execute();
-	     assertEquals("[Customer: 0 name: Sheila] is added by: [manager Yolanda]",outContent.toString().trim());
+	     assertEquals("[Customer: 0 name: Sheila] is added by: [manager Yolanda]\n",outContent.toString());
 	}
 	
 	@Test
 	public void test03Execute() {
 		 ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 	     System.setOut(new PrintStream(outContent));
-	     cmdA= new CmdAddCustomer(cmd1,manager);
 	     cmdB= new CmdAddCustomer(cmd2,manager);
-	     cmdA.execute();
 	     cmdB.execute();
-	     assertEquals("[Customer: 1 name: Tony] is added by: [manager Yolanda]",outContent.toString().split("\n")[1].trim());
+	     assertEquals("[Customer: 1 name: Tony] is added by: [manager Yolanda]\n",outContent.toString());
 	}
 
 }
