@@ -11,7 +11,7 @@ import ems.Branch;
 import ems.Customer;
 import ems.Order;
 import ems.Position;
-import ems_test.BranchTest.PositionStub;
+//import ems_test.BranchTest.PositionStub;
 
 public class BranchPosIntegrationTest {
 

@@ -30,7 +30,8 @@ public class CmdRmLinkTest {
 	public void test() throws Exception {
 		setOutput();
 		rmLink.execute();
-		assertEquals("source or target does not exist\r\n",getOutput());
+		System.out.flush();
+		assertEquals("source or target does not exist",getOutput().trim());
 	}
 	
 	PrintStream oldPrintStream;

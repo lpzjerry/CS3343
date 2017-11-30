@@ -34,7 +34,7 @@ public class CmdAddBranchTest {
 		 ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 	     System.setOut(new PrintStream(outContent));
 	     cmd.execute();
-	     assertEquals("Branch: [Branch Sheila at (3, 4)] is added by: [manager Suzy]\n",outContent.toString());
+	     assertEquals("Branch: [Branch Sheila at (3, 4)] is added by: [manager Suzy]",outContent.toString().trim());
 	}
 
 }
