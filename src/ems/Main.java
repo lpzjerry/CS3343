@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String args[]) {
-
     	Company company = Company.getInstance();
     	company.addNewManager("super", "hahaha", "Male", 0);
         Scanner reader = new Scanner(System.in);
@@ -17,6 +16,7 @@ public class Main {
         while (reader.hasNext()) {
         	
             String cmdLine = reader.nextLine().trim();
+            
             // Blank lines exist in data file as separators. Skip them.
             if (cmdLine.equals(""))
                 continue;
@@ -26,11 +26,12 @@ public class Main {
 
             String[] cmdParts = cmdLine.split(" ");  //TODO replace regex " " -> "\s" (blank charater)
             //[0]is cmd [1]is attribute 1 .. and so on...
-
             if (userFlag=='m'){
             	if (cmdParts[0].equals("searchBranch")) { // cmdParts= ["searchBranch","x","y"]
                     commandLogger.StoreAndExecute(new CmdSearchBranch(company, cmdParts));                  
-                } else if (cmdParts[0].equals("addManager")&&manager.rootOrNot()) { // cmdParts= [ "name", "password", "gender", "status"]
+                } else if(cmdParts[0].equals("help")){
+            		commandLogger.StoreAndExecute(new CmdHelp());
+            	} else if (cmdParts[0].equals("addManager")&&manager.rootOrNot()) { // cmdParts= [ "name", "password", "gender", "status"]
                     commandLogger.StoreAndExecute(new CmdAddManager(manager, cmdParts));
                 } else if (cmdParts[0].equals("rmManager")&&manager.rootOrNot()) {
                     commandLogger.StoreAndExecute(new CmdRmManager(manager, cmdParts));
@@ -67,7 +68,9 @@ public class Main {
             else if(userFlag=='c'){
             	if (cmdParts[0].equals("searchBranch")) { // cmdParts= ["searchBranch","x","y"]
                     commandLogger.StoreAndExecute(new CmdSearchBranch(company, cmdParts));
-                } else if (cmdParts[0].equals("searchOrder")) {// cmdParts= ["searchOrder","id"]
+                } else if(cmdParts[0].equals("help")){
+            		commandLogger.StoreAndExecute(new CmdHelp());
+            	} else if (cmdParts[0].equals("searchOrder")) {// cmdParts= ["searchOrder","id"]
                     commandLogger.StoreAndExecute(new CmdSearchOrder(company, cmdParts));
                 } else if (cmdParts[0].equals("exit")) {
                     break;
@@ -87,6 +90,8 @@ public class Main {
             		System.out.println("Log in as: "+manager);
             		//commandLogger.StoreAndExecute(new CmdSwitchToManager(company, cmdParts, manager));
             		userFlag='m';
+            	} else if(cmdParts[0].equals("help")){
+            		commandLogger.StoreAndExecute(new CmdHelp());
             	} else if(cmdParts[0].equals("customer")){
             		customer=Company.getInstance().getCustomer(Integer.parseInt(cmdParts[1]));
             		System.out.println("Log in as: "+customer);
