@@ -49,6 +49,7 @@ public class Customer implements Sender, Receiver {
     @Override
     public void confirmReception(Order order) {
         company.receiveOrder(order);
+        System.out.println(order+" is received by "+this);
     }
 
     @Override
