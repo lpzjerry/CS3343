@@ -142,11 +142,20 @@ public class Manager {
             return null;
         }
     }
-
+    
+    /**
+     * This method is override the original toString() method
+     * @return The string of the manager name information.
+     * */
     public String toString() {
         return "[manager " + this.name + "]";
     }
-
+    
+    /**
+     * This method is used to remove a given manager by id.
+     * @param id The id of the manager to remove.
+     * @return The removed manager.
+     * */
     public Manager removeManager(int id) {
         return this.company.removeManager(id);
     }
