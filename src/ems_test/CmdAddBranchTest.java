@@ -24,6 +24,7 @@ public class CmdAddBranchTest {
 	String []para;
 	@Before
 	public void setUp() throws Exception {
+		Company.getInstance().reset();
 		para = new String[]{"addBranch","Sheila","3","4"};
 		manager = new Manager(1,"Suzy","Tony","F",555);
 		cmd = new CmdAddBranch(para,manager);
