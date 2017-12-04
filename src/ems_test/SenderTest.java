@@ -1,4 +1,4 @@
-package emsTest;
+package ems_test;
 
 import static org.junit.Assert.*;
 
