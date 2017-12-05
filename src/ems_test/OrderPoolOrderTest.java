@@ -60,8 +60,19 @@ public class OrderPoolOrderTest {
 	@Test
 	public void test04_processAllOrders() throws Exception {
 		setOutput();
-    	op.processAllOrders();
-    	assertEquals("Order [item1] is received by [Customer: 2 name: Bob]\r\nOrder [item2] is received by [Customer: 2 name: Bob]\r\n",getOutput());
+		op.reset();
+		op.processAllOrders();
+    		assertEquals("",getOutput());
+	}
+	
+	@Test
+	public void test05_processAllOrders02() throws Exception {
+		setOutput();
+		op.reset();
+		op.createOrder("item", sender, receiver, path);
+		op.receiveOrder(op.getOrderByName("item"));
+		op.processAllOrders();
+    		assertEquals("",getOutput());
 	}
 	
 
