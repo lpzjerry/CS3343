@@ -1,0 +1,143 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: PositionTest</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">ems_test</a> ]
+</div>
+
+<h1>Coverage Summary for Class: PositionTest (ems_test)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PositionTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/ 8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (22/ 22)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package ems_test;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import ems.Position;
+<i>4</i>&nbsp;import org.junit.After;
+<i>5</i>&nbsp;import org.junit.Before;
+<i>6</i>&nbsp;import org.junit.Test;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;import static org.junit.Assert.assertNull;
+<i>9</i>&nbsp;import static org.junit.Assert.assertEquals;
+<i>10</i>&nbsp;
+<b class="fc"><i>11</i>&nbsp;public class PositionTest {</b>
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;    private int x_test;
+<i>14</i>&nbsp;    private int y_test;
+<i>15</i>&nbsp;    private Position position_test;
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;    @Before
+<i>18</i>&nbsp;    public void setUp() throws Exception {
+<b class="fc"><i>19</i>&nbsp;        x_test = 4;</b>
+<b class="fc"><i>20</i>&nbsp;        y_test = 3;</b>
+<b class="fc"><i>21</i>&nbsp;        position_test = new Position(4, 3);</b>
+<b class="fc"><i>22</i>&nbsp;    }</b>
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;    @After
+<i>25</i>&nbsp;    public void tearDown() throws Exception {
+<b class="fc"><i>26</i>&nbsp;        position_test = null;</b>
+<b class="fc"><i>27</i>&nbsp;    }</b>
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;    @Test
+<i>30</i>&nbsp;    public void test01_getx() {
+<b class="fc"><i>31</i>&nbsp;        assertEquals(x_test, position_test.getX());</b>
+<b class="fc"><i>32</i>&nbsp;    }</b>
+<i>33</i>&nbsp;
+<i>34</i>&nbsp;    @Test
+<i>35</i>&nbsp;    public void test02_gety() {
+<b class="fc"><i>36</i>&nbsp;        assertEquals(y_test, position_test.getY());</b>
+<b class="fc"><i>37</i>&nbsp;    }</b>
+<i>38</i>&nbsp;
+<i>39</i>&nbsp;    @Test
+<i>40</i>&nbsp;    public void test03_distance01() {
+<b class="fc"><i>41</i>&nbsp;        Position position_tmp = new Position(1, 2);</b>
+<b class="fc"><i>42</i>&nbsp;        int distance = Position.distance(position_tmp, position_test);</b>
+<b class="fc"><i>43</i>&nbsp;        assertEquals(4, distance);</b>
+<b class="fc"><i>44</i>&nbsp;    }</b>
+<i>45</i>&nbsp;
+<i>46</i>&nbsp;    @Test
+<i>47</i>&nbsp;    public void test04_distance02() {
+<b class="fc"><i>48</i>&nbsp;        Position position_tmp = new Position(1, 2);</b>
+<b class="fc"><i>49</i>&nbsp;        int distance = position_test.distance(position_tmp);</b>
+<b class="fc"><i>50</i>&nbsp;        assertEquals(4, distance);</b>
+<b class="fc"><i>51</i>&nbsp;    }</b>
+<i>52</i>&nbsp;
+<i>53</i>&nbsp;    @Test
+<i>54</i>&nbsp;    public void test05_toString() {
+<b class="fc"><i>55</i>&nbsp;        String tmp = position_test.toString();</b>
+<b class="fc"><i>56</i>&nbsp;        assertEquals(&quot;Address: (4, 3).&quot;, tmp);</b>
+<b class="fc"><i>57</i>&nbsp;    }</b>
+<i>58</i>&nbsp;
+<i>59</i>&nbsp;
+<i>60</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2017-12-05 21:12</div>
+</div>
+</body>
+</html>

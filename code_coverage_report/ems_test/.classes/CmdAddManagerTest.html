@@ -1,0 +1,123 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: CmdAddManagerTest</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">ems_test</a> ]
+</div>
+
+<h1>Coverage Summary for Class: CmdAddManagerTest (ems_test)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CmdAddManagerTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (15/ 15)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package ems_test;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import static org.junit.Assert.*;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import java.util.ArrayList;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;import org.junit.Before;
+<i>8</i>&nbsp;import org.junit.Test;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;import ems.CmdAddManager;
+<i>11</i>&nbsp;import ems.Company;
+<i>12</i>&nbsp;import ems.Customer;
+<i>13</i>&nbsp;import ems.Position;
+<i>14</i>&nbsp;import ems.Manager;
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;import java.io.ByteArrayOutputStream;
+<i>17</i>&nbsp;import java.io.PrintStream;
+<i>18</i>&nbsp;
+<b class="fc"><i>19</i>&nbsp;public class CmdAddManagerTest {</b>
+<b class="fc"><i>20</i>&nbsp;	Manager manager = null;</b>
+<b class="fc"><i>21</i>&nbsp;	String[]para = null;</b>
+<b class="fc"><i>22</i>&nbsp;	CmdAddManager cmd = null;</b>
+<i>23</i>&nbsp;	@Before
+<i>24</i>&nbsp;	public void setUp() throws Exception {
+<b class="fc"><i>25</i>&nbsp;		Company company = Company.getInstance();</b>
+<b class="fc"><i>26</i>&nbsp;		company.addNewManager(&quot;super&quot;, &quot;hahaha&quot;, &quot;Male&quot;, 0);</b>
+<b class="fc"><i>27</i>&nbsp;		manager = Company.getInstance().getManager(0);</b>
+<b class="fc"><i>28</i>&nbsp;		para = new String[]{&quot;addManager&quot;,&quot;Sheila&quot;,&quot;abc&quot;,&quot;F&quot;,&quot;666&quot;};</b>
+<b class="fc"><i>29</i>&nbsp;		cmd = new CmdAddManager(manager,para);</b>
+<b class="fc"><i>30</i>&nbsp;	}</b>
+<i>31</i>&nbsp;
+<i>32</i>&nbsp;	@Test
+<i>33</i>&nbsp;	public void testExecute() {
+<b class="fc"><i>34</i>&nbsp;		 ByteArrayOutputStream outContent = new ByteArrayOutputStream();</b>
+<b class="fc"><i>35</i>&nbsp;	     System.setOut(new PrintStream(outContent));</b>
+<b class="fc"><i>36</i>&nbsp;	     cmd.execute();</b>
+<b class="fc"><i>37</i>&nbsp;	     assertEquals(&quot;Express Company Manager Sheila (level:666) created!&quot;,outContent.toString().split(&quot;\n&quot;)[0].trim());</b>
+<b class="fc"><i>38</i>&nbsp;	}</b>
+<i>39</i>&nbsp;
+<i>40</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2017-12-05 21:12</div>
+</div>
+</body>
+</html>

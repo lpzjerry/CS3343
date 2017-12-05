@@ -1,0 +1,441 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: CompanyTest</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">ems_test</a> ]
+</div>
+
+<h1>Coverage Summary for Class: CompanyTest (ems_test)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CompanyTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    96.7%
+  </span>
+  <span class="absValue">
+    (29/ 30)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    97.7%
+  </span>
+  <span class="absValue">
+    (259/ 265)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package ems_test;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import static org.junit.Assert.*;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import java.util.Date;
+<i>6</i>&nbsp;import java.util.ArrayList;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;import org.junit.Ignore;
+<i>9</i>&nbsp;import org.junit.Test;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;import ems.Branch;
+<i>12</i>&nbsp;import ems.Company;
+<i>13</i>&nbsp;import ems.Position;
+<i>14</i>&nbsp;import ems.Customer;
+<i>15</i>&nbsp;import ems.OrderPool;
+<i>16</i>&nbsp;import ems.Manager;
+<i>17</i>&nbsp;import ems.Order;
+<i>18</i>&nbsp;
+<b class="fc"><i>19</i>&nbsp;public class CompanyTest {</b>
+<b class="fc"><i>20</i>&nbsp;    private Company c = Company.getInstance();</b>
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;    @Test 
+<i>23</i>&nbsp;    public void testAddLinkage_1() {
+<b class="fc"><i>24</i>&nbsp;    		c.reset();</b>
+<b class="fc"><i>25</i>&nbsp;	    Position p1 = new Position();</b>
+<b class="fc"><i>26</i>&nbsp;	    Position p2 = new Position();</b>
+<b class="fc"><i>27</i>&nbsp;	    	c.addBranch(&quot;b1&quot;,p1);</b>
+<b class="fc"><i>28</i>&nbsp;	    c.addBranch(&quot;b2&quot;, p2);</b>
+<b class="fc"><i>29</i>&nbsp;	    Branch b1 = c.getBranchByLocation(p1);</b>
+<b class="fc"><i>30</i>&nbsp;	    Branch b2 = c.getBranchByLocation(p2);</b>
+<b class="fc"><i>31</i>&nbsp;    		boolean res = c.addLinkage(b1.getId(), 3);</b>
+<b class="fc"><i>32</i>&nbsp;    		assertEquals(false,res);</b>
+<b class="fc"><i>33</i>&nbsp;    }</b>
+<i>34</i>&nbsp;    @Test 
+<i>35</i>&nbsp;    public void testAddLinkage_2() {
+<b class="fc"><i>36</i>&nbsp;    		c.reset();</b>
+<b class="fc"><i>37</i>&nbsp;	    Position p1 = new Position();</b>
+<b class="fc"><i>38</i>&nbsp;	    Position p2 = new Position();</b>
+<b class="fc"><i>39</i>&nbsp;	    	c.addBranch(&quot;b1&quot;,p1);</b>
+<b class="fc"><i>40</i>&nbsp;	    c.addBranch(&quot;b2&quot;, p2);</b>
+<b class="fc"><i>41</i>&nbsp;	    Branch b1 = c.getBranchByLocation(p1);</b>
+<b class="fc"><i>42</i>&nbsp;	    Branch b2 = c.getBranchByLocation(p2);</b>
+<b class="fc"><i>43</i>&nbsp;		boolean res = c.addLinkage(b1.getId(), b2.getId());</b>
+<b class="fc"><i>44</i>&nbsp;		assertEquals(true,res);</b>
+<b class="fc"><i>45</i>&nbsp;    }</b>
+<i>46</i>&nbsp;    @Test 
+<i>47</i>&nbsp;    public void testAddLinkage_3() {
+<b class="fc"><i>48</i>&nbsp;    		c.reset();</b>
+<b class="fc"><i>49</i>&nbsp;		boolean res = c.addLinkage(1, 2);</b>
+<b class="fc"><i>50</i>&nbsp;		assertEquals(false,res);</b>
+<b class="fc"><i>51</i>&nbsp;    }</b>
+<i>52</i>&nbsp;    @Test 
+<i>53</i>&nbsp;    public void testRemoveLinkage_1() {
+<b class="fc"><i>54</i>&nbsp;    		c.reset();</b>
+<b class="fc"><i>55</i>&nbsp;    		Position p1 = new Position();</b>
+<b class="fc"><i>56</i>&nbsp;	    Position p2 = new Position();</b>
+<b class="fc"><i>57</i>&nbsp;	    c.addBranch(&quot;B1&quot;, p1);</b>
+<b class="fc"><i>58</i>&nbsp;    		c.addBranch(&quot;B2&quot;, p2);</b>
+<b class="fc"><i>59</i>&nbsp;		Branch b1 = c.getBranchByLocation(p1);</b>
+<b class="fc"><i>60</i>&nbsp;		Branch b2 = c.getBranchByLocation(p2);</b>
+<b class="fc"><i>61</i>&nbsp;		c.addLinkage(b1.getId(), b2.getId());</b>
+<b class="fc"><i>62</i>&nbsp;		boolean res = c.rmLinkage(b1.getId(), 3);</b>
+<b class="fc"><i>63</i>&nbsp;		assertEquals(false,res);</b>
+<b class="fc"><i>64</i>&nbsp;    }</b>
+<i>65</i>&nbsp;    @Test 
+<i>66</i>&nbsp;    public void testRemoveLinkage_2() {
+<b class="fc"><i>67</i>&nbsp;    		c.reset();</b>
+<b class="fc"><i>68</i>&nbsp;    		Position p1 = new Position();</b>
+<b class="fc"><i>69</i>&nbsp;    	    Position p2 = new Position();</b>
+<b class="fc"><i>70</i>&nbsp;    	    c.addBranch(&quot;B1&quot;, p1);</b>
+<b class="fc"><i>71</i>&nbsp;        		c.addBranch(&quot;B2&quot;, p2);</b>
+<b class="fc"><i>72</i>&nbsp;    		Branch b1 = c.getBranchByLocation(p1);</b>
+<b class="fc"><i>73</i>&nbsp;    		Branch b2 = c.getBranchByLocation(p2);</b>
+<b class="fc"><i>74</i>&nbsp;    		c.addLinkage(b1.getId(), b2.getId());</b>
+<b class="fc"><i>75</i>&nbsp;		boolean res = c.rmLinkage(b1.getId(), b2.getId());</b>
+<b class="fc"><i>76</i>&nbsp;		assertEquals(true,res);</b>
+<b class="fc"><i>77</i>&nbsp;    }</b>
+<i>78</i>&nbsp;    @Test 
+<i>79</i>&nbsp;    public void testRemoveLinkage_3() {
+<b class="fc"><i>80</i>&nbsp;		c.reset();</b>
+<b class="fc"><i>81</i>&nbsp;		Position p1 = new Position();</b>
+<b class="fc"><i>82</i>&nbsp;	    Position p2 = new Position();</b>
+<b class="fc"><i>83</i>&nbsp;	    c.addBranch(&quot;B1&quot;, p1);</b>
+<b class="fc"><i>84</i>&nbsp;    		c.addBranch(&quot;B2&quot;, p2);</b>
+<b class="fc"><i>85</i>&nbsp;		Branch b1 = c.getBranchByLocation(p1);</b>
+<b class="fc"><i>86</i>&nbsp;		Branch b2 = c.getBranchByLocation(p2);</b>
+<b class="fc"><i>87</i>&nbsp;		boolean res = c.rmLinkage(b1.getId(), b2.getId());</b>
+<b class="fc"><i>88</i>&nbsp;		assertEquals(false,res);</b>
+<b class="fc"><i>89</i>&nbsp;    }    </b>
+<i>90</i>&nbsp;    @Test 
+<i>91</i>&nbsp;    public void testRemoveLinkage_4() {
+<b class="fc"><i>92</i>&nbsp;		c.reset();</b>
+<b class="fc"><i>93</i>&nbsp;		Position p1 = new Position();</b>
+<b class="fc"><i>94</i>&nbsp;	    Position p2 = new Position();</b>
+<b class="fc"><i>95</i>&nbsp;	    Position p3 = new Position();</b>
+<b class="fc"><i>96</i>&nbsp;	    c.addBranch(&quot;B1&quot;, p1);</b>
+<b class="fc"><i>97</i>&nbsp;    		c.addBranch(&quot;B2&quot;, p2);</b>
+<b class="fc"><i>98</i>&nbsp;    		c.addBranch(&quot;B3&quot;, p3);</b>
+<b class="fc"><i>99</i>&nbsp;		Branch b1 = c.getBranchByLocation(p1);</b>
+<b class="fc"><i>100</i>&nbsp;		Branch b2 = c.getBranchByLocation(p2);</b>
+<b class="fc"><i>101</i>&nbsp;		Branch b3 = c.getBranchByLocation(p3);</b>
+<b class="fc"><i>102</i>&nbsp;		c.addLinkage(b1.getId(),b2.getId());</b>
+<b class="fc"><i>103</i>&nbsp;		boolean res = c.rmLinkage(b1.getId(), b3.getId());</b>
+<b class="fc"><i>104</i>&nbsp;		assertEquals(false,res);</b>
+<b class="fc"><i>105</i>&nbsp;    }    </b>
+<i>106</i>&nbsp;    @Test 
+<i>107</i>&nbsp;    public void testRemoveLinkage_5() {
+<b class="fc"><i>108</i>&nbsp;    		c.reset();</b>
+<b class="fc"><i>109</i>&nbsp;		boolean res = c.rmLinkage(1, 3);</b>
+<b class="fc"><i>110</i>&nbsp;		assertEquals(false,res);</b>
+<b class="fc"><i>111</i>&nbsp;    }</b>
+<i>112</i>&nbsp;    @Test 
+<i>113</i>&nbsp;    public void testRemoveLinkage_6() {
+<b class="fc"><i>114</i>&nbsp;		c.reset();</b>
+<b class="fc"><i>115</i>&nbsp;		Position p1 = new Position();</b>
+<b class="fc"><i>116</i>&nbsp;	    Position p2 = new Position();</b>
+<b class="fc"><i>117</i>&nbsp;	    Position p3 = new Position();</b>
+<b class="fc"><i>118</i>&nbsp;	    c.addBranch(&quot;B1&quot;, p1);</b>
+<b class="fc"><i>119</i>&nbsp;    		c.addBranch(&quot;B2&quot;, p2);</b>
+<b class="fc"><i>120</i>&nbsp;    		c.addBranch(&quot;B3&quot;, p3);</b>
+<b class="fc"><i>121</i>&nbsp;		Branch b1 = c.getBranchByLocation(p1);</b>
+<b class="fc"><i>122</i>&nbsp;		Branch b2 = c.getBranchByLocation(p2);</b>
+<b class="fc"><i>123</i>&nbsp;		Branch b3 = c.getBranchByLocation(p3);</b>
+<b class="fc"><i>124</i>&nbsp;		c.addLinkage(b1.getId(),b2.getId());</b>
+<b class="fc"><i>125</i>&nbsp;		boolean res = c.rmLinkage(b2.getId(), b3.getId());</b>
+<b class="fc"><i>126</i>&nbsp;		assertEquals(false,res);</b>
+<b class="fc"><i>127</i>&nbsp;    }    </b>
+<i>128</i>&nbsp;    @Test
+<i>129</i>&nbsp;    public void testAddManager_1() {
+<b class="fc"><i>130</i>&nbsp;		c.reset();</b>
+<b class="fc"><i>131</i>&nbsp;    		Manager mng = c.addNewManager(&quot;wfz&quot;, &quot;ljyk&quot;, &quot;Male&quot;, 100);</b>
+<b class="fc"><i>132</i>&nbsp;    		assertEquals(100,mng.getStatus());</b>
+<b class="fc"><i>133</i>&nbsp;    }</b>
+<i>134</i>&nbsp;    @Test
+<i>135</i>&nbsp;    public void testCreateOrder_1() {
+<b class="fc"><i>136</i>&nbsp;		c.reset();</b>
+<b class="fc"><i>137</i>&nbsp;	    	Customer fakesender = new Customer(1, &quot;fakesender&quot;, &quot;abc&quot;);</b>
+<b class="fc"><i>138</i>&nbsp;	    	Customer fakereceiver = new Customer(2, &quot;fakereceiver&quot;, &quot;def&quot;);</b>
+<b class="fc"><i>139</i>&nbsp;	    Position p1 = new Position();</b>
+<b class="fc"><i>140</i>&nbsp;	    Position p2 = new Position();</b>
+<b class="fc"><i>141</i>&nbsp;	    	c.addBranch(&quot;b1&quot;,p1);</b>
+<b class="fc"><i>142</i>&nbsp;	    c.addBranch(&quot;b2&quot;, p2);</b>
+<b class="fc"><i>143</i>&nbsp;	    Branch b1 = c.getBranchByLocation(p1);</b>
+<b class="fc"><i>144</i>&nbsp;	    Branch b2 = c.getBranchByLocation(p2);</b>
+<b class="fc"><i>145</i>&nbsp;	    c.addLinkage(b1.getId(), b2.getId());</b>
+<b class="fc"><i>146</i>&nbsp;	    c.addLinkage(b2.getId(), b1.getId());</b>
+<b class="fc"><i>147</i>&nbsp;	    	int res = c.createOrder(&quot;yk&quot;, fakesender, fakereceiver);</b>
+<b class="fc"><i>148</i>&nbsp;	    	assertEquals(1,res);</b>
+<b class="fc"><i>149</i>&nbsp;    }</b>
+<i>150</i>&nbsp;    @Test
+<i>151</i>&nbsp;    public void testCreateOrder_2() {
+<b class="fc"><i>152</i>&nbsp;		c.reset();</b>
+<b class="fc"><i>153</i>&nbsp;	    	Customer fakesender = new Customer(1, &quot;fakesender&quot;, &quot;abc&quot;);</b>
+<b class="fc"><i>154</i>&nbsp;	    	Customer fakereceiver = new Customer(2, &quot;fakereceiver&quot;, &quot;def&quot;);</b>
+<b class="fc"><i>155</i>&nbsp;	    	c.addBranch(&quot;hh&quot;, new Position());</b>
+<b class="fc"><i>156</i>&nbsp;	    	int res = c.createOrder(&quot;yk&quot;, fakesender, fakereceiver);</b>
+<b class="fc"><i>157</i>&nbsp;	    	assertEquals(1,res);</b>
+<b class="fc"><i>158</i>&nbsp;    }</b>
+<i>159</i>&nbsp;    @Test
+<i>160</i>&nbsp;    public void testCreateOrder_3() {
+<b class="fc"><i>161</i>&nbsp;		c.reset();</b>
+<b class="fc"><i>162</i>&nbsp;	    	Customer fakesender = new Customer(1, &quot;fakesender&quot;, &quot;abc&quot;);</b>
+<b class="fc"><i>163</i>&nbsp;	    	Customer fakereceiver = new Customer(2, &quot;fakereceiver&quot;, &quot;def&quot;);</b>
+<b class="fc"><i>164</i>&nbsp;	    		Position p1 = new Position();</b>
+<b class="fc"><i>165</i>&nbsp;		    Position p2 = new Position();</b>
+<b class="fc"><i>166</i>&nbsp;		    Position p3 = new Position();</b>
+<b class="fc"><i>167</i>&nbsp;		    Position p4 = new Position();</b>
+<b class="fc"><i>168</i>&nbsp;		    	c.addBranch(&quot;b1&quot;, p1);</b>
+<b class="fc"><i>169</i>&nbsp;		    	c.addBranch(&quot;b2&quot;, p2);</b>
+<b class="fc"><i>170</i>&nbsp;		    	c.addBranch(&quot;b3&quot;, p3);</b>
+<b class="fc"><i>171</i>&nbsp;		    	c.addBranch(&quot;b4&quot;, p4);</b>
+<b class="fc"><i>172</i>&nbsp;	   Branch b1 = c.getBranchByLocation(p1);</b>
+<b class="fc"><i>173</i>&nbsp;	   Branch b2 = c.getBranchByLocation(p2);</b>
+<b class="fc"><i>174</i>&nbsp;	   Branch b3 = c.getBranchByLocation(p3);</b>
+<b class="fc"><i>175</i>&nbsp;	   Branch b4 = c.getBranchByLocation(p4);</b>
+<b class="fc"><i>176</i>&nbsp;	    c.addLinkage(b1.getId(), b2.getId());</b>
+<b class="fc"><i>177</i>&nbsp;	    c.addLinkage(b2.getId(), b1.getId());</b>
+<b class="fc"><i>178</i>&nbsp;	    c.addLinkage(b2.getId(), b3.getId());</b>
+<b class="fc"><i>179</i>&nbsp;	    c.addLinkage(b3.getId(), b2.getId());</b>
+<b class="fc"><i>180</i>&nbsp;	    c.addLinkage(b3.getId(), b4.getId());</b>
+<b class="fc"><i>181</i>&nbsp;	    c.addLinkage(b4.getId(), b3.getId());</b>
+<b class="fc"><i>182</i>&nbsp;	    c.addLinkage(b1.getId(), b3.getId());</b>
+<b class="fc"><i>183</i>&nbsp;	    c.addLinkage(b3.getId(), b1.getId());</b>
+<b class="fc"><i>184</i>&nbsp;	    	int res = c.createOrder(&quot;yk&quot;, fakesender, fakereceiver);</b>
+<b class="fc"><i>185</i>&nbsp;	    	assertEquals(1,res);</b>
+<b class="fc"><i>186</i>&nbsp;    }</b>
+<i>187</i>&nbsp;    @Test
+<i>188</i>&nbsp;    public void testCreateOrder_4() {
+<b class="fc"><i>189</i>&nbsp;		c.reset();</b>
+<b class="fc"><i>190</i>&nbsp;	    	Customer fakesender = new Customer(1, &quot;fakesender&quot;, &quot;abc&quot;,new Position(1,2));</b>
+<b class="fc"><i>191</i>&nbsp;	    	Customer fakereceiver = new Customer(2, &quot;fakereceiver&quot;, &quot;def&quot;,new Position(3,4));</b>
+<b class="fc"><i>192</i>&nbsp;	    	c.addBranch(&quot;hhh&quot;, new Position(1,2));</b>
+<b class="fc"><i>193</i>&nbsp;	    	c.addBranch(&quot;233&quot;, new Position(3,4));</b>
+<b class="fc"><i>194</i>&nbsp;	    	int res = c.createOrder(&quot;yk&quot;, fakesender, fakereceiver);</b>
+<b class="fc"><i>195</i>&nbsp;	    	assertEquals(-1,res);</b>
+<b class="fc"><i>196</i>&nbsp;    }</b>
+<i>197</i>&nbsp;    @Test
+<i>198</i>&nbsp;    public void testGetManager_1() {
+<b class="fc"><i>199</i>&nbsp;		c.reset();</b>
+<b class="fc"><i>200</i>&nbsp;    		Manager m = c.addNewManager(&quot;wfz&quot;, &quot;wfz&quot;, &quot;Male&quot;,1);</b>
+<b class="fc"><i>201</i>&nbsp;    		Manager n = c.getManager(m.getId());</b>
+<b class="fc"><i>202</i>&nbsp;    		assertEquals(n,m);</b>
+<b class="fc"><i>203</i>&nbsp;    }</b>
+<i>204</i>&nbsp;    @Test
+<i>205</i>&nbsp;    public void testRemoveManager_1() {
+<b class="fc"><i>206</i>&nbsp;		c.reset();</b>
+<b class="fc"><i>207</i>&nbsp;    		Manager m = c.addNewManager(&quot;wfz&quot;, &quot;wfz&quot;, &quot;Male&quot;,1);</b>
+<b class="fc"><i>208</i>&nbsp;		Manager removed = c.removeManager(m.getId());</b>
+<b class="fc"><i>209</i>&nbsp;		assertEquals(m,removed);</b>
+<b class="fc"><i>210</i>&nbsp;    }</b>
+<i>211</i>&nbsp;    @Test
+<i>212</i>&nbsp;    public void testAddBranch_1() {
+<b class="fc"><i>213</i>&nbsp;		c.reset();</b>
+<b class="fc"><i>214</i>&nbsp;        Branch b = c.addBranch(&quot;A&quot;, new Position(1, 1));</b>
+<b class="fc"><i>215</i>&nbsp;        assertEquals(null, b);</b>
+<b class="fc"><i>216</i>&nbsp;    }</b>
+<i>217</i>&nbsp;    @Test
+<i>218</i>&nbsp;    public void testAddBranch_2() {
+<b class="fc"><i>219</i>&nbsp;		c.reset();</b>
+<b class="fc"><i>220</i>&nbsp;    	Branch a = c.addBranch(&quot;A&quot;, new Position(1, 1));</b>
+<b class="fc"><i>221</i>&nbsp;    	Branch b = c.addBranch(&quot;B&quot;, new Position(2, 2));</b>
+<b class="fc"><i>222</i>&nbsp;    assertEquals(null, b);</b>
+<b class="fc"><i>223</i>&nbsp;    }</b>
+<i>224</i>&nbsp;    @Test
+<i>225</i>&nbsp;    public void testGetCustomer_1() {
+<b class="fc"><i>226</i>&nbsp;		c.reset();</b>
+<b class="fc"><i>227</i>&nbsp;    		Customer cc = c.addCustomer(&quot;wfz&quot;, &quot;123&quot;);</b>
+<b class="fc"><i>228</i>&nbsp;    		assertEquals(0, c.getCustomer(cc.getId()).getId());</b>
+<i>229</i>&nbsp;    		
+<b class="fc"><i>230</i>&nbsp;    }</b>
+<i>231</i>&nbsp;    @Ignore
+<i>232</i>&nbsp;    @Test
+<i>233</i>&nbsp;    public void testGetTime_1() { 
+<b class="nc"><i>234</i>&nbsp;		c.reset();</b>
+<b class="nc"><i>235</i>&nbsp;    		boolean ok = false;</b>
+<b class="nc"><i>236</i>&nbsp;    		if(c.getTime() &lt; 10000)</b>
+<b class="nc"><i>237</i>&nbsp;    			ok = true;</b>
+<b class="nc"><i>238</i>&nbsp;    		assertEquals(true,ok);</b>
+<b class="nc"><i>239</i>&nbsp;    }</b>
+<i>240</i>&nbsp;    @Test
+<i>241</i>&nbsp;    public void testReceiveOrder_1(){//?
+<b class="fc"><i>242</i>&nbsp;		c.reset();</b>
+<b class="fc"><i>243</i>&nbsp;     	Customer fakesender = new Customer(1, &quot;fakesender&quot;, &quot;abc&quot;,new Position(1,2));</b>
+<b class="fc"><i>244</i>&nbsp;    	Customer fakereceiver = new Customer(2, &quot;fakereceiver&quot;, &quot;def&quot;,new Position(3,4));</b>
+<b class="fc"><i>245</i>&nbsp;    	Position p1 = new Position(1,2);</b>
+<b class="fc"><i>246</i>&nbsp;    	Position p2 = new Position(2,3);</b>
+<b class="fc"><i>247</i>&nbsp;    	Position p3 = new Position(3,4);</b>
+<b class="fc"><i>248</i>&nbsp;    	Position p4 = new Position(2,2);</b>
+<i>249</i>&nbsp;    	
+<i>250</i>&nbsp;    	
+<b class="fc"><i>251</i>&nbsp;    	c.addBranch(&quot;b1&quot;, p1);</b>
+<b class="fc"><i>252</i>&nbsp;   	    c.addBranch(&quot;b2&quot;, p2);</b>
+<b class="fc"><i>253</i>&nbsp;   	    c.addBranch(&quot;b3&quot;, p3);</b>
+<b class="fc"><i>254</i>&nbsp;   	    c.addBranch(&quot;b4&quot;,p4);</b>
+<b class="fc"><i>255</i>&nbsp;   	    Branch b1 = c.getBranchByLocation(p1);</b>
+<b class="fc"><i>256</i>&nbsp;   	    Branch b2 = c.getBranchByLocation(p2);</b>
+<b class="fc"><i>257</i>&nbsp;   	    Branch b3 = c.getBranchByLocation(p3);</b>
+<b class="fc"><i>258</i>&nbsp;   	    Branch b4 = c.getBranchByLocation(p4);</b>
+<b class="fc"><i>259</i>&nbsp;   	    c.addLinkage(b1.getId(), b2.getId());</b>
+<b class="fc"><i>260</i>&nbsp;   	    c.addLinkage(b2.getId(), b3.getId());</b>
+<b class="fc"><i>261</i>&nbsp;   	    c.addLinkage(b2.getId(), b4.getId());</b>
+<b class="fc"><i>262</i>&nbsp;    		c.createOrder(&quot;hhh&quot;, fakesender, fakereceiver);</b>
+<b class="fc"><i>263</i>&nbsp;    		c.receiveOrder(c.searchOrder(&quot;hhh&quot;));</b>
+<b class="fc"><i>264</i>&nbsp;    		assertEquals(true,c.searchOrder(&quot;hhh&quot;).isReceived());</b>
+<b class="fc"><i>265</i>&nbsp;    }</b>
+<i>266</i>&nbsp;    
+<i>267</i>&nbsp;    @Test
+<i>268</i>&nbsp;    public void testGetBranchByPosition_1() {
+<b class="fc"><i>269</i>&nbsp;		c.reset();</b>
+<b class="fc"><i>270</i>&nbsp;	 	Position p1 = new Position(1,2);</b>
+<b class="fc"><i>271</i>&nbsp;	 	Position p2 = new Position(2,3);</b>
+<b class="fc"><i>272</i>&nbsp;	 	c.addBranch(&quot;b1&quot;,p1);</b>
+<b class="fc"><i>273</i>&nbsp;	 	c.addBranch(&quot;b2&quot;, p2);</b>
+<b class="fc"><i>274</i>&nbsp;        Branch re = c.getBranchByLocation(p1);</b>
+<b class="fc"><i>275</i>&nbsp;        assertEquals(p1,re.getLocation());</b>
+<b class="fc"><i>276</i>&nbsp;    }</b>
+<i>277</i>&nbsp;
+<i>278</i>&nbsp;    @Test
+<i>279</i>&nbsp;    public void testRemoveBranch_1() {
+<b class="fc"><i>280</i>&nbsp;		c.reset();</b>
+<b class="fc"><i>281</i>&nbsp;		Position p1 =new Position(1,2);</b>
+<b class="fc"><i>282</i>&nbsp;		Position p2 =new Position(2,3);</b>
+<b class="fc"><i>283</i>&nbsp;		c.addBranch(&quot;A1&quot;, p1);</b>
+<b class="fc"><i>284</i>&nbsp;		c.addBranch(&quot;A2&quot;, p2);</b>
+<b class="fc"><i>285</i>&nbsp;    		Branch a1 = c.getBranchByLocation(p1);</b>
+<b class="fc"><i>286</i>&nbsp;    	    		Branch a2 = c.getBranchByLocation(p2);</b>
+<b class="fc"><i>287</i>&nbsp;    		c.addLinkage(a1.getId(), a2.getId());</b>
+<b class="fc"><i>288</i>&nbsp;    		c.addLinkage(a2.getId(), a1.getId());</b>
+<b class="fc"><i>289</i>&nbsp;        Branch b = c.removeBranch(a1.getId());</b>
+<b class="fc"><i>290</i>&nbsp;        assertEquals(a1.getId(), b.getId());</b>
+<b class="fc"><i>291</i>&nbsp;    }</b>
+<i>292</i>&nbsp;    @Test
+<i>293</i>&nbsp;    public void testRemoveBranch_2() {
+<b class="fc"><i>294</i>&nbsp;		c.reset();</b>
+<b class="fc"><i>295</i>&nbsp;		Position p1 =new Position(1,2);</b>
+<b class="fc"><i>296</i>&nbsp;		Position p2 =new Position(2,3);</b>
+<b class="fc"><i>297</i>&nbsp;		Position p3 =new Position(4,4);</b>
+<i>298</i>&nbsp;		
+<b class="fc"><i>299</i>&nbsp;		c.addBranch(&quot;A1&quot;, p1);</b>
+<b class="fc"><i>300</i>&nbsp;		c.addBranch(&quot;A2&quot;, p2);</b>
+<b class="fc"><i>301</i>&nbsp;		c.addBranch(&quot;A3&quot;, p3);</b>
+<b class="fc"><i>302</i>&nbsp;		Branch a1 = c.getBranchByLocation(p1);</b>
+<b class="fc"><i>303</i>&nbsp;	    Branch b = c.removeBranch(a1.getId());</b>
+<b class="fc"><i>304</i>&nbsp;	    assertEquals(a1.getId(), b.getId());</b>
+<b class="fc"><i>305</i>&nbsp;    }</b>
+<i>306</i>&nbsp;   
+<i>307</i>&nbsp;    @Test
+<i>308</i>&nbsp;    public void testRemoveBranch_3() {
+<b class="fc"><i>309</i>&nbsp;		c.reset();</b>
+<b class="fc"><i>310</i>&nbsp;		Position p1 =new Position(1,2);</b>
+<b class="fc"><i>311</i>&nbsp;		Position p2 =new Position(2,3);</b>
+<b class="fc"><i>312</i>&nbsp;		Position p3 =new Position(4,4);</b>
+<i>313</i>&nbsp;		
+<b class="fc"><i>314</i>&nbsp;		c.addBranch(&quot;A1&quot;, p1);</b>
+<b class="fc"><i>315</i>&nbsp;		c.addBranch(&quot;A2&quot;, p2);</b>
+<b class="fc"><i>316</i>&nbsp;		c.addBranch(&quot;A3&quot;, p3);</b>
+<i>317</i>&nbsp;
+<b class="fc"><i>318</i>&nbsp;		Branch a1 = c.getBranchByLocation(p1);</b>
+<i>319</i>&nbsp;
+<b class="fc"><i>320</i>&nbsp;		Branch a2 = c.getBranchByLocation(p2);</b>
+<i>321</i>&nbsp;
+<b class="fc"><i>322</i>&nbsp;		Branch a3 = c.getBranchByLocation(p3);</b>
+<b class="fc"><i>323</i>&nbsp;		c.addLinkage(a2.getId(),a3.getId());</b>
+<b class="fc"><i>324</i>&nbsp;	    Branch b = c.removeBranch(a1.getId());</b>
+<b class="fc"><i>325</i>&nbsp;	    assertEquals(a1.getId(), b.getId());</b>
+<b class="fc"><i>326</i>&nbsp;    }</b>
+<i>327</i>&nbsp;    @Test
+<i>328</i>&nbsp;    public void testSearchOrderByID() {
+<b class="fc"><i>329</i>&nbsp;		c.reset();</b>
+<b class="fc"><i>330</i>&nbsp;        Customer fakesender = new Customer(1, &quot;fakesender&quot;, &quot;abc&quot;);</b>
+<b class="fc"><i>331</i>&nbsp;        Customer fakereceiver = new Customer(2, &quot;fakereceiver&quot;, &quot;def&quot;);</b>
+<b class="fc"><i>332</i>&nbsp;        OrderPool.getInstance().createOrder(&quot;itemName&quot;, fakesender, fakereceiver, new ArrayList&lt;&gt;());</b>
+<b class="fc"><i>333</i>&nbsp;        assertEquals(OrderPool.getInstance().getOrderById(1), Company.getInstance().searchOrder(1));</b>
+<b class="fc"><i>334</i>&nbsp;    }</b>
+<i>335</i>&nbsp;
+<i>336</i>&nbsp;    @Test
+<i>337</i>&nbsp;    public void testSearchOrderByName() {
+<b class="fc"><i>338</i>&nbsp;		c.reset();</b>
+<b class="fc"><i>339</i>&nbsp;        Customer fakesender = new Customer(1, &quot;fakesender&quot;, &quot;abc&quot;);</b>
+<b class="fc"><i>340</i>&nbsp;        Customer fakereceiver = new Customer(2, &quot;fakereceiver&quot;, &quot;def&quot;);</b>
+<b class="fc"><i>341</i>&nbsp;        OrderPool.getInstance().createOrder(&quot;itemName&quot;, fakesender, fakereceiver, new ArrayList&lt;&gt;());</b>
+<b class="fc"><i>342</i>&nbsp;        assertEquals(OrderPool.getInstance().getOrderByName(&quot;itemName&quot;),</b>
+<b class="fc"><i>343</i>&nbsp;                Company.getInstance().searchOrder(&quot;itemName&quot;));</b>
+<b class="fc"><i>344</i>&nbsp;    }</b>
+<i>345</i>&nbsp;
+<i>346</i>&nbsp;    @Test
+<i>347</i>&nbsp;    public void testAddCustomer() {
+<b class="fc"><i>348</i>&nbsp;		c.reset();</b>
+<b class="fc"><i>349</i>&nbsp;        assertEquals(0, c.addCustomer(&quot;name&quot;, &quot;password&quot;).getId());</b>
+<b class="fc"><i>350</i>&nbsp;    }</b>
+<i>351</i>&nbsp;
+<i>352</i>&nbsp;    @Test
+<i>353</i>&nbsp;    public void testAddCustomerWithPosition() {
+<b class="fc"><i>354</i>&nbsp;		c.reset();</b>
+<b class="fc"><i>355</i>&nbsp;        Position position = new Position(1,2);</b>
+<b class="fc"><i>356</i>&nbsp;        assertEquals(0, c.addCustomer(&quot;name&quot;, &quot;password&quot;, 1, position).getId());</b>
+<b class="fc"><i>357</i>&nbsp;    }</b>
+<i>358</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2017-12-05 21:12</div>
+</div>
+</body>
+</html>

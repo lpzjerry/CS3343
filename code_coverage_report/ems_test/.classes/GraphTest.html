@@ -1,0 +1,134 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: GraphTest</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">ems_test</a> ]
+</div>
+
+<h1>Coverage Summary for Class: GraphTest (ems_test)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">GraphTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/ 4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (22/ 22)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package ems_test;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import static org.junit.Assert.*;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import java.util.ArrayList;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;import org.junit.Before;
+<i>8</i>&nbsp;import org.junit.Test;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;import java.util.List;
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;import ems.Branch;
+<i>13</i>&nbsp;import ems.Position;
+<i>14</i>&nbsp;import ems.Edge;
+<i>15</i>&nbsp;import ems.Graph;
+<b class="fc"><i>16</i>&nbsp;public class GraphTest {</b>
+<b class="fc"><i>17</i>&nbsp;    Position pos = null;</b>
+<b class="fc"><i>18</i>&nbsp;    Branch branch1 = null;</b>
+<b class="fc"><i>19</i>&nbsp;    Branch branch2 = null;</b>
+<b class="fc"><i>20</i>&nbsp;    Edge edge1 = null;</b>
+<b class="fc"><i>21</i>&nbsp;    Edge edge2 = null;</b>
+<i>22</i>&nbsp;    List &lt;Branch&gt; branchlist; 
+<i>23</i>&nbsp;    List &lt;Edge&gt; edgelist;
+<b class="fc"><i>24</i>&nbsp;	Graph graph = null;</b>
+<i>25</i>&nbsp;    @Before
+<i>26</i>&nbsp;	public void setUp() throws Exception {
+<b class="fc"><i>27</i>&nbsp;		pos = new Position();</b>
+<b class="fc"><i>28</i>&nbsp;		branch1 = new Branch(1,&quot;Sheila&quot;,pos);</b>
+<b class="fc"><i>29</i>&nbsp;		branch2 = new Branch(2,&quot;Suzy&quot;,pos);</b>
+<b class="fc"><i>30</i>&nbsp;		branchlist = new ArrayList&lt;Branch&gt;();</b>
+<b class="fc"><i>31</i>&nbsp;		edgelist = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i>32</i>&nbsp;		branchlist.add(branch1);</b>
+<b class="fc"><i>33</i>&nbsp;		branchlist.add(branch2);</b>
+<b class="fc"><i>34</i>&nbsp;		edgelist.add(edge1);</b>
+<b class="fc"><i>35</i>&nbsp;		edgelist.add(edge2);</b>
+<b class="fc"><i>36</i>&nbsp;		graph = new Graph(branchlist,edgelist);</b>
+<i>37</i>&nbsp;		
+<b class="fc"><i>38</i>&nbsp;	}</b>
+<i>39</i>&nbsp;
+<i>40</i>&nbsp;
+<i>41</i>&nbsp;	@Test
+<i>42</i>&nbsp;	public void testGetVertexes() {
+<b class="fc"><i>43</i>&nbsp;		assertEquals(branchlist,graph.getVertexes());</b>
+<b class="fc"><i>44</i>&nbsp;	}</b>
+<i>45</i>&nbsp;
+<i>46</i>&nbsp;	@Test
+<i>47</i>&nbsp;	public void testGetEdges() {
+<b class="fc"><i>48</i>&nbsp;		assertEquals(edgelist,graph.getEdges());</b>
+<b class="fc"><i>49</i>&nbsp;	}</b>
+<i>50</i>&nbsp;
+<i>51</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2017-12-05 21:12</div>
+</div>
+</body>
+</html>

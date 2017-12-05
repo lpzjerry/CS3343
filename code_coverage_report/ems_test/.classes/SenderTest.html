@@ -1,0 +1,164 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: SenderTest</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">ems_test</a> ]
+</div>
+
+<h1>Coverage Summary for Class: SenderTest (ems_test)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">SenderTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/ 5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    87.5%
+  </span>
+  <span class="absValue">
+    (14/ 16)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">SenderTest$StubPosition</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/ 4)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/ 6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    90%
+  </span>
+  <span class="absValue">
+    (18/ 20)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package ems_test;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import static org.junit.Assert.*;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import org.easymock.EasyMock;
+<i>6</i>&nbsp;import org.junit.After;
+<i>7</i>&nbsp;import org.junit.Assert;
+<i>8</i>&nbsp;import org.junit.Before;
+<i>9</i>&nbsp;import org.junit.Test;
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;import ems.Customer;
+<i>12</i>&nbsp;import ems.Position;
+<i>13</i>&nbsp;import ems.Sender;
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;
+<b class="fc"><i>16</i>&nbsp;public class SenderTest {</b>
+<b class="fc"><i>17</i>&nbsp;    Sender sender = null;</b>
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;    class StubPosition extends Position {
+<i>20</i>&nbsp;        private int x;
+<i>21</i>&nbsp;        private int y;
+<i>22</i>&nbsp;
+<b class="fc"><i>23</i>&nbsp;        public StubPosition(int x, int y) {</b>
+<b class="fc"><i>24</i>&nbsp;            this.x = x;</b>
+<b class="fc"><i>25</i>&nbsp;            this.y = y;</b>
+<b class="fc"><i>26</i>&nbsp;        }</b>
+<i>27</i>&nbsp;    }
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;    @Before
+<i>30</i>&nbsp;    public void setUp() throws Exception {
+<b class="fc"><i>31</i>&nbsp;    }</b>
+<i>32</i>&nbsp;
+<i>33</i>&nbsp;    @After
+<i>34</i>&nbsp;    public void tearDown() throws Exception {
+<b class="fc"><i>35</i>&nbsp;    }</b>
+<i>36</i>&nbsp;
+<i>37</i>&nbsp;    @Test
+<i>38</i>&nbsp;    public void testAskToCreateOrder() {
+<b class="fc"><i>39</i>&nbsp;        sender = EasyMock.createMock(Sender.class);</b>
+<b class="fc"><i>40</i>&nbsp;        StubPosition pos = new StubPosition(1, 3);</b>
+<b class="fc"><i>41</i>&nbsp;        Customer cus1 = new Customer(12, &quot;Alex&quot;, &quot;alex123&quot;, 1, pos);</b>
+<b class="fc"><i>42</i>&nbsp;        sender.askToCreateOrder(&quot;item1&quot;, cus1);</b>
+<b class="fc"><i>43</i>&nbsp;        EasyMock.expectLastCall().anyTimes();</b>
+<b class="nc"><i>44</i>&nbsp;        EasyMock.replay(sender);</b>
+<b class="nc"><i>45</i>&nbsp;    }</b>
+<i>46</i>&nbsp;
+<i>47</i>&nbsp;    @Test
+<i>48</i>&nbsp;    public void testGetOrderLocation() {
+<b class="fc"><i>49</i>&nbsp;        sender = EasyMock.createMock(Sender.class);</b>
+<b class="fc"><i>50</i>&nbsp;        StubPosition expectedPos = new StubPosition(2, 3);</b>
+<b class="fc"><i>51</i>&nbsp;        EasyMock.expect(sender.getOrderLocation(1)).andReturn(expectedPos);</b>
+<b class="fc"><i>52</i>&nbsp;        EasyMock.replay(sender);</b>
+<b class="fc"><i>53</i>&nbsp;    }</b>
+<i>54</i>&nbsp;
+<i>55</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2017-12-05 21:12</div>
+</div>
+</body>
+</html>

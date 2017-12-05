@@ -1,0 +1,202 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Main</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">ems</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Main (ems)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Main</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 82)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package ems;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import java.util.Scanner;
+<i>4</i>&nbsp;
+<b class="nc"><i>5</i>&nbsp;public class Main {</b>
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;    public static void main(String args[]) {
+<b class="nc"><i>8</i>&nbsp;    	Company company = Company.getInstance();</b>
+<b class="nc"><i>9</i>&nbsp;    	company.addNewManager(&quot;super&quot;, &quot;hahaha&quot;, &quot;Male&quot;, 0);</b>
+<b class="nc"><i>10</i>&nbsp;        Scanner reader = new Scanner(System.in);</b>
+<b class="nc"><i>11</i>&nbsp;        Invoker commandLogger = new Invoker();</b>
+<b class="nc"><i>12</i>&nbsp;        Manager manager=Company.getInstance().getManager(0);</b>
+<b class="nc"><i>13</i>&nbsp;        Customer customer=null;</b>
+<b class="nc"><i>14</i>&nbsp;        char userFlag=&#39;b&#39;;</b>
+<b class="nc"><i>15</i>&nbsp;    	System.out.print(&quot;EMS$ &quot;);</b>
+<b class="nc"><i>16</i>&nbsp;        while (reader.hasNext()) {</b>
+<i>17</i>&nbsp;        	
+<b class="nc"><i>18</i>&nbsp;            String cmdLine = reader.nextLine().trim();</b>
+<i>19</i>&nbsp;            
+<i>20</i>&nbsp;            // Blank lines exist in data file as separators. Skip them.
+<b class="nc"><i>21</i>&nbsp;            if (cmdLine.equals(&quot;&quot;))</b>
+<b class="nc"><i>22</i>&nbsp;                continue;</b>
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;            // split the words in actionLine =&gt; create an array of word
+<i>25</i>&nbsp;            // strings
+<i>26</i>&nbsp;
+<b class="nc"><i>27</i>&nbsp;            String[] cmdParts = cmdLine.split(&quot; &quot;);  //TODO replace regex &quot; &quot; -&gt; &quot;\s&quot; (blank charater)</b>
+<i>28</i>&nbsp;            //[0]is cmd [1]is attribute 1 .. and so on...
+<b class="nc"><i>29</i>&nbsp;            if (userFlag==&#39;m&#39;){</b>
+<b class="nc"><i>30</i>&nbsp;            	if (cmdParts[0].equals(&quot;searchBranch&quot;)) { // cmdParts= [&quot;searchBranch&quot;,&quot;x&quot;,&quot;y&quot;]</b>
+<b class="nc"><i>31</i>&nbsp;                    commandLogger.StoreAndExecute(new CmdSearchBranch(company, cmdParts));                  </b>
+<b class="nc"><i>32</i>&nbsp;                } else if(cmdParts[0].equals(&quot;help&quot;)){</b>
+<b class="nc"><i>33</i>&nbsp;            		commandLogger.StoreAndExecute(new CmdHelp());</b>
+<b class="nc"><i>34</i>&nbsp;            	} else if (cmdParts[0].equals(&quot;addManager&quot;)&amp;&amp;manager.rootOrNot()) { // cmdParts= [ &quot;name&quot;, &quot;password&quot;, &quot;gender&quot;, &quot;status&quot;]</b>
+<b class="nc"><i>35</i>&nbsp;                    commandLogger.StoreAndExecute(new CmdAddManager(manager, cmdParts));</b>
+<b class="nc"><i>36</i>&nbsp;                } else if (cmdParts[0].equals(&quot;rmManager&quot;)&amp;&amp;manager.rootOrNot()) {</b>
+<b class="nc"><i>37</i>&nbsp;                    commandLogger.StoreAndExecute(new CmdRmManager(manager, cmdParts));</b>
+<i>38</i>&nbsp;                   
+<b class="nc"><i>39</i>&nbsp;                } else if (cmdParts[0].equals(&quot;searchOrder&quot;)) {// cmdParts= [&quot;searchOrder&quot;,&quot;id&quot;]</b>
+<b class="nc"><i>40</i>&nbsp;                    commandLogger.StoreAndExecute(new CmdSearchOrder(company, cmdParts));</b>
+<b class="nc"><i>41</i>&nbsp;                } else if (cmdParts[0].equals(&quot;exit&quot;)) {</b>
+<b class="nc"><i>42</i>&nbsp;                    break;</b>
+<b class="nc"><i>43</i>&nbsp;                } else if (cmdParts[0].equals(&quot;addBranch&quot;)) {// cmdParts= [ &quot;name&quot;]</b>
+<b class="nc"><i>44</i>&nbsp;                    commandLogger.StoreAndExecute(new CmdAddBranch(cmdParts,manager));</b>
+<i>45</i>&nbsp;                    
+<b class="nc"><i>46</i>&nbsp;                } else if (cmdParts[0].equals(&quot;addCustomer&quot;)) {</b>
+<b class="nc"><i>47</i>&nbsp;                    commandLogger.StoreAndExecute(new CmdAddCustomer(cmdParts,manager));</b>
+<i>48</i>&nbsp;                    
+<b class="nc"><i>49</i>&nbsp;                } else if (cmdParts[0].equals(&quot;rmBranch&quot;)) {</b>
+<b class="nc"><i>50</i>&nbsp;                    commandLogger.StoreAndExecute(new CmdRmBranch(cmdParts,manager));</b>
+<i>51</i>&nbsp;                    
+<b class="nc"><i>52</i>&nbsp;                } else if (cmdParts[0].equals(&quot;checkTime&quot;)) {</b>
+<b class="nc"><i>53</i>&nbsp;                    commandLogger.StoreAndExecute(new CmdCheckTime(company, cmdParts));</b>
+<i>54</i>&nbsp;                    
+<b class="nc"><i>55</i>&nbsp;                } else if (cmdParts[0].equals(&quot;logout&quot;)){</b>
+<b class="nc"><i>56</i>&nbsp;                	userFlag=&#39;b&#39;;</b>
+<i>57</i>&nbsp;                	
+<b class="nc"><i>58</i>&nbsp;                } else if (cmdParts[0].equals(&quot;addLink&quot;)) {</b>
+<b class="nc"><i>59</i>&nbsp;                    commandLogger.StoreAndExecute(new CmdAddLinkage(manager, cmdParts));</b>
+<i>60</i>&nbsp;                    
+<b class="nc"><i>61</i>&nbsp;                } else if (cmdParts[0].equals(&quot;rmLink&quot;)) {</b>
+<b class="nc"><i>62</i>&nbsp;                    commandLogger.StoreAndExecute(new CmdRmLinkage(manager, cmdParts));</b>
+<i>63</i>&nbsp;                    
+<i>64</i>&nbsp;                } else {
+<b class="nc"><i>65</i>&nbsp;                    System.out.println(&quot;Cmd not found m&quot;);</b>
+<i>66</i>&nbsp;                }
+<i>67</i>&nbsp;            }
+<b class="nc"><i>68</i>&nbsp;            else if(userFlag==&#39;c&#39;){</b>
+<b class="nc"><i>69</i>&nbsp;            	if (cmdParts[0].equals(&quot;searchBranch&quot;)) { // cmdParts= [&quot;searchBranch&quot;,&quot;x&quot;,&quot;y&quot;]</b>
+<b class="nc"><i>70</i>&nbsp;                    commandLogger.StoreAndExecute(new CmdSearchBranch(company, cmdParts));</b>
+<b class="nc"><i>71</i>&nbsp;                } else if(cmdParts[0].equals(&quot;help&quot;)){</b>
+<b class="nc"><i>72</i>&nbsp;            		commandLogger.StoreAndExecute(new CmdHelp());</b>
+<b class="nc"><i>73</i>&nbsp;            	} else if (cmdParts[0].equals(&quot;searchOrder&quot;)) {// cmdParts= [&quot;searchOrder&quot;,&quot;id&quot;]</b>
+<b class="nc"><i>74</i>&nbsp;                    commandLogger.StoreAndExecute(new CmdSearchOrder(company, cmdParts));</b>
+<b class="nc"><i>75</i>&nbsp;                } else if (cmdParts[0].equals(&quot;exit&quot;)) {</b>
+<b class="nc"><i>76</i>&nbsp;                    break;</b>
+<b class="nc"><i>77</i>&nbsp;                } else if (cmdParts[0].equals(&quot;createOrder&quot;)) {//cmdParts= [&quot;createOrder&quot;,&quot;itemname&quot;,&quot;customer1ID&quot;嚙踝蕭謕蕭豲������揭&quot;customer2ID&quot;]</b>
+<b class="nc"><i>78</i>&nbsp;                    commandLogger.StoreAndExecute(new CmdCreateOrder(company, cmdParts,customer));</b>
+<b class="nc"><i>79</i>&nbsp;                } else if (cmdParts[0].equals(&quot;checkTime&quot;)) {</b>
+<b class="nc"><i>80</i>&nbsp;                    commandLogger.StoreAndExecute(new CmdCheckTime(company, cmdParts));</b>
+<b class="nc"><i>81</i>&nbsp;                } else if (cmdParts[0].equals(&quot;logout&quot;)){</b>
+<b class="nc"><i>82</i>&nbsp;                	userFlag=&#39;b&#39;;</b>
+<i>83</i>&nbsp;                } else {
+<b class="nc"><i>84</i>&nbsp;                    System.out.println(&quot;Cmd not found c&quot;);</b>
+<i>85</i>&nbsp;                }
+<i>86</i>&nbsp;            }
+<b class="nc"><i>87</i>&nbsp;            else if(userFlag==&#39;b&#39;){</b>
+<b class="nc"><i>88</i>&nbsp;            	if(cmdParts[0].equals(&quot;manager&quot;)){</b>
+<b class="nc"><i>89</i>&nbsp;            		manager=Company.getInstance().getManager(Integer.parseInt(cmdParts[1]));</b>
+<b class="nc"><i>90</i>&nbsp;            		System.out.println(&quot;Log in as: &quot;+manager);</b>
+<i>91</i>&nbsp;            		//commandLogger.StoreAndExecute(new CmdSwitchToManager(company, cmdParts, manager));
+<b class="nc"><i>92</i>&nbsp;            		userFlag=&#39;m&#39;;</b>
+<b class="nc"><i>93</i>&nbsp;            	} else if(cmdParts[0].equals(&quot;help&quot;)){</b>
+<b class="nc"><i>94</i>&nbsp;            		commandLogger.StoreAndExecute(new CmdHelp());</b>
+<b class="nc"><i>95</i>&nbsp;            	} else if(cmdParts[0].equals(&quot;customer&quot;)){</b>
+<b class="nc"><i>96</i>&nbsp;            		customer=Company.getInstance().getCustomer(Integer.parseInt(cmdParts[1]));</b>
+<b class="nc"><i>97</i>&nbsp;            		System.out.println(&quot;Log in as: &quot;+customer);</b>
+<i>98</i>&nbsp;            		//commandLogger.StoreAndExecute(new CmdSwitchToCustomer(company, cmdParts, customer));
+<b class="nc"><i>99</i>&nbsp;            		userFlag=&#39;c&#39;;</b>
+<b class="nc"><i>100</i>&nbsp;            	} else if (cmdParts[0].equals(&quot;searchBranch&quot;)) { // cmdParts= [&quot;searchBranch&quot;,&quot;x&quot;,&quot;y&quot;]</b>
+<b class="nc"><i>101</i>&nbsp;                    commandLogger.StoreAndExecute(new CmdSearchBranch(company, cmdParts));</b>
+<b class="nc"><i>102</i>&nbsp;                } else if (cmdParts[0].equals(&quot;exit&quot;)) {</b>
+<b class="nc"><i>103</i>&nbsp;                    break;</b>
+<b class="nc"><i>104</i>&nbsp;                } else if (cmdParts[0].equals(&quot;checkTime&quot;)) {</b>
+<b class="nc"><i>105</i>&nbsp;                    commandLogger.StoreAndExecute(new CmdCheckTime(company, cmdParts));</b>
+<i>106</i>&nbsp;                } else {
+<b class="nc"><i>107</i>&nbsp;                    System.out.println(&quot;Cmd not found b&quot;);</b>
+<i>108</i>&nbsp;                }
+<i>109</i>&nbsp;            }
+<b class="nc"><i>110</i>&nbsp;            OrderPool.getInstance().processAllOrders();</b>
+<i>111</i>&nbsp;            
+<b class="nc"><i>112</i>&nbsp;            if (userFlag == &#39;m&#39; &amp;&amp; manager.rootOrNot() )</b>
+<b class="nc"><i>113</i>&nbsp;        		System.out.print(&quot;EMS# &quot;);</b>
+<i>114</i>&nbsp;        	else
+<b class="nc"><i>115</i>&nbsp;        		System.out.print(&quot;EMS$ &quot;);</b>
+<b class="nc"><i>116</i>&nbsp;        }</b>
+<b class="nc"><i>117</i>&nbsp;        reader.close();</b>
+<i>118</i>&nbsp;    }
+<i>119</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2017-12-05 21:12</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,131 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Position</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">ems</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Position (ems)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Position</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (7/ 7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (14/ 14)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package ems;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import java.util.Random;
+<i>4</i>&nbsp;// TODO unittest
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;public class Position {
+<i>7</i>&nbsp;    // Pengze Liu 2017-Nov-2
+<i>8</i>&nbsp;    // Encapsulate all cordinates into Position objects
+<i>9</i>&nbsp;    // Essential methods are provided
+<i>10</i>&nbsp;    private int x;
+<i>11</i>&nbsp;    private int y;
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;    private static final int X_limit = 20;
+<i>14</i>&nbsp;    private static final int Y_limit = 20;
+<i>15</i>&nbsp;
+<b class="fc"><i>16</i>&nbsp;    public Position(int x, int y) {</b>
+<b class="fc"><i>17</i>&nbsp;        this.x = x;</b>
+<b class="fc"><i>18</i>&nbsp;        this.y = y;</b>
+<b class="fc"><i>19</i>&nbsp;    }</b>
+<i>20</i>&nbsp;
+<b class="fc"><i>21</i>&nbsp;    public Position() {</b>
+<b class="fc"><i>22</i>&nbsp;        Random random = new Random();</b>
+<b class="fc"><i>23</i>&nbsp;        x = random.nextInt() % X_limit;</b>
+<b class="fc"><i>24</i>&nbsp;        y = random.nextInt() % Y_limit;</b>
+<b class="fc"><i>25</i>&nbsp;    }</b>
+<i>26</i>&nbsp;
+<i>27</i>&nbsp;    public int getX() {
+<b class="fc"><i>28</i>&nbsp;        return x;</b>
+<i>29</i>&nbsp;    }
+<i>30</i>&nbsp;
+<i>31</i>&nbsp;    public int getY() {
+<b class="fc"><i>32</i>&nbsp;        return y;</b>
+<i>33</i>&nbsp;    }
+<i>34</i>&nbsp;
+<i>35</i>&nbsp;    public static int distance(Position p1, Position p2) {
+<b class="fc"><i>36</i>&nbsp;        return Math.abs(p1.getX() - p2.getX()) + Math.abs(p1.getY() - p2.getY());</b>
+<i>37</i>&nbsp;    }
+<i>38</i>&nbsp;
+<i>39</i>&nbsp;    public int distance(Position p) {
+<b class="fc"><i>40</i>&nbsp;        return Position.distance(this, p);</b>
+<i>41</i>&nbsp;    }
+<i>42</i>&nbsp;
+<i>43</i>&nbsp;    @Override
+<i>44</i>&nbsp;    public String toString() {
+<b class="fc"><i>45</i>&nbsp;        return String.format(&quot;Address: (%d, %d).&quot;, this.getX(), this.getY());</b>
+<i>46</i>&nbsp;    }
+<i>47</i>&nbsp;
+<i>48</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2017-12-05 21:12</div>
+</div>
+</body>
+</html>

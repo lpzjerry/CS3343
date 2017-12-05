@@ -1,0 +1,121 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: CmdHelp</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">ems</a> ]
+</div>
+
+<h1>Coverage Summary for Class: CmdHelp (ems)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CmdHelp</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/ 30)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package ems;
+<i>2</i>&nbsp;
+<b class="nc"><i>3</i>&nbsp;public class CmdHelp implements Command{</b>
+<i>4</i>&nbsp;	@Override
+<i>5</i>&nbsp;	public void execute() {
+<i>6</i>&nbsp;		// TODO Auto-generated method stub
+<b class="nc"><i>7</i>&nbsp;		System.out.println(&quot;Cmd:&quot;);</b>
+<b class="nc"><i>8</i>&nbsp;		System.out.println(&quot;------------------------------------------Common_Commands------------------------------------------&quot;);</b>
+<b class="nc"><i>9</i>&nbsp;		System.out.println(&quot;\thelp: show the available command&quot;);</b>
+<b class="nc"><i>10</i>&nbsp;		System.out.println(&quot;\tcheckTime: show the time&quot;);</b>
+<b class="nc"><i>11</i>&nbsp;		System.out.println(&quot;\tsearchBranch &lt;x-corodinate&gt; &lt;y-corodinate&gt;: search the Branch by location&quot;);</b>
+<b class="nc"><i>12</i>&nbsp;		System.out.println(&quot;\thelp: show the available command&quot;);</b>
+<b class="nc"><i>13</i>&nbsp;		System.out.println(&quot;\texit: exit the system&quot;);</b>
+<b class="nc"><i>14</i>&nbsp;		System.out.println(&quot;------------------------------------------End_of_Common_cmd------------------------------------------&quot;);</b>
+<b class="nc"><i>15</i>&nbsp;		System.out.println(&quot;\n------------------------------------------Basic_UI_Commands------------------------------------------&quot;);</b>
+<b class="nc"><i>16</i>&nbsp;		System.out.println(&quot;\tmanager &lt;id&gt;: login as manager with id&quot;);</b>
+<b class="nc"><i>17</i>&nbsp;		System.out.println(&quot;\tcustomer &lt;id&gt;: login as customer with id&quot;);</b>
+<b class="nc"><i>18</i>&nbsp;		System.out.println(&quot;------------------------------------------End_of_Common_cmd------------------------------------------&quot;);</b>
+<b class="nc"><i>19</i>&nbsp;		System.out.println(&quot;\n------------------------------------------Manager_Commands------------------------------------------&quot;);</b>
+<b class="nc"><i>20</i>&nbsp;		System.out.println(&quot;\taddBranch &lt;name&gt; &lt;x-corodinate&gt; &lt;y-corodinate&gt;: add branch with name, and position&quot;);</b>
+<b class="nc"><i>21</i>&nbsp;		System.out.println(&quot;\taddCustomer &lt;name&gt; &lt;password&gt; &lt;priority&gt; &lt;x-corodinate&gt; &lt;y-corodinate&gt;: add customer with infomation&quot;);</b>
+<b class="nc"><i>22</i>&nbsp;		System.out.println(&quot;\taddLink &lt;source_id&gt; &lt;target_id&gt;: add directed linkage from source branch to target branch&quot;);</b>
+<b class="nc"><i>23</i>&nbsp;		System.out.println(&quot;\tsearchOrder &lt;id&gt;: trace where the order is&quot;);</b>
+<b class="nc"><i>24</i>&nbsp;		System.out.println(&quot;\trmBranch &lt;id&gt;: remove branch with id&quot;);</b>
+<b class="nc"><i>25</i>&nbsp;		System.out.println(&quot;\trmLink &lt;source_id&gt; &lt;target_id&gt;: remove directed linkage from source branch to target branch&quot;);</b>
+<b class="nc"><i>26</i>&nbsp;		System.out.println(&quot;\tlogout: logout to basic UI command&quot;);</b>
+<b class="nc"><i>27</i>&nbsp;		System.out.println(&quot;\t[Command only for super maanger]:&quot;);</b>
+<b class="nc"><i>28</i>&nbsp;		System.out.println(&quot;\t\taddManager &lt;name&gt; &lt;password&gt; &lt;gender&gt; &lt;rank&gt;: add new manager with the information&quot;);</b>
+<b class="nc"><i>29</i>&nbsp;		System.out.println(&quot;\t\trmManager &lt;id&gt;: remove manager with id&quot;);</b>
+<b class="nc"><i>30</i>&nbsp;		System.out.println(&quot;------------------------------------------End_of_Manager_cmd------------------------------------------&quot;);</b>
+<b class="nc"><i>31</i>&nbsp;		System.out.println(&quot;\n------------------------------------------Customer_Commands------------------------------------------&quot;);</b>
+<b class="nc"><i>32</i>&nbsp;		System.out.println(&quot;\tcreateOrder &lt;name&gt; &lt;target_id&gt;: create a new order to send&quot;);</b>
+<b class="nc"><i>33</i>&nbsp;		System.out.println(&quot;\tsearchOrder &lt;id&gt;: trace where the order is&quot;);</b>
+<b class="nc"><i>34</i>&nbsp;		System.out.println(&quot;\tlogout: logout to basic UI command&quot;);</b>
+<b class="nc"><i>35</i>&nbsp;		System.out.println(&quot;------------------------------------------End_of_Customer_cmd------------------------------------------&quot;);</b>
+<i>36</i>&nbsp;	}
+<i>37</i>&nbsp;
+<i>38</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2017-12-05 21:12</div>
+</div>
+</body>
+</html>

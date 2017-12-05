@@ -13,6 +13,7 @@ import ems.Customer;
 import ems.Order;
 import ems.Position;
 import ems.Manager;
+import ems.Company;  // bug fixed by patrick
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;

@@ -49,7 +49,6 @@ public class BranchTest {
     }
 
 
-
     @Test
     public void test01_GetLocation() {
         Branch brc = new Branch(1, "testBranch", posStub);
@@ -69,7 +68,7 @@ public class BranchTest {
     @Test
     public void test01_ToString() {
         Branch brc = new Branch(1, "testBranch", posStub);
-        String desiredRes ="[Branch testBranch at (3, 4)]";
+        String desiredRes = "[Branch testBranch at (3, 4)]";
         assertEquals(desiredRes, brc.toString());
     }
 
@@ -80,7 +79,7 @@ public class BranchTest {
         ArrayList<Position> testPath = new ArrayList<Position>();
         testPath.add(posStub);
         Order order1 = new Order(1, "testOrder1", cus_send, cus_receive, testPath);
-        assertEquals(true,brc.checkInOrder(order1) );
+        assertEquals(true, brc.checkInOrder(order1));
     }
 
     @Test

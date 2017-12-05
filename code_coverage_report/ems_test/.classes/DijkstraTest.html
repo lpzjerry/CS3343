@@ -1,0 +1,232 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: DijkstraTest</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">ems_test</a> ]
+</div>
+
+<h1>Coverage Summary for Class: DijkstraTest (ems_test)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">DijkstraTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/ 8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (97/ 97)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package ems_test;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import static org.junit.Assert.*;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import java.util.ArrayList;
+<i>6</i>&nbsp;import java.util.Collections;
+<i>7</i>&nbsp;import java.util.HashMap;
+<i>8</i>&nbsp;import java.util.HashSet;
+<i>9</i>&nbsp;import java.util.LinkedList;
+<i>10</i>&nbsp;import java.util.List;
+<i>11</i>&nbsp;import java.util.Map;
+<i>12</i>&nbsp;import java.util.Set;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;import org.junit.Before;
+<i>15</i>&nbsp;import org.junit.Test;
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;import ems.Branch;
+<i>18</i>&nbsp;import ems.Customer;
+<i>19</i>&nbsp;import ems.Order;
+<i>20</i>&nbsp;import ems.Position;
+<i>21</i>&nbsp;import ems.Edge;
+<i>22</i>&nbsp;import ems.Graph;
+<i>23</i>&nbsp;import ems.Dijkstra;
+<i>24</i>&nbsp;
+<b class="fc"><i>25</i>&nbsp;public class DijkstraTest {   </b>
+<b class="fc"><i>26</i>&nbsp;    Position pos1 = null;</b>
+<b class="fc"><i>27</i>&nbsp;    Position pos2 = null;</b>
+<b class="fc"><i>28</i>&nbsp;    Position pos3 = null;</b>
+<b class="fc"><i>29</i>&nbsp;    Position pos4 = null;</b>
+<b class="fc"><i>30</i>&nbsp;    Position pos5 = null;</b>
+<b class="fc"><i>31</i>&nbsp;    Position pos6 = null;</b>
+<b class="fc"><i>32</i>&nbsp;    Position pos7 = null;</b>
+<b class="fc"><i>33</i>&nbsp;    Branch branch1 = null;</b>
+<b class="fc"><i>34</i>&nbsp;    Branch branch2 = null;</b>
+<b class="fc"><i>35</i>&nbsp;    Branch branch3 = null;</b>
+<b class="fc"><i>36</i>&nbsp;    Branch branch4 = null;</b>
+<b class="fc"><i>37</i>&nbsp;    Branch branch5 = null;</b>
+<b class="fc"><i>38</i>&nbsp;    Branch branch6 = null;</b>
+<b class="fc"><i>39</i>&nbsp;    Branch branch7 = null;</b>
+<b class="fc"><i>40</i>&nbsp;    Edge edge1 = null;</b>
+<b class="fc"><i>41</i>&nbsp;    Edge edge2 = null;</b>
+<b class="fc"><i>42</i>&nbsp;    Edge edge3 = null;</b>
+<b class="fc"><i>43</i>&nbsp;    Edge edge4 = null;</b>
+<b class="fc"><i>44</i>&nbsp;    Edge edge5 = null;</b>
+<b class="fc"><i>45</i>&nbsp;    Edge edge6 = null;</b>
+<b class="fc"><i>46</i>&nbsp;    Edge edge7 = null;</b>
+<i>47</i>&nbsp;    List &lt;Branch&gt; branchlist; 
+<i>48</i>&nbsp;    List &lt;Edge&gt; edgelist;
+<b class="fc"><i>49</i>&nbsp;	Graph graph = null;</b>
+<b class="fc"><i>50</i>&nbsp;	Dijkstra dijkstra = null;</b>
+<b class="fc"><i>51</i>&nbsp;	ArrayList&lt;Branch&gt; path1 = null;</b>
+<b class="fc"><i>52</i>&nbsp;	ArrayList&lt;Branch&gt; path2 = null;</b>
+<b class="fc"><i>53</i>&nbsp;	ArrayList&lt;Branch&gt; path3 = null;</b>
+<b class="fc"><i>54</i>&nbsp;	ArrayList&lt;Branch&gt; path4 = null;</b>
+<b class="fc"><i>55</i>&nbsp;	ArrayList&lt;Branch&gt; path5 = null; </b>
+<b class="fc"><i>56</i>&nbsp;	ArrayList&lt;Branch&gt; path6 = null; </b>
+<i>57</i>&nbsp;	@Before
+<i>58</i>&nbsp;	public void setUp() throws Exception {
+<b class="fc"><i>59</i>&nbsp;		path1 = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i>60</i>&nbsp;		path2 = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i>61</i>&nbsp;		path3 = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i>62</i>&nbsp;		path4 = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i>63</i>&nbsp;		path5 = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i>64</i>&nbsp;		path6 = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i>65</i>&nbsp;		pos1 = new Position(1,1);</b>
+<b class="fc"><i>66</i>&nbsp;		pos2 = new Position(6,1);</b>
+<b class="fc"><i>67</i>&nbsp;		pos3 = new Position(4,4);</b>
+<b class="fc"><i>68</i>&nbsp;		pos4 = new Position(1,3);</b>
+<b class="fc"><i>69</i>&nbsp;		pos5 = new Position(5,6);</b>
+<b class="fc"><i>70</i>&nbsp;		pos6 = new Position(12,6);</b>
+<b class="fc"><i>71</i>&nbsp;		pos7 = new Position(8,8);</b>
+<b class="fc"><i>72</i>&nbsp;		branch1 = new Branch(1,&quot;Sheila&quot;,pos1);</b>
+<b class="fc"><i>73</i>&nbsp;		branch2 = new Branch(2,&quot;Sherlock&quot;,pos2);</b>
+<b class="fc"><i>74</i>&nbsp;		branch3 = new Branch(3,&quot;Jerry&quot;,pos3);</b>
+<b class="fc"><i>75</i>&nbsp;		branch4 = new Branch(4,&quot;Patrick&quot;,pos4);</b>
+<b class="fc"><i>76</i>&nbsp;		branch5 = new Branch(5,&quot;Yolanda&quot;,pos5);</b>
+<b class="fc"><i>77</i>&nbsp;		branch6 = new Branch(6,&quot;Tony&quot;,pos6);</b>
+<b class="fc"><i>78</i>&nbsp;		branch7 = new Branch(7,&quot;Alinda&quot;,pos7);</b>
+<b class="fc"><i>79</i>&nbsp;		branchlist = new ArrayList&lt;Branch&gt;();</b>
+<b class="fc"><i>80</i>&nbsp;		edgelist = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i>81</i>&nbsp;		branchlist.add(branch1);</b>
+<b class="fc"><i>82</i>&nbsp;		branchlist.add(branch2);</b>
+<b class="fc"><i>83</i>&nbsp;		branchlist.add(branch3);</b>
+<b class="fc"><i>84</i>&nbsp;		branchlist.add(branch4);</b>
+<b class="fc"><i>85</i>&nbsp;		branchlist.add(branch5);</b>
+<b class="fc"><i>86</i>&nbsp;		edge1  = new Edge(&quot;a&quot;,branch1,branch2,branch1.getDistance(branch2));</b>
+<b class="fc"><i>87</i>&nbsp;		edgelist.add(edge1);</b>
+<b class="fc"><i>88</i>&nbsp;		edge2  = new Edge(&quot;b&quot;,branch2,branch5,branch2.getDistance(branch5));</b>
+<b class="fc"><i>89</i>&nbsp;		edgelist.add(edge2);</b>
+<b class="fc"><i>90</i>&nbsp;		edge3  = new Edge(&quot;c&quot;,branch1,branch3,branch1.getDistance(branch3));</b>
+<b class="fc"><i>91</i>&nbsp;		edgelist.add(edge3);</b>
+<b class="fc"><i>92</i>&nbsp;		edge4  = new Edge(&quot;d&quot;,branch3,branch5,branch3.getDistance(branch5));</b>
+<b class="fc"><i>93</i>&nbsp;		edgelist.add(edge4);</b>
+<b class="fc"><i>94</i>&nbsp;		edge5  = new Edge(&quot;e&quot;,branch1,branch4,branch1.getDistance(branch4));</b>
+<b class="fc"><i>95</i>&nbsp;		edgelist.add(edge5);</b>
+<b class="fc"><i>96</i>&nbsp;		edge6  = new Edge(&quot;f&quot;,branch2,branch7,branch7.getDistance(branch2));</b>
+<b class="fc"><i>97</i>&nbsp;		edgelist.add(edge6);</b>
+<b class="fc"><i>98</i>&nbsp;		edge7  = new Edge(&quot;g&quot;,branch5,branch7,branch7.getDistance(branch5));</b>
+<b class="fc"><i>99</i>&nbsp;		edgelist.add(edge7);</b>
+<b class="fc"><i>100</i>&nbsp;		graph = new Graph(branchlist,edgelist);</b>
+<b class="fc"><i>101</i>&nbsp;		dijkstra = new Dijkstra(graph);</b>
+<b class="fc"><i>102</i>&nbsp;		dijkstra.execute(branch1);</b>
+<b class="fc"><i>103</i>&nbsp;		path1.add(branch1);</b>
+<i>104</i>&nbsp;		
+<b class="fc"><i>105</i>&nbsp;		path2.add(branch1);</b>
+<b class="fc"><i>106</i>&nbsp;		path2.add(branch2);</b>
+<i>107</i>&nbsp;		
+<b class="fc"><i>108</i>&nbsp;		path3.add(branch1);</b>
+<b class="fc"><i>109</i>&nbsp;		path3.add(branch3);</b>
+<i>110</i>&nbsp;		
+<b class="fc"><i>111</i>&nbsp;		path4.add(branch1);</b>
+<b class="fc"><i>112</i>&nbsp;		path4.add(branch4);</b>
+<i>113</i>&nbsp;		
+<b class="fc"><i>114</i>&nbsp;		path5.add(branch1);</b>
+<b class="fc"><i>115</i>&nbsp;		path5.add(branch3);</b>
+<b class="fc"><i>116</i>&nbsp;		path5.add(branch5);</b>
+<i>117</i>&nbsp;		
+<i>118</i>&nbsp;		
+<b class="fc"><i>119</i>&nbsp;	}</b>
+<i>120</i>&nbsp;	@Test
+<i>121</i>&nbsp;	public void testGetPath01() {
+<b class="fc"><i>122</i>&nbsp;		assertEquals(null,dijkstra.getPath(branch1));</b>
+<b class="fc"><i>123</i>&nbsp;	}</b>
+<i>124</i>&nbsp;	
+<i>125</i>&nbsp;	@Test
+<i>126</i>&nbsp;	public void testGetPath02() {
+<b class="fc"><i>127</i>&nbsp;		assertEquals(path2,dijkstra.getPath(branch2));</b>
+<b class="fc"><i>128</i>&nbsp;	}</b>
+<i>129</i>&nbsp;	
+<i>130</i>&nbsp;	@Test
+<i>131</i>&nbsp;	public void testGetPath03() {
+<b class="fc"><i>132</i>&nbsp;		assertEquals(path3,dijkstra.getPath(branch3));</b>
+<b class="fc"><i>133</i>&nbsp;	}</b>
+<i>134</i>&nbsp;	
+<i>135</i>&nbsp;	@Test
+<i>136</i>&nbsp;	public void testGetPath04() {
+<b class="fc"><i>137</i>&nbsp;		assertEquals(path4,dijkstra.getPath(branch4));</b>
+<b class="fc"><i>138</i>&nbsp;	}</b>
+<i>139</i>&nbsp;	
+<i>140</i>&nbsp;	@Test
+<i>141</i>&nbsp;	public void testGetPath05() {
+<b class="fc"><i>142</i>&nbsp;		assertEquals(path5,dijkstra.getPath(branch5));</b>
+<b class="fc"><i>143</i>&nbsp;	}</b>
+<i>144</i>&nbsp;
+<i>145</i>&nbsp;	@Test
+<i>146</i>&nbsp;	public void testGetPath06() {
+<b class="fc"><i>147</i>&nbsp;		assertEquals(null,dijkstra.getPath(branch6));</b>
+<b class="fc"><i>148</i>&nbsp;	}</b>
+<i>149</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2017-12-05 21:12</div>
+</div>
+</body>
+</html>

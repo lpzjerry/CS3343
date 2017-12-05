@@ -1,0 +1,211 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Dijkstra</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">ems</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Dijkstra (ems)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Dijkstra</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (9/ 9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    98.4%
+  </span>
+  <span class="absValue">
+    (62/ 63)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package ems;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import java.util.ArrayList;
+<i>4</i>&nbsp;import java.util.Collections;
+<i>5</i>&nbsp;import java.util.HashMap;
+<i>6</i>&nbsp;import java.util.HashSet;
+<i>7</i>&nbsp;import java.util.LinkedList;
+<i>8</i>&nbsp;import java.util.List;
+<i>9</i>&nbsp;import java.util.Map;
+<i>10</i>&nbsp;import java.util.Set;
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;public class Dijkstra {
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;    private final List&lt;Branch&gt; nodes;
+<i>17</i>&nbsp;    private final List&lt;Edge&gt; edges;
+<i>18</i>&nbsp;    private Set&lt;Branch&gt; settledNodes;
+<i>19</i>&nbsp;    private Set&lt;Branch&gt; unSettledNodes;
+<i>20</i>&nbsp;    private Map&lt;Branch, Branch&gt; predecessors;
+<i>21</i>&nbsp;    private Map&lt;Branch, Integer&gt; distance;
+<i>22</i>&nbsp;
+<b class="fc"><i>23</i>&nbsp;    public Dijkstra(Graph graph) {</b>
+<i>24</i>&nbsp;        // create a copy of the array so that we can operate on this array
+<b class="fc"><i>25</i>&nbsp;        this.nodes = new ArrayList&lt;Branch&gt;(graph.getVertexes());</b>
+<b class="fc"><i>26</i>&nbsp;        this.edges = new ArrayList&lt;Edge&gt;(graph.getEdges());</b>
+<b class="fc"><i>27</i>&nbsp;    }</b>
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;    public void execute(Branch source) {
+<b class="fc"><i>30</i>&nbsp;        settledNodes = new HashSet&lt;Branch&gt;();</b>
+<b class="fc"><i>31</i>&nbsp;        unSettledNodes = new HashSet&lt;Branch&gt;();</b>
+<b class="fc"><i>32</i>&nbsp;        distance = new HashMap&lt;Branch, Integer&gt;();</b>
+<b class="fc"><i>33</i>&nbsp;        predecessors = new HashMap&lt;Branch, Branch&gt;();</b>
+<b class="fc"><i>34</i>&nbsp;        distance.put(source, 0);</b>
+<b class="fc"><i>35</i>&nbsp;        unSettledNodes.add(source);</b>
+<b class="fc"><i>36</i>&nbsp;        while (unSettledNodes.size() &gt; 0) {</b>
+<b class="fc"><i>37</i>&nbsp;            Branch node = getMinimum(unSettledNodes);</b>
+<b class="fc"><i>38</i>&nbsp;            settledNodes.add(node);</b>
+<b class="fc"><i>39</i>&nbsp;            unSettledNodes.remove(node);</b>
+<b class="fc"><i>40</i>&nbsp;            findMinimalDistances(node);</b>
+<b class="fc"><i>41</i>&nbsp;        }</b>
+<b class="fc"><i>42</i>&nbsp;    }</b>
+<i>43</i>&nbsp;
+<i>44</i>&nbsp;    private void findMinimalDistances(Branch node) {
+<b class="fc"><i>45</i>&nbsp;        List&lt;Branch&gt; adjacentNodes = getNeighbors(node);</b>
+<b class="fc"><i>46</i>&nbsp;        for (Branch target : adjacentNodes) {</b>
+<b class="fc"><i>47</i>&nbsp;            if (getShortestDistance(target) &gt; getShortestDistance(node)</b>
+<b class="fc"><i>48</i>&nbsp;                    + getDistance(node, target)) {</b>
+<b class="fc"><i>49</i>&nbsp;                distance.put(target, getShortestDistance(node)</b>
+<b class="fc"><i>50</i>&nbsp;                        + getDistance(node, target));</b>
+<b class="fc"><i>51</i>&nbsp;                predecessors.put(target, node);</b>
+<b class="fc"><i>52</i>&nbsp;                unSettledNodes.add(target);</b>
+<i>53</i>&nbsp;            }
+<b class="fc"><i>54</i>&nbsp;        }</b>
+<i>55</i>&nbsp;
+<b class="fc"><i>56</i>&nbsp;    }</b>
+<i>57</i>&nbsp;
+<i>58</i>&nbsp;    private int getDistance(Branch node, Branch target) {
+<b class="fc"><i>59</i>&nbsp;        for (Edge edge : edges) {</b>
+<b class="fc"><i>60</i>&nbsp;            if (edge.getSource().equals(node)</b>
+<b class="fc"><i>61</i>&nbsp;                    &amp;&amp; edge.getDestination().equals(target)) {</b>
+<b class="fc"><i>62</i>&nbsp;                return edge.getWeight();</b>
+<i>63</i>&nbsp;            }
+<b class="fc"><i>64</i>&nbsp;        }</b>
+<b class="nc"><i>65</i>&nbsp;        throw new RuntimeException(&quot;Should not happen&quot;);</b>
+<i>66</i>&nbsp;    }
+<i>67</i>&nbsp;
+<i>68</i>&nbsp;    private List&lt;Branch&gt; getNeighbors(Branch node) {
+<b class="fc"><i>69</i>&nbsp;        List&lt;Branch&gt; neighbors = new ArrayList&lt;Branch&gt;();</b>
+<b class="fc"><i>70</i>&nbsp;        for (Edge edge : edges) {</b>
+<b class="fc"><i>71</i>&nbsp;            if (edge.getSource().equals(node)</b>
+<b class="fc"><i>72</i>&nbsp;                    &amp;&amp; !isSettled(edge.getDestination())) {</b>
+<b class="fc"><i>73</i>&nbsp;                neighbors.add(edge.getDestination());</b>
+<i>74</i>&nbsp;            }
+<b class="fc"><i>75</i>&nbsp;        }</b>
+<b class="fc"><i>76</i>&nbsp;        return neighbors;</b>
+<i>77</i>&nbsp;    }
+<i>78</i>&nbsp;
+<i>79</i>&nbsp;    private Branch getMinimum(Set&lt;Branch&gt; vertexes) {
+<b class="fc"><i>80</i>&nbsp;        Branch minimum = null;</b>
+<b class="fc"><i>81</i>&nbsp;        for (Branch vertex : vertexes) {</b>
+<b class="fc"><i>82</i>&nbsp;            if (minimum == null) {</b>
+<b class="fc"><i>83</i>&nbsp;                minimum = vertex;</b>
+<i>84</i>&nbsp;            } else {
+<b class="fc"><i>85</i>&nbsp;                if (getShortestDistance(vertex) &lt; getShortestDistance(minimum)) {</b>
+<b class="fc"><i>86</i>&nbsp;                    minimum = vertex;</b>
+<i>87</i>&nbsp;                }
+<i>88</i>&nbsp;            }
+<b class="fc"><i>89</i>&nbsp;        }</b>
+<b class="fc"><i>90</i>&nbsp;        return minimum;</b>
+<i>91</i>&nbsp;    }
+<i>92</i>&nbsp;
+<i>93</i>&nbsp;    private boolean isSettled(Branch vertex) {
+<b class="fc"><i>94</i>&nbsp;        return settledNodes.contains(vertex);</b>
+<i>95</i>&nbsp;    }
+<i>96</i>&nbsp;
+<i>97</i>&nbsp;    private int getShortestDistance(Branch destination) {
+<b class="fc"><i>98</i>&nbsp;        Integer d = distance.get(destination);</b>
+<b class="fc"><i>99</i>&nbsp;        if (d == null) {</b>
+<b class="fc"><i>100</i>&nbsp;            return Integer.MAX_VALUE;</b>
+<i>101</i>&nbsp;        } else {
+<b class="fc"><i>102</i>&nbsp;            return d;</b>
+<i>103</i>&nbsp;        }
+<i>104</i>&nbsp;    }
+<i>105</i>&nbsp;
+<i>106</i>&nbsp;    /*
+<i>107</i>&nbsp;     * This method returns the path from the source to the selected target and
+<i>108</i>&nbsp;     * NULL if no path exists
+<i>109</i>&nbsp;     */
+<i>110</i>&nbsp;    public ArrayList&lt;Branch&gt; getPath(Branch target) {
+<i>111</i>&nbsp;        //LinkedList&lt;Branch&gt; path = new LinkedList&lt;Branch&gt;();
+<b class="fc"><i>112</i>&nbsp;    	ArrayList&lt;Branch&gt; path=new ArrayList&lt;Branch&gt;();</b>
+<b class="fc"><i>113</i>&nbsp;        Branch step = target;</b>
+<i>114</i>&nbsp;        // check if a path exists
+<b class="fc"><i>115</i>&nbsp;        if (predecessors.get(step) == null) {</b>
+<b class="fc"><i>116</i>&nbsp;            return null;</b>
+<i>117</i>&nbsp;        }
+<b class="fc"><i>118</i>&nbsp;        path.add(step);</b>
+<b class="fc"><i>119</i>&nbsp;        while (predecessors.get(step) != null) {</b>
+<b class="fc"><i>120</i>&nbsp;            step = predecessors.get(step);</b>
+<b class="fc"><i>121</i>&nbsp;            path.add(step);</b>
+<i>122</i>&nbsp;        }
+<i>123</i>&nbsp;        // Put it into the correct order
+<b class="fc"><i>124</i>&nbsp;        Collections.reverse(path);</b>
+<b class="fc"><i>125</i>&nbsp;        return path;</b>
+<i>126</i>&nbsp;    }
+<i>127</i>&nbsp;
+<i>128</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2017-12-05 21:12</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,442 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Company</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">ems</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Company (ems)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Company</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (20/ 20)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (121/ 121)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package ems;
+<i>2</i>&nbsp;/**
+<i>3</i>&nbsp; * &lt;h1&gt;Company&lt;/h1&gt;
+<i>4</i>&nbsp; * The company contains all the overall information about the system, including
+<i>5</i>&nbsp; * the managerlist, branchlist, customerlist, the map of the delivery system. And 
+<i>6</i>&nbsp; * it can modify the information via calling the methods.
+<i>7</i>&nbsp; *@version v0.2-beta
+<i>8</i>&nbsp; *
+<i>9</i>&nbsp; * */
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;import java.util.*;
+<i>12</i>&nbsp;import java.util.stream.Collectors;
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;public class Company {
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;    private HashMap&lt;Integer, Manager&gt; managerList;
+<i>17</i>&nbsp;    private HashMap&lt;Integer, Branch&gt; branchList;
+<i>18</i>&nbsp;    private HashMap&lt;Integer, Customer&gt; customerList;
+<i>19</i>&nbsp;    //private HashMap&lt;Integer,ArrayList&lt;Integer&gt;&gt; adjacency;
+<i>20</i>&nbsp;    private Graph map;
+<i>21</i>&nbsp;    private List&lt;Edge&gt; edges;
+<i>22</i>&nbsp;    private int branchId;
+<i>23</i>&nbsp;    private OrderPool orderPool;
+<i>24</i>&nbsp;    private Date companyClock;
+<i>25</i>&nbsp;    /**
+<i>26</i>&nbsp;     * This method is used to add linkage between branches to the company.
+<i>27</i>&nbsp;     * @param source The id of the source branch.
+<i>28</i>&nbsp;     * @param target The id of the target branch.
+<i>29</i>&nbsp;     * @return Whether the linkage is successfully added.
+<i>30</i>&nbsp;     * */
+<i>31</i>&nbsp;    public boolean addLinkage(int source, int target) {
+<b class="fc"><i>32</i>&nbsp;        if (this.branchList.containsKey(source) &amp;&amp; this.branchList.containsKey(target)) {</b>
+<b class="fc"><i>33</i>&nbsp;            int distance = this.branchList.get(source).getDistance(this.branchList.get(target));</b>
+<b class="fc"><i>34</i>&nbsp;            Edge edge = new Edge((&quot;(&quot; + source + &quot;, &quot; + target + &quot;)&quot;), this.branchList.get(source), this.branchList.get(target), distance);</b>
+<b class="fc"><i>35</i>&nbsp;            this.edges.add(edge);</b>
+<b class="fc"><i>36</i>&nbsp;            return true;</b>
+<i>37</i>&nbsp;        }
+<b class="fc"><i>38</i>&nbsp;        System.out.println(&quot;source or target does not exist&quot;);</b>
+<b class="fc"><i>39</i>&nbsp;        return false;</b>
+<i>40</i>&nbsp;    }
+<i>41</i>&nbsp;    /**
+<i>42</i>&nbsp;     * This method is reset the company.
+<i>43</i>&nbsp;     * */
+<i>44</i>&nbsp;    public void reset() {
+<b class="fc"><i>45</i>&nbsp;    		this.orderPool.reset();;</b>
+<b class="fc"><i>46</i>&nbsp;         this.branchList.clear();</b>
+<b class="fc"><i>47</i>&nbsp;         this.managerList.clear();</b>
+<b class="fc"><i>48</i>&nbsp;         this.customerList.clear();</b>
+<i>49</i>&nbsp;         //this.adjacency=new HashMap&lt;Integer,ArrayList&lt;Integer&gt;&gt;();
+<b class="fc"><i>50</i>&nbsp;         this.companyClock = new Date();</b>
+<i>51</i>&nbsp;         //Manager superuser = new Manager(0, &quot;superuser&quot;, &quot;123456&quot;, &quot;nil&quot;, 0);
+<i>52</i>&nbsp;         //this.managerList.put(superuser.getId(), superuser);
+<b class="fc"><i>53</i>&nbsp;         this.edges.clear();</b>
+<b class="fc"><i>54</i>&nbsp;         this.map = new Graph(new ArrayList&lt;Branch&gt;(), this.edges);</b>
+<b class="fc"><i>55</i>&nbsp;         this.branchId = 1;</b>
+<b class="fc"><i>56</i>&nbsp;    }</b>
+<i>57</i>&nbsp;    /**
+<i>58</i>&nbsp;     * This method is used remove linkage from the company&#39;s map.
+<i>59</i>&nbsp;     * @param source The id of the source branch.
+<i>60</i>&nbsp;     * @param target The id of the target branch.
+<i>61</i>&nbsp;     * @return Whether the linkage is successfully removed.
+<i>62</i>&nbsp;     * */
+<i>63</i>&nbsp;    public boolean rmLinkage(int source, int target) {
+<b class="fc"><i>64</i>&nbsp;        ArrayList&lt;Edge&gt; edgeToRemove = new ArrayList&lt;Edge&gt;();</b>
+<b class="fc"><i>65</i>&nbsp;        if (this.branchList.containsKey(source) &amp;&amp; this.branchList.containsKey(target)) {</b>
+<b class="fc"><i>66</i>&nbsp;            for (Edge e : (ArrayList&lt;Edge&gt;) this.edges) {</b>
+<b class="fc"><i>67</i>&nbsp;                if (e.getSource() == this.branchList.get(source) &amp;&amp; e.getDestination() == this.branchList.get(target)) {</b>
+<b class="fc"><i>68</i>&nbsp;                    edgeToRemove.add(e);</b>
+<i>69</i>&nbsp;                }
+<i>70</i>&nbsp;
+<b class="fc"><i>71</i>&nbsp;            }</b>
+<b class="fc"><i>72</i>&nbsp;            if (edgeToRemove.size() == 0) {</b>
+<b class="fc"><i>73</i>&nbsp;                System.out.println(&quot;edge does not exist&quot;);</b>
+<b class="fc"><i>74</i>&nbsp;                return false;</b>
+<i>75</i>&nbsp;            }
+<b class="fc"><i>76</i>&nbsp;            this.edges.removeAll(edgeToRemove);</b>
+<b class="fc"><i>77</i>&nbsp;            return true;</b>
+<i>78</i>&nbsp;        }
+<b class="fc"><i>79</i>&nbsp;        System.out.println(&quot;source or target does not exist&quot;);</b>
+<b class="fc"><i>80</i>&nbsp;        return false;</b>
+<i>81</i>&nbsp;    }
+<i>82</i>&nbsp;//    public boolean connectOrNot(int source, int target){
+<i>83</i>&nbsp;//    	return this.adjacency.get(source).contains(target)&amp;&amp;this.adjacency.get(target).contains(source);
+<i>84</i>&nbsp;//    }
+<i>85</i>&nbsp;    /**
+<i>86</i>&nbsp;     *This is the company constructor. 
+<i>87</i>&nbsp;     */
+<b class="fc"><i>88</i>&nbsp;    private Company() {</b>
+<b class="fc"><i>89</i>&nbsp;        this.orderPool = OrderPool.getInstance();</b>
+<b class="fc"><i>90</i>&nbsp;        this.branchList = new HashMap&lt;&gt;();</b>
+<b class="fc"><i>91</i>&nbsp;        this.managerList = new HashMap&lt;&gt;();</b>
+<b class="fc"><i>92</i>&nbsp;        this.customerList = new HashMap&lt;Integer, Customer&gt;();</b>
+<i>93</i>&nbsp;        //this.adjacency=new HashMap&lt;Integer,ArrayList&lt;Integer&gt;&gt;();
+<b class="fc"><i>94</i>&nbsp;        this.companyClock = new Date();</b>
+<i>95</i>&nbsp;        //Manager superuser = new Manager(0, &quot;superuser&quot;, &quot;123456&quot;, &quot;nil&quot;, 0);
+<i>96</i>&nbsp;        //this.managerList.put(superuser.getId(), superuser);
+<b class="fc"><i>97</i>&nbsp;        this.edges = new ArrayList&lt;Edge&gt;();</b>
+<b class="fc"><i>98</i>&nbsp;        this.map = new Graph(new ArrayList&lt;Branch&gt;(), this.edges);</b>
+<b class="fc"><i>99</i>&nbsp;        this.branchId = 1;</b>
+<b class="fc"><i>100</i>&nbsp;    }</b>
+<i>101</i>&nbsp;
+<b class="fc"><i>102</i>&nbsp;    private static Company instance = new Company();</b>
+<i>103</i>&nbsp;    /**
+<i>104</i>&nbsp;     *This is the company get singleton instance method.
+<i>105</i>&nbsp;     *@return The singleton instance.
+<i>106</i>&nbsp;     */
+<i>107</i>&nbsp;    public static Company getInstance() {
+<b class="fc"><i>108</i>&nbsp;        return instance;</b>
+<i>109</i>&nbsp;    }
+<i>110</i>&nbsp;    /**
+<i>111</i>&nbsp;     * This method is used to add manager to the company.
+<i>112</i>&nbsp;     * @param name The name of the manager to add.
+<i>113</i>&nbsp;     * @param password The password for the manager to log in.
+<i>114</i>&nbsp;     * @param gender The gender of the manager.
+<i>115</i>&nbsp;     * @param status The status of the manager to add.
+<i>116</i>&nbsp;     * @return The manager which is added.
+<i>117</i>&nbsp;     * */
+<i>118</i>&nbsp;    public Manager addNewManager(String name, String password, String gender, int status) {
+<b class="fc"><i>119</i>&nbsp;        Manager manager = new Manager(managerList.size(), name, password, gender, status);</b>
+<i>120</i>&nbsp;
+<b class="fc"><i>121</i>&nbsp;        this.managerList.put(manager.getId(), manager);</b>
+<b class="fc"><i>122</i>&nbsp;        return manager;</b>
+<i>123</i>&nbsp;    }
+<i>124</i>&nbsp;    /**
+<i>125</i>&nbsp;     * This method is used to create new orders and plan the route of delivery automatically.
+<i>126</i>&nbsp;     * @param itemName The name of the order.
+<i>127</i>&nbsp;     * @param sender The sender customer.
+<i>128</i>&nbsp;     * @param receiver The receiver customer.
+<i>129</i>&nbsp;     * @return The new order&#39;s id or the error information.
+<i>130</i>&nbsp;     * */
+<i>131</i>&nbsp;    public int createOrder(String itemName, Customer sender, Customer receiver) {
+<b class="fc"><i>132</i>&nbsp;        ArrayList&lt;Position&gt; path = new ArrayList&lt;&gt;();</b>
+<b class="fc"><i>133</i>&nbsp;        Position s = sender.getPosition();</b>
+<b class="fc"><i>134</i>&nbsp;        Position v = receiver.getPosition();</b>
+<b class="fc"><i>135</i>&nbsp;        int min = 100000;</b>
+<b class="fc"><i>136</i>&nbsp;        Branch senderSide = null;</b>
+<b class="fc"><i>137</i>&nbsp;        Branch receiverSide = null;</b>
+<b class="fc"><i>138</i>&nbsp;        for (Map.Entry&lt;Integer, Branch&gt; entry : this.branchList.entrySet()) {</b>
+<b class="fc"><i>139</i>&nbsp;            int d = entry.getValue().getDistance(new Branch(0, &quot;&quot;, s));</b>
+<b class="fc"><i>140</i>&nbsp;            if (d &lt;= min) {</b>
+<b class="fc"><i>141</i>&nbsp;                min = d;</b>
+<b class="fc"><i>142</i>&nbsp;                senderSide = entry.getValue();</b>
+<i>143</i>&nbsp;            }
+<b class="fc"><i>144</i>&nbsp;        }</b>
+<b class="fc"><i>145</i>&nbsp;        min = 100000;</b>
+<b class="fc"><i>146</i>&nbsp;        for (Map.Entry&lt;Integer, Branch&gt; entry : this.branchList.entrySet()) {</b>
+<b class="fc"><i>147</i>&nbsp;            int d = entry.getValue().getDistance(new Branch(0, &quot;&quot;, v));</b>
+<b class="fc"><i>148</i>&nbsp;            if (d &lt;= min) {</b>
+<b class="fc"><i>149</i>&nbsp;                min = d;</b>
+<b class="fc"><i>150</i>&nbsp;                receiverSide = entry.getValue();</b>
+<i>151</i>&nbsp;            }
+<b class="fc"><i>152</i>&nbsp;        }</b>
+<b class="fc"><i>153</i>&nbsp;        if(senderSide==null){</b>
+<b class="fc"><i>154</i>&nbsp;        	System.out.println(&quot;no branch exist&quot;);</b>
+<b class="fc"><i>155</i>&nbsp;        	return -1;</b>
+<i>156</i>&nbsp;        }
+<b class="fc"><i>157</i>&nbsp;        if(senderSide==receiverSide){</b>
+<b class="fc"><i>158</i>&nbsp;        	path.add(senderSide.getLocation());</b>
+<b class="fc"><i>159</i>&nbsp;        	return this.orderPool.createOrder(itemName, sender, receiver, path);</b>
+<i>160</i>&nbsp;        }
+<b class="fc"><i>161</i>&nbsp;        Dijkstra dijkstra = new Dijkstra(this.map);</b>
+<b class="fc"><i>162</i>&nbsp;        dijkstra.execute(senderSide);</b>
+<b class="fc"><i>163</i>&nbsp;        ArrayList&lt;Branch&gt; pathOfBranch = dijkstra.getPath(receiverSide);</b>
+<b class="fc"><i>164</i>&nbsp;        if (pathOfBranch==null) {</b>
+<b class="fc"><i>165</i>&nbsp;            System.out.println(&quot;Unreachable&quot;);</b>
+<b class="fc"><i>166</i>&nbsp;            return -1;</b>
+<i>167</i>&nbsp;        }
+<i>168</i>&nbsp;        
+<b class="fc"><i>169</i>&nbsp;        for (Branch b : pathOfBranch) {</b>
+<b class="fc"><i>170</i>&nbsp;            path.add(b.getLocation());</b>
+<i>171</i>&nbsp;
+<b class="fc"><i>172</i>&nbsp;        }</b>
+<i>173</i>&nbsp;   //     if (path.size() == 0) {
+<i>174</i>&nbsp;   //         System.out.println(&quot;Unreachable&quot;);
+<i>175</i>&nbsp;   //        return -1;
+<i>176</i>&nbsp;    //    }
+<b class="fc"><i>177</i>&nbsp;        return this.orderPool.createOrder(itemName, sender, receiver, path);</b>
+<i>178</i>&nbsp;    }
+<i>179</i>&nbsp;    /**
+<i>180</i>&nbsp;     * This method is used to add a new branch to the company.
+<i>181</i>&nbsp;     * @param name The name of the branch.
+<i>182</i>&nbsp;     * @param position The position of the branch.
+<i>183</i>&nbsp;     * @return The branch which is added.
+<i>184</i>&nbsp;     * */
+<i>185</i>&nbsp;    public Branch addBranch(String name, Position position) {
+<b class="fc"><i>186</i>&nbsp;        int id = this.branchId++;</b>
+<b class="fc"><i>187</i>&nbsp;        Branch branch = new Branch(id, name, position);</b>
+<i>188</i>&nbsp;
+<b class="fc"><i>189</i>&nbsp;        List&lt;Branch&gt; bList = new ArrayList&lt;Branch&gt;();</b>
+<b class="fc"><i>190</i>&nbsp;        bList.add(branch);</b>
+<b class="fc"><i>191</i>&nbsp;        for (Map.Entry&lt;Integer, Branch&gt; entry : this.branchList.entrySet()) {</b>
+<b class="fc"><i>192</i>&nbsp;            bList.add(entry.getValue());</b>
+<b class="fc"><i>193</i>&nbsp;        }</b>
+<b class="fc"><i>194</i>&nbsp;        this.map = new Graph(bList, this.edges);</b>
+<b class="fc"><i>195</i>&nbsp;        return branchList.put(id, branch);</b>
+<i>196</i>&nbsp;    }
+<i>197</i>&nbsp;    /**
+<i>198</i>&nbsp;     * This method is used to remove a branch from the company.
+<i>199</i>&nbsp;     * @param id The id of the branch.
+<i>200</i>&nbsp;     * @return The branch which is removed.
+<i>201</i>&nbsp;     * */
+<i>202</i>&nbsp;    public Branch removeBranch(int id) {
+<i>203</i>&nbsp;
+<b class="fc"><i>204</i>&nbsp;        Branch toRemove = branchList.remove(id);</b>
+<i>205</i>&nbsp;
+<b class="fc"><i>206</i>&nbsp;        ArrayList&lt;Edge&gt; edgeToRemove = new ArrayList&lt;Edge&gt;();</b>
+<b class="fc"><i>207</i>&nbsp;        for (Edge e : this.edges) {</b>
+<b class="fc"><i>208</i>&nbsp;            if (e.getDestination() == toRemove || e.getSource() == toRemove) {</b>
+<b class="fc"><i>209</i>&nbsp;                edgeToRemove.add(e);</b>
+<i>210</i>&nbsp;            }
+<b class="fc"><i>211</i>&nbsp;        }</b>
+<i>212</i>&nbsp;
+<b class="fc"><i>213</i>&nbsp;        for (Edge e : edgeToRemove) {</b>
+<b class="fc"><i>214</i>&nbsp;            this.edges.remove(e);</b>
+<b class="fc"><i>215</i>&nbsp;        }</b>
+<i>216</i>&nbsp;
+<b class="fc"><i>217</i>&nbsp;        List&lt;Branch&gt; bList = new ArrayList&lt;Branch&gt;();</b>
+<b class="fc"><i>218</i>&nbsp;        for (Map.Entry&lt;Integer, Branch&gt; entry : this.branchList.entrySet()) {</b>
+<b class="fc"><i>219</i>&nbsp;            bList.add(entry.getValue());</b>
+<b class="fc"><i>220</i>&nbsp;        }</b>
+<i>221</i>&nbsp;
+<b class="fc"><i>222</i>&nbsp;        this.map = new Graph(bList, this.edges);</b>
+<i>223</i>&nbsp;
+<b class="fc"><i>224</i>&nbsp;        return toRemove;</b>
+<i>225</i>&nbsp;    }
+<i>226</i>&nbsp;    /**
+<i>227</i>&nbsp;     * This method is used to search the order by id.
+<i>228</i>&nbsp;     * @param id The id of the order.
+<i>229</i>&nbsp;     * @return The order which is searched.
+<i>230</i>&nbsp;     * */
+<i>231</i>&nbsp;    public Order searchOrder(int id) {
+<b class="fc"><i>232</i>&nbsp;        return orderPool.getOrderById(id);</b>
+<i>233</i>&nbsp;    }
+<i>234</i>&nbsp;    /**
+<i>235</i>&nbsp;     * This method is used to search the order by name.
+<i>236</i>&nbsp;     * @param name The name of the order.
+<i>237</i>&nbsp;     * @return The order which is searched.
+<i>238</i>&nbsp;     * */
+<i>239</i>&nbsp;    public Order searchOrder(String name) {
+<b class="fc"><i>240</i>&nbsp;        return orderPool.getOrderByName(name);</b>
+<i>241</i>&nbsp;    }
+<i>242</i>&nbsp;
+<i>243</i>&nbsp;    /**
+<i>244</i>&nbsp;     * This method is used to change the status of a order after it has been received.
+<i>245</i>&nbsp;     * @param order The order which is received.
+<i>246</i>&nbsp;     * */
+<i>247</i>&nbsp;    public void receiveOrder(Order order) {
+<b class="fc"><i>248</i>&nbsp;        orderPool.receiveOrder(order);</b>
+<b class="fc"><i>249</i>&nbsp;    }</b>
+<i>250</i>&nbsp;
+<i>251</i>&nbsp;    /**
+<i>252</i>&nbsp;     * This method is used to get the time of the company after creation.
+<i>253</i>&nbsp;     * @return The time after the company is created(in millisecond)
+<i>254</i>&nbsp;     */
+<i>255</i>&nbsp;    public long getTime() {
+<b class="fc"><i>256</i>&nbsp;        return new Date().getTime() - this.companyClock.getTime();</b>
+<i>257</i>&nbsp;    }
+<i>258</i>&nbsp;    
+<i>259</i>&nbsp;    /**
+<i>260</i>&nbsp;     * This method is used to add customer to the company.
+<i>261</i>&nbsp;     * @param name The name of the customer to add.
+<i>262</i>&nbsp;     * @param password The password for the customer to log in.
+<i>263</i>&nbsp;     * @param priority The priority of the customer.
+<i>264</i>&nbsp;     * @param position The position of the customer.
+<i>265</i>&nbsp;     * @return The customer which is added.
+<i>266</i>&nbsp;     * */
+<i>267</i>&nbsp;
+<i>268</i>&nbsp;    public Customer addCustomer(String name, String password, int priority, Position position) {
+<b class="fc"><i>269</i>&nbsp;        Customer customer = new Customer(customerList.size(), name, password, priority, position);</b>
+<b class="fc"><i>270</i>&nbsp;        this.customerList.put(customer.getId(), customer);</b>
+<b class="fc"><i>271</i>&nbsp;        return customer;</b>
+<i>272</i>&nbsp;    }
+<i>273</i>&nbsp;    /**
+<i>274</i>&nbsp;     * This method is used to add customer to the company.
+<i>275</i>&nbsp;     * @param name The name of the customer to add.
+<i>276</i>&nbsp;     * @param password The password for the customer to log in.
+<i>277</i>&nbsp;     * @return The customer which is added.
+<i>278</i>&nbsp;     * */
+<i>279</i>&nbsp;    public Customer addCustomer(String name, String password) {
+<b class="fc"><i>280</i>&nbsp;        Customer customer = new Customer(customerList.size(), name, password);</b>
+<b class="fc"><i>281</i>&nbsp;        this.customerList.put(customer.getId(), customer);</b>
+<b class="fc"><i>282</i>&nbsp;        return customer;</b>
+<i>283</i>&nbsp;    }
+<i>284</i>&nbsp;    /**
+<i>285</i>&nbsp;     * This method is used to search the branch by position.
+<i>286</i>&nbsp;     * @param position The position of the branch.
+<i>287</i>&nbsp;     * @return The branch which is searched.
+<i>288</i>&nbsp;     * */
+<i>289</i>&nbsp;    public Branch getBranchByLocation(Position position) {
+<i>290</i>&nbsp;
+<b class="fc"><i>291</i>&nbsp;        Map&lt;Integer, Branch&gt; tmp_container = this.branchList.entrySet().stream()</b>
+<b class="fc"><i>292</i>&nbsp;                .filter(map -&gt; map.getValue().getLocation().distance(position) == 0)</b>
+<b class="fc"><i>293</i>&nbsp;                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));</b>
+<i>294</i>&nbsp;//        there are probably more than one branches on this location
+<i>295</i>&nbsp;//        return tmp_container to get all branches on this location.
+<b class="fc"><i>296</i>&nbsp;        return tmp_container.entrySet().iterator().next().getValue();</b>
+<i>297</i>&nbsp;    }
+<i>298</i>&nbsp;    /**
+<i>299</i>&nbsp;     * This method is used to search the manager by id.
+<i>300</i>&nbsp;     * @param id The id of the manager.
+<i>301</i>&nbsp;     * @return The manager which is searched.
+<i>302</i>&nbsp;     * */
+<i>303</i>&nbsp;    public Manager getManager(int id) {
+<b class="fc"><i>304</i>&nbsp;        return this.managerList.get(id);</b>
+<i>305</i>&nbsp;    }
+<i>306</i>&nbsp;    /**
+<i>307</i>&nbsp;     * This method is used to remove the manager by id.
+<i>308</i>&nbsp;     * @param id The id of the manager.
+<i>309</i>&nbsp;     * @return The manager which is removed.
+<i>310</i>&nbsp;     * */
+<i>311</i>&nbsp;    public Manager removeManager(int id) {
+<b class="fc"><i>312</i>&nbsp;        return this.managerList.remove(id);</b>
+<i>313</i>&nbsp;    }
+<i>314</i>&nbsp;    /**
+<i>315</i>&nbsp;     * This method is used to get the customer by id.
+<i>316</i>&nbsp;     * @param id The id of the customer.
+<i>317</i>&nbsp;     * @return The customer which is required.
+<i>318</i>&nbsp;     * */
+<i>319</i>&nbsp;    public Customer getCustomer(int id) {
+<b class="fc"><i>320</i>&nbsp;        return this.customerList.get(id);</b>
+<i>321</i>&nbsp;    }
+<i>322</i>&nbsp;}
+<i>323</i>&nbsp;
+<i>324</i>&nbsp;//    private SortedSet&lt;Branch&gt; sortBranchesByDestination(Iterable&lt;Branch&gt; branches, Branch source, Branch destination) {
+<i>325</i>&nbsp;//       SortedSet&lt;Branch&gt; sortedEntries = new TreeSet&lt;Branch&gt;(
+<i>326</i>&nbsp;//                (leftBranch, rightBranch) -&gt; {
+<i>327</i>&nbsp;//                    int leftDistance = leftBranch.getDistance(source);
+<i>328</i>&nbsp;//                    int rightDistance = rightBranch.getDistance(source);
+<i>329</i>&nbsp;//
+<i>330</i>&nbsp;//                    return Integer.compare(leftDistance, rightDistance);
+<i>331</i>&nbsp;//                }
+<i>332</i>&nbsp;//        );
+<i>333</i>&nbsp;
+<i>334</i>&nbsp;//        for (Branch branch : branches) {
+<i>335</i>&nbsp;//            int total_distance = branch.getDistance(destination) + branch.getDistance(source);
+<i>336</i>&nbsp;//            int least_distance = Position.distance(source.getLocation(), destination.getLocation());
+<i>337</i>&nbsp;// sort all branches exclude itself
+<i>338</i>&nbsp;// if the path through this branch will not increase total amount of distance: means the correct distance
+<i>339</i>&nbsp;// This branch is nearer to destination
+<i>340</i>&nbsp;//            if (least_distance &lt;= total_distance &amp;&amp; branch.getDistance(source) != 0) sortedEntries.add(branch);
+<i>341</i>&nbsp;//        }
+<i>342</i>&nbsp;//        return sortedEntries;
+<i>343</i>&nbsp;//    }
+<i>344</i>&nbsp;
+<i>345</i>&nbsp;//    public Branch neighbourForBranch(Branch me, Branch destination) {
+<i>346</i>&nbsp;//        ArrayList&lt;Branch&gt; neighbourBranches = new ArrayList&lt;&gt;();
+<i>347</i>&nbsp;//        this.branchList.forEach((id, branch) -&gt; neighbourBranches.add(branch));
+<i>348</i>&nbsp;//        SortedSet&lt;Branch&gt; sortedBranches = this.sortBranchesByDestination(neighbourBranches, me, destination);
+<i>349</i>&nbsp;//        // find if there are middle station(branch) on the way
+<i>350</i>&nbsp;// if no, directly goes to destination :(
+<i>351</i>&nbsp;//        Branch result;
+<i>352</i>&nbsp;//        try {
+<i>353</i>&nbsp;//            result = sortedBranches.first();
+<i>354</i>&nbsp;//        } catch (NoSuchElementException e) {
+<i>355</i>&nbsp;//            result = null;
+<i>356</i>&nbsp;//        }
+<i>357</i>&nbsp;
+<i>358</i>&nbsp;//        return result;
+<i>359</i>&nbsp;//    }
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2017-12-05 21:12</div>
+</div>
+</body>
+</html>

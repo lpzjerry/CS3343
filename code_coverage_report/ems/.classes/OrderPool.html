@@ -1,0 +1,147 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: OrderPool</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">ems</a> ]
+</div>
+
+<h1>Coverage Summary for Class: OrderPool (ems)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">OrderPool</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (9/ 9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    92.6%
+  </span>
+  <span class="absValue">
+    (25/ 27)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package ems;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import java.util.ArrayList;
+<i>4</i>&nbsp;import java.util.HashMap;
+<i>5</i>&nbsp;import java.util.Map;
+<i>6</i>&nbsp;// TODO unittest
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;public class OrderPool {
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;    private HashMap&lt;Integer, Order&gt; orderList;
+<i>11</i>&nbsp;
+<b class="fc"><i>12</i>&nbsp;    private static OrderPool instance = new OrderPool();</b>
+<i>13</i>&nbsp;
+<b class="fc"><i>14</i>&nbsp;    private int currentOrder = 0;</b>
+<i>15</i>&nbsp;
+<b class="fc"><i>16</i>&nbsp;    private OrderPool() {</b>
+<b class="fc"><i>17</i>&nbsp;        this.orderList = new HashMap&lt;Integer, Order&gt;();</b>
+<b class="fc"><i>18</i>&nbsp;    }</b>
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;    public static OrderPool getInstance() {
+<b class="fc"><i>21</i>&nbsp;        return instance;</b>
+<i>22</i>&nbsp;    }
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;//    public int addOrderToList(Order order) {
+<i>25</i>&nbsp;//        this.currentOrder++;
+<i>26</i>&nbsp;//        this.orderList.put(this.currentOrder, order);
+<i>27</i>&nbsp;//        return currentOrder;
+<i>28</i>&nbsp;//    }
+<i>29</i>&nbsp;
+<i>30</i>&nbsp;    public Order getOrderById(int id) {
+<b class="fc"><i>31</i>&nbsp;        return this.orderList.get(id);</b>
+<i>32</i>&nbsp;    }
+<i>33</i>&nbsp;    public void reset() {
+<b class="fc"><i>34</i>&nbsp;    	this.orderList.clear();</b>
+<b class="fc"><i>35</i>&nbsp;    	this.currentOrder = 0;</b>
+<b class="fc"><i>36</i>&nbsp;    }</b>
+<i>37</i>&nbsp;    public Order getOrderByName(String name) {
+<b class="fc"><i>38</i>&nbsp;        for (Map.Entry&lt;Integer, Order&gt; entry : orderList.entrySet()) {</b>
+<b class="fc"><i>39</i>&nbsp;            Order order = entry.getValue();</b>
+<b class="fc"><i>40</i>&nbsp;            if (order.getItemName().equals(name)) {</b>
+<b class="fc"><i>41</i>&nbsp;                return order;</b>
+<i>42</i>&nbsp;            }
+<b class="fc"><i>43</i>&nbsp;        }</b>
+<b class="fc"><i>44</i>&nbsp;        return null;</b>
+<i>45</i>&nbsp;    }
+<i>46</i>&nbsp;
+<i>47</i>&nbsp;    public void receiveOrder(Order order) {
+<b class="fc"><i>48</i>&nbsp;        order.receiveOrder();</b>
+<b class="fc"><i>49</i>&nbsp;    }</b>
+<i>50</i>&nbsp;
+<i>51</i>&nbsp;    public int createOrder(String itemName, Customer sender, Customer receiver, ArrayList&lt;Position&gt; paths) {
+<b class="fc"><i>52</i>&nbsp;        this.currentOrder++;</b>
+<b class="fc"><i>53</i>&nbsp;        Order order = new Order(this.currentOrder, itemName, sender, receiver, paths);</b>
+<b class="fc"><i>54</i>&nbsp;        this.orderList.put(this.currentOrder, order);</b>
+<b class="fc"><i>55</i>&nbsp;        return this.currentOrder;</b>
+<i>56</i>&nbsp;    }
+<i>57</i>&nbsp;
+<i>58</i>&nbsp;    public void processAllOrders() {
+<b class="fc"><i>59</i>&nbsp;        for (Map.Entry&lt;Integer, Order&gt; entry : orderList.entrySet()) {</b>
+<b class="fc"><i>60</i>&nbsp;            Order order = entry.getValue();</b>
+<b class="fc"><i>61</i>&nbsp;            order.updatePositionByTime(Company.getInstance().getTime());</b>
+<b class="nc"><i>62</i>&nbsp;        }</b>
+<b class="nc"><i>63</i>&nbsp;    }</b>
+<i>64</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2017-12-05 21:12</div>
+</div>
+</body>
+</html>

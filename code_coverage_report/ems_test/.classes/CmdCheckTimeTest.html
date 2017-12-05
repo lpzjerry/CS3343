@@ -1,0 +1,115 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: CmdCheckTimeTest</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">ems_test</a> ]
+</div>
+
+<h1>Coverage Summary for Class: CmdCheckTimeTest (ems_test)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CmdCheckTimeTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/ 3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    90%
+  </span>
+  <span class="absValue">
+    (9/ 10)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package ems_test;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import static org.junit.Assert.*;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import java.util.ArrayList;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;import org.junit.Before;
+<i>8</i>&nbsp;import org.junit.Test;
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;import ems.CmdCheckTime;
+<i>11</i>&nbsp;import ems.Company;
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;import java.io.ByteArrayOutputStream;
+<i>14</i>&nbsp;import java.io.PrintStream;
+<b class="fc"><i>15</i>&nbsp;public class CmdCheckTimeTest {</b>
+<b class="fc"><i>16</i>&nbsp;    CmdCheckTime cmd = null;</b>
+<i>17</i>&nbsp;	String[] para;
+<i>18</i>&nbsp;    @Before
+<i>19</i>&nbsp;	public void setUp() throws Exception {
+<b class="fc"><i>20</i>&nbsp;		para = new String[] {&quot;checkTime&quot;};</b>
+<b class="fc"><i>21</i>&nbsp;    		cmd = new CmdCheckTime(Company.getInstance(),para);</b>
+<b class="fc"><i>22</i>&nbsp;	}</b>
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;	@Test
+<i>25</i>&nbsp;	public void testExecute() {
+<b class="fc"><i>26</i>&nbsp;		 ByteArrayOutputStream outContent = new ByteArrayOutputStream();</b>
+<b class="fc"><i>27</i>&nbsp;	     System.setOut(new PrintStream(outContent));</b>
+<b class="fc"><i>28</i>&nbsp;	     cmd.execute();</b>
+<b class="fc"><i>29</i>&nbsp;	     assertEquals(&quot;It is 1\n&quot;,outContent.toString());</b>
+<b class="nc"><i>30</i>&nbsp;	}</b>
+<i>31</i>&nbsp;
+<i>32</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2017-12-05 21:12</div>
+</div>
+</body>
+</html>

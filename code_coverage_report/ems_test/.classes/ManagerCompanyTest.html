@@ -1,0 +1,201 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: ManagerCompanyTest</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">ems_test</a> ]
+</div>
+
+<h1>Coverage Summary for Class: ManagerCompanyTest (ems_test)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ManagerCompanyTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    94.4%
+  </span>
+  <span class="absValue">
+    (17/ 18)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    95.6%
+  </span>
+  <span class="absValue">
+    (43/ 45)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package ems_test;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import static org.junit.Assert.*;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import java.io.ByteArrayOutputStream;
+<i>6</i>&nbsp;import java.io.PrintStream;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;import org.junit.After;
+<i>9</i>&nbsp;import org.junit.Before;
+<i>10</i>&nbsp;import org.junit.Test;
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;import ems.Branch;
+<i>13</i>&nbsp;import ems.Company;
+<i>14</i>&nbsp;import ems.Customer;
+<i>15</i>&nbsp;import ems.Manager;
+<i>16</i>&nbsp;import ems.Position;
+<i>17</i>&nbsp;
+<b class="fc"><i>18</i>&nbsp;public class ManagerCompanyTest {</b>
+<i>19</i>&nbsp;	Manager m;
+<i>20</i>&nbsp;	@Before
+<i>21</i>&nbsp;	public void setUp() throws Exception {
+<b class="fc"><i>22</i>&nbsp;		m=new Manager(100, &quot;A&quot;, &quot;123&quot;, &quot;F&quot;, 0);</b>
+<b class="fc"><i>23</i>&nbsp;	}</b>
+<i>24</i>&nbsp;
+<i>25</i>&nbsp;	@After
+<i>26</i>&nbsp;	public void tearDown() throws Exception {
+<b class="fc"><i>27</i>&nbsp;	}</b>
+<i>28</i>&nbsp;
+<i>29</i>&nbsp;	@Test
+<i>30</i>&nbsp;	public void test01_getId() {
+<b class="fc"><i>31</i>&nbsp;		assertEquals(100,m.getId());</b>
+<b class="fc"><i>32</i>&nbsp;	}</b>
+<i>33</i>&nbsp;	
+<i>34</i>&nbsp;	@Test
+<i>35</i>&nbsp;	public void test02_getStatus() {
+<b class="fc"><i>36</i>&nbsp;		assertEquals(0,m.getStatus());</b>
+<b class="fc"><i>37</i>&nbsp;	}</b>
+<i>38</i>&nbsp;	
+<i>39</i>&nbsp;	@Test
+<i>40</i>&nbsp;    public void test03_addBranch() {
+<b class="fc"><i>41</i>&nbsp;        Branch result = m.addBranch(&quot;name&quot;, new Position(1, 2));</b>
+<b class="fc"><i>42</i>&nbsp;        assertNull(result);</b>
+<b class="fc"><i>43</i>&nbsp;    }</b>
+<i>44</i>&nbsp;	
+<i>45</i>&nbsp;	@Test
+<i>46</i>&nbsp;    public void test04_removeBranch() throws Exception {
+<b class="fc"><i>47</i>&nbsp;		setOutput();</b>
+<b class="fc"><i>48</i>&nbsp;        Branch result = m.removeBranch(4);</b>
+<b class="fc"><i>49</i>&nbsp;        assertEquals(null,result);</b>
+<b class="fc"><i>50</i>&nbsp;    }</b>
+<i>51</i>&nbsp;	
+<i>52</i>&nbsp;	@Test
+<i>53</i>&nbsp;    public void test05_addCustomer() {
+<b class="fc"><i>54</i>&nbsp;		Customer result=m.addCustomer(&quot;A&quot;, &quot;123&quot;);</b>
+<b class="fc"><i>55</i>&nbsp;        assertEquals(Company.getInstance().getCustomer(1),result);</b>
+<b class="fc"><i>56</i>&nbsp;    }</b>
+<i>57</i>&nbsp;	
+<i>58</i>&nbsp;	@Test
+<i>59</i>&nbsp;    public void test06_addCustomer02() {
+<b class="fc"><i>60</i>&nbsp;		Customer result=m.addCustomer(&quot;A&quot;, &quot;123&quot;, 1, new Position(2,2));</b>
+<b class="fc"><i>61</i>&nbsp;        assertEquals(Company.getInstance().getCustomer(0),result);</b>
+<b class="fc"><i>62</i>&nbsp;    }</b>
+<i>63</i>&nbsp;
+<i>64</i>&nbsp;	@Test
+<i>65</i>&nbsp;    public void test07_rootOrNot() {
+<b class="fc"><i>66</i>&nbsp;        assertEquals(true,m.rootOrNot());</b>
+<b class="fc"><i>67</i>&nbsp;    }</b>
+<i>68</i>&nbsp;	
+<i>69</i>&nbsp;	@Test
+<i>70</i>&nbsp;    public void test08_addLink() {
+<b class="fc"><i>71</i>&nbsp;        assertEquals(false,m.addLinkage(1, 5));</b>
+<b class="fc"><i>72</i>&nbsp;    }</b>
+<i>73</i>&nbsp;	
+<i>74</i>&nbsp;	@Test
+<i>75</i>&nbsp;    public void test09_removeLink() {
+<b class="fc"><i>76</i>&nbsp;        assertEquals(false,m.rmLinkage(1, 5));</b>
+<b class="fc"><i>77</i>&nbsp;    }</b>
+<i>78</i>&nbsp;	
+<i>79</i>&nbsp;	@Test
+<i>80</i>&nbsp;    public void test10_addManager01() {
+<b class="fc"><i>81</i>&nbsp;		Manager result=m.addNewManager(&quot;B&quot;, &quot;001&quot;, &quot;M&quot;, 0);</b>
+<b class="fc"><i>82</i>&nbsp;        assertEquals(Company.getInstance().getManager(0),result);</b>
+<b class="fc"><i>83</i>&nbsp;    }</b>
+<i>84</i>&nbsp;	
+<i>85</i>&nbsp;	@Test
+<i>86</i>&nbsp;    public void test11_addManager02() {
+<b class="fc"><i>87</i>&nbsp;		Manager m2=new Manager(101, &quot;B&quot;, &quot;001&quot;, &quot;M&quot;, 1);</b>
+<b class="fc"><i>88</i>&nbsp;		Manager result=m2.addNewManager(&quot;C&quot;, &quot;001&quot;, &quot;M&quot;,0);</b>
+<b class="fc"><i>89</i>&nbsp;        assertEquals(null,result);</b>
+<b class="fc"><i>90</i>&nbsp;    }</b>
+<i>91</i>&nbsp;	
+<i>92</i>&nbsp;	@Test
+<i>93</i>&nbsp;    public void test11_removeManager() {
+<b class="fc"><i>94</i>&nbsp;		Manager result=m.removeManager(101);</b>
+<b class="fc"><i>95</i>&nbsp;        assertEquals(null,result);</b>
+<b class="fc"><i>96</i>&nbsp;    }</b>
+<i>97</i>&nbsp;	
+<i>98</i>&nbsp;	@Test
+<i>99</i>&nbsp;    public void test11_toString() {
+<b class="fc"><i>100</i>&nbsp;        assertEquals(&quot;[manager A]&quot;,m.toString());</b>
+<b class="fc"><i>101</i>&nbsp;    }</b>
+<i>102</i>&nbsp;	
+<i>103</i>&nbsp;	
+<i>104</i>&nbsp;	PrintStream oldPrintStream;
+<i>105</i>&nbsp;	ByteArrayOutputStream bos;
+<i>106</i>&nbsp;
+<i>107</i>&nbsp;	private void setOutput() throws Exception {
+<b class="fc"><i>108</i>&nbsp;		oldPrintStream = System.out;</b>
+<b class="fc"><i>109</i>&nbsp;		bos = new ByteArrayOutputStream();</b>
+<b class="fc"><i>110</i>&nbsp;		System.setOut(new PrintStream(bos));</b>
+<b class="fc"><i>111</i>&nbsp;	}</b>
+<i>112</i>&nbsp;
+<i>113</i>&nbsp;	private String getOutput() { // throws Exception
+<b class="nc"><i>114</i>&nbsp;		System.setOut(oldPrintStream);</b>
+<b class="nc"><i>115</i>&nbsp;		return bos.toString();</b>
+<i>116</i>&nbsp;	}
+<i>117</i>&nbsp;
+<i>118</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2017-12-05 21:12</div>
+</div>
+</body>
+</html>
