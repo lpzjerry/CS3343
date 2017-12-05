@@ -74,7 +74,7 @@ public class Main {
                     commandLogger.StoreAndExecute(new CmdSearchOrder(company, cmdParts));
                 } else if (cmdParts[0].equals("exit")) {
                     break;
-                } else if (cmdParts[0].equals("createOrder")) {//cmdParts= ["createOrder","itemname","customer1ID"嚙踝蕭謕蕭豲������揭"customer2ID"]
+                } else if (cmdParts[0].equals("createOrder")) {
                     commandLogger.StoreAndExecute(new CmdCreateOrder(company, cmdParts,customer));
                 } else if (cmdParts[0].equals("checkTime")) {
                     commandLogger.StoreAndExecute(new CmdCheckTime(company, cmdParts));
