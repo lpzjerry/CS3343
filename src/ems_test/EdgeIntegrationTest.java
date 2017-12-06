@@ -22,7 +22,6 @@ public class EdgeIntegrationTest {
 	Edge edge = null;
 	@Before
 	public void setUp() throws Exception {
-		System.out.print("a");
 		pos1 = new Position(1,2);
 		pos2 = new Position(3,4);
 		branch1 = new Branch(1,"Sheila",pos1);
