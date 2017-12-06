@@ -171,7 +171,7 @@ public class OrderBranchPositionTest {
     	setOutput();
     	path.add(pos1);
     	order.updatePositionByTime(10);
-    	assertEquals("Order [item1] is received by [Customer: 2 name: Bob]\r\n",getOutput());
+    	assertEquals("Order [item1] is available to receive by [Customer: 2 name: Bob]\r\n",getOutput());
     }
     
     @Test
@@ -182,7 +182,7 @@ public class OrderBranchPositionTest {
     	Company.getInstance().addBranch("b1", pos1); 
 		Company.getInstance().addBranch("b1", pos2);
     	order.updatePositionByTime(10000);
-    	assertEquals("Order [item1] is received by [Customer: 2 name: Bob]\r\n",getOutput());
+    	assertEquals("Order [item1] is available to receive by [Customer: 2 name: Bob]\r\n",getOutput());
     }
     
     @Test
