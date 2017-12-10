@@ -25,7 +25,7 @@ make new
 make build
 make jar
 ```
-*Or* simply download the [JAR]()
+*Or* simply download the [JAR](https://github.com/patrickwang96/CS3343/releases/download/v1.0/group1.jar)
 
 #### Details
 Download the source code from [Project page](https://github.com/patrickwang96/CS3343) and Unzip
