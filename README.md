@@ -6,15 +6,20 @@
 2. Developer Programmer: [QIU Rui](https://github.com/SherlockQiu), [LIU Pengze](https://github.com/lpzjerry)
 3. Qulity Assurance Engineer: [WANG Ruochen](http://blog.patrickwang.tech), [FAN Yuyang](https://github.com/YolandaFan), [WANG Yixuan](https://github.com/JinksMI)
 
+## Get Started
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.  
+### Prerequisites
+* Java Runtime Environment 
 
-## Install Guide
+### Install Guide
 
 We used [Make](https://www.gnu.org/software/make/manual/make.html) to automate the compilation process. 
 
 
-#### Prerequisite
-- Unix-like environment (i.e. terminal)
+#### Requirement 
+- Unix-like environment (i.e. terminal, iTerm2)
 - Java SE 1.8
+- JDK for compilation
 
 #### Installation in short
 Type commands sequentially in terminal,
@@ -25,9 +30,9 @@ make new
 make build
 make jar
 ```
-*Or* simply,
+*Or* simply, download our compiled executable jar.
 ```
-TODO 小土你发完official release给个下载jar的链接
+wget https://github.com/patrickwang96/CS3343/releases/tag/v1.0/group1.jar
 ```
 
 #### Details
@@ -55,6 +60,16 @@ make build
 To pack all classes into one JAR, 
 ```
 make jar
+```
+
+To delete all compiled classes and JAR, 
+```
+make clean
+```
+
+To rebuild the whole project, 
+```
+make rebuild
 ```
 
 ## User Guide
@@ -207,3 +222,8 @@ Git
     - Version control
     - Library / Environmment
 - Q&A
+
+## License
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/patrickwang96/CS3343/blob/master/LICENSE) file for details
+
+
