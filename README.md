@@ -11,7 +11,12 @@
 
 We used [Make](https://www.gnu.org/software/make/manual/make.html) to automate the compilation process. 
 
-### Installation in short
+
+#### Prerequisite
+- Unix-like environment (i.e. terminal)
+- Java Runtime Environment (JRE) 1.8
+
+#### Installation in short
 Type commands sequentially in terminal,
 ```
 git clone https://github.com/patrickwang96/CS3343.git
@@ -20,12 +25,12 @@ make new
 make build
 make jar
 ```
+*Or* simply,
+```
+TODO 小土你发完official release给个下载jar的链接
+```
 
-### Details
-- Prerequisite
-    - Unix-like environment (i.e. terminal)
-    - Java Runtime Environment (JRE) 1.8
-    
+#### Details
 Download the source code from [Project page](https://github.com/patrickwang96/CS3343) and Unzip
 *or* download by git clone,
 ```
