@@ -14,7 +14,7 @@ We used [Make](https://www.gnu.org/software/make/manual/make.html) to automate t
 
 #### Prerequisite
 - Unix-like environment (i.e. terminal)
-- Java Runtime Environment (JRE) 1.8
+- Java SE 1.8
 
 #### Installation in short
 Type commands sequentially in terminal,
