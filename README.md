@@ -25,10 +25,7 @@ make new
 make build
 make jar
 ```
-*Or* simply,
-```
-TODO 小土你发完official release给个下载jar的链接
-```
+*Or* simply download the [JAR]()
 
 #### Details
 Download the source code from [Project page](https://github.com/patrickwang96/CS3343) and Unzip
