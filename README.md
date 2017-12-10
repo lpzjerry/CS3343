@@ -1,6 +1,4 @@
-# CS3343
-The group project for CS3343
-
+# Express management System
 
 ## Role assignment
 
@@ -8,27 +6,38 @@ The group project for CS3343
 2. Developer Programmer: [QIU Rui](https://github.com/SherlockQiu), [LIU Pengze](https://github.com/lpzjerry)
 3. Qulity Assurance Engineer: [WANG Ruochen](http://blog.patrickwang.tech), [FAN Yuyang](https://github.com/YolandaFan), [WANG Yixuan](https://github.com/JinksMI)
 
-## Project topic
-**Express management System**.
-
-## Person iteractions
-
-* Customer (who receives items)
-* Express company's managers
-* Courier (the person who deliver the packages)
-* Customer (who sends items)
-* Branch offices
-
-## Version Control System
-
-Git
 
 ## Install Guide
 
-We used make to automate the compilation process. 
+We used [Make](https://www.gnu.org/software/make/manual/make.html) to automate the compilation process. 
 
+### Installation in short
+Type commands sequentially in terminal,
+```
+git clone https://github.com/patrickwang96/CS3343.git
+cd CS3343/
+make new
+make build
+make jar
+```
 
-To create structure of the compiled classes, go to CS3343 repo's folder and run the below commands in terminal.  
+### Details
+- Prerequisite
+    - Unix-like environment (i.e. terminal)
+    - Java Runtime Environment (JRE) 1.8
+    
+Download the source code from GitHub first
+```
+git clone https://github.com/patrickwang96/CS3343.git
+```
+*Optional* Download directly from [Project Website](https://github.com/patrickwang96/CS3343) and Unzip
+
+To create structure of the compiled classes, go to CS3343 repo's folder,
+```
+cd CS3343/
+```
+
+and run the below commands in terminal.  
 ```
 make new 
 ```
@@ -38,11 +47,89 @@ To compile the whole project,
 make build
 ```
 
-To pack all classes into one JAR,   
+To pack all classes into one JAR, 
 ```
 make jar
 ```
 
+## User Guide
+Run the jar file in terminal:
+```
+java -jar group1.jar
+```
+The prompt **EMS$** will be displayed if you successfully entered our system.
+
+Our project is a command-driven system, with a user guide command **help**
+```
+EMS$ help
+Cmd:
+------------------------------------------Common_Commands------------------------------------------
+	help: show the available command
+	checkTime: show the time
+	searchBranch <x-corodinate> <y-corodinate>: search the Branch by location
+	help: show the available command
+	exit: exit the system
+------------------------------------------End_of_Common_cmd------------------------------------------
+
+------------------------------------------Basic_UI_Commands------------------------------------------
+	manager <id>: login as manager with id
+	customer <id>: login as customer with id
+------------------------------------------End_of_Common_cmd------------------------------------------
+
+------------------------------------------Manager_Commands------------------------------------------
+	addBranch <name> <x-corodinate> <y-corodinate>: add branch with name, and position
+	addCustomer <name> <password> <priority> <x-corodinate> <y-corodinate>: add customer with infomation
+	addLink <source_id> <target_id>: add directed linkage from source branch to target branch
+	searchOrder <id>: trace where the order is
+	rmBranch <id>: remove branch with id
+	rmLink <source_id> <target_id>: remove directed linkage from source branch to target branch
+	logout: logout to basic UI command
+	[Command only for super maanger]:
+		addManager <name> <password> <gender> <rank>: add new manager with the information
+		rmManager <id>: remove manager with id
+------------------------------------------End_of_Manager_cmd------------------------------------------
+
+------------------------------------------Customer_Commands------------------------------------------
+	createOrder <name> <target_id>: create a new order to send
+	searchOrder <id>: trace where the order is
+	logout: logout to basic UI command
+------------------------------------------End_of_Customer_cmd------------------------------------------
+```
+a sample command rundown is provided below.
+
+## Sample Command Rundown
+
+> help<br>
+> manager 0<br>
+> addManager manager1 123456 female 1<br>
+> addBranch branch1 1 2<br>
+> searchBranch 1 2<br>
+> addBranch branch2 15 15<br>
+> addCustomer sender 654321 1 2 2<br>
+> addCustomer receiver 567890 1 15 14<br>
+> addLink 1 2<br>
+> logout<br>
+> customer 0<br>
+> createOrder order 1<br>
+> searchOrder 1<br>
+> searchOrder order<br>
+> logout<br>
+> manager 0<br>
+> rmManager 1<br>
+> rmBranch 1<br>
+> exit <br>
+
+## Version Control System
+
+Git
+
+## Person iteractions
+
+* Customer (who receives items)
+* Express company's managers
+* Courier (the person who deliver the packages)
+* Customer (who sends items)
+* Branch offices
 
 ## Presentation structure
 - Objective
@@ -115,28 +202,5 @@ make jar
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── ReceiverTest.java<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── SenderTest.java<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── TestBranch.java<br>
-
-
-## Sample Cmd Line Rundown
-
-> help<br>
-> manager 0<br>
-> addManager manager1 123456 female 1<br>
-> addBranch branch1 1 2<br>
-> searchBranch 1 2<br>
-> addBranch branch2 15 15<br>
-> addCustomer sender 654321 1 2 2<br>
-> addCustomer receiver 567890 1 15 14<br>
-> addLink 1 2<br>
-> logout<br>
-> customer 0<br>
-> createOrder order 1<br>
-> searchOrder 1<br>
-> searchOrder order<br>
-> logout<br>
-> manager 0<br>
-> rmManager 1<br>
-> rmBranch 1<br>
-> exit <br>
 
 
