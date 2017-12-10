@@ -26,18 +26,18 @@ make jar
     - Unix-like environment (i.e. terminal)
     - Java Runtime Environment (JRE) 1.8
     
-Download the source code from GitHub first
+Download the source code from [Project page](https://github.com/patrickwang96/CS3343) and Unzip
+*or* download by git clone,
 ```
 git clone https://github.com/patrickwang96/CS3343.git
 ```
-*Optional* Download directly from [Project Website](https://github.com/patrickwang96/CS3343) and Unzip
 
-To create structure of the compiled classes, go to CS3343 repo's folder,
+To create structure of the compiled classes, go to CS3343 repo's folder first,
 ```
 cd CS3343/
 ```
 
-and run the below commands in terminal.  
+and run the commands below in terminal,  
 ```
 make new 
 ```
@@ -131,30 +131,6 @@ Git
 * Customer (who sends items)
 * Branch offices
 
-## Presentation structure
-- Objective
-- Planning
-    - Team Organization
-    - Development process
-    - Project scheduling
-- Software
-    - Functions
-        - Demo
-    - System design
-        - Design patterns
-        - Design principles
-    - Code refactoring
-    - Bug report
-- ※Testing
-    - Hierarchy
-    - Approach (Bottom-up? Sandwich?)
-    - (how many test cases)
-- Configuration
-    - Version control
-    - Library / Environmment
-- Q&A
-
-
 ## Project Structure
 ├── ems  <br>
 │   ├── Branch.java <br>
@@ -204,3 +180,25 @@ Git
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── TestBranch.java<br>
 
 
+## Presentation structure
+- Objective
+- Planning
+    - Team Organization
+    - Development process
+    - Project scheduling
+- Software
+    - Functions
+        - Demo
+    - System design
+        - Design patterns
+        - Design principles
+    - Code refactoring
+    - Bug report
+- ※Testing
+    - Hierarchy
+    - Approach (Bottom-up)
+    - Number of test cases
+- Configuration
+    - Version control
+    - Library / Environmment
+- Q&A
