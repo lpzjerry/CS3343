@@ -23,6 +23,27 @@ The group project for CS3343
 
 Git
 
+## Install Guide
+
+We used make to automate the compilation process. 
+
+
+To create structure of the compiled classes, go to CS3343 repo's folder and run the below commands in terminal.  
+```
+make new 
+```
+
+To compile the whole project,    
+```
+make build
+```
+
+To pack all classes into one JAR,   
+```
+make jar
+```
+
+
 ## Presentation structure
 - Objective
 - Planning
@@ -117,3 +138,5 @@ Git
 > rmManager 1<br>
 > rmBranch 1<br>
 > exit <br>
+
+
